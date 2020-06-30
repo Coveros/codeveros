@@ -3,6 +3,8 @@ name: codeveros
 description: An umbrella chart for CODEveros
 type: application
 version: 0.1.0
+appVersion: 1.0.0
+home: https://coveros.com
 dependencies:
   - name: codeveros-user-service
     version: 0.2.0

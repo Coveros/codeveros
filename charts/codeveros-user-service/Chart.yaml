@@ -4,6 +4,7 @@ description: Codeveros User Service Helm chart
 type: application
 version: 0.3.0
 appVersion: latest
+home: https://coveros.com
 dependencies:
   - name: mongodb
     version: 7.8.4

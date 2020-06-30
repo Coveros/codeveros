@@ -4,3 +4,4 @@ description: Codeveros Angular UI Helm chart
 type: application
 version: 0.3.0
 appVersion: latest
+home: https://coveros.com
