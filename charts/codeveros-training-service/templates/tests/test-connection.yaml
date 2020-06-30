@@ -6,7 +6,6 @@ metadata:
   {{- include "codeveros-training-service.labels" . | nindent 4 }}
   annotations:
     "helm.sh/hook": test
-    "helm.sh/hook-delete-policy": before-hook-creation, hook-succeeded
 spec:
   activeDeadlineSeconds: 60
   template:
