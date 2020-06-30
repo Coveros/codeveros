@@ -4,4 +4,5 @@ chart-dirs:
   - charts
 chart-repos:
   - stable=https://kubernetes-charts.storage.googleapis.com
+  - codeveros=https://coveros.gitlab.io/codeveros/charts
 helm-extra-args: --timeout 600s
