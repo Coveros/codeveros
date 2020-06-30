@@ -2,4 +2,6 @@
 remote: origin
 chart-dirs:
   - charts
+chart-repos:
+  - stable=https://kubernetes-charts.storage.googleapis.com
 helm-extra-args: --timeout 600s
