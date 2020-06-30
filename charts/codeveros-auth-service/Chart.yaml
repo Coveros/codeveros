@@ -5,3 +5,6 @@ type: application
 version: 0.3.0
 appVersion: latest
 home: https://coveros.com
+maintainers:
+  - name: justin-coveros
+    email: justin.hollingsworth@coveros.com
