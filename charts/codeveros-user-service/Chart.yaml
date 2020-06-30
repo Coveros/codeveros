@@ -2,7 +2,7 @@ apiVersion: v2
 name: codeveros-user-service
 description: Codeveros User Service Helm chart
 type: application
-version: 0.2.0
+version: 0.3.0
 appVersion: latest
 dependencies:
   - name: mongodb
