@@ -2,5 +2,9 @@ apiVersion: v2
 name: codeveros-auth-service
 description: Codeveros Auth Service Helm chart
 type: application
-version: 0.2.0
+version: 0.3.0
 appVersion: latest
+home: https://coveros.com
+maintainers:
+  - name: justin-coveros
+    email: justin.hollingsworth@coveros.com
