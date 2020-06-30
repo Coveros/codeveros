@@ -1,0 +1,13 @@
+replicaCount: 1
+
+image:
+  repository: coveros/codeveros-auth-service
+  pullPolicy: Always
+
+nameOverride: ""
+fullnameOverride: ""
+imagePullSecrets: []
+
+service:
+  type: ClusterIP
+  port: 8080

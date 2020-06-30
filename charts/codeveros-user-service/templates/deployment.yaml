@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "codeveros-user-service.fullname" . }}
+  labels:
+    {{- include "codeveros-user-service.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "codeveros-user-service.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "codeveros-user-service.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /health-check
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /health-check
+              port: http
+          env:
+            - name: DB_HOST
+              value: "{{ .Release.Name }}-user-service-mongodb"
+            - name: DB_PORT
+              value: {{ .Values.env.dbPort | quote }}
+            - name: DB_DATABASE
+              value: {{ .Values.env.dbDatabase }}
+

@@ -1,0 +1,17 @@
+replicaCount: 1
+
+image:
+  repository: coveros/codeveros-ui
+  pullPolicy: Always
+
+nameOverride: ""
+fullnameOverride: ""
+imagePullSecrets: []
+
+gatewayServiceNameOverride: ""
+gatewayServiceName: codeveros-gateway
+
+service:
+  type: NodePort
+  port: 80
+  nodePort:

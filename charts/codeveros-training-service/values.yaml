@@ -1,0 +1,22 @@
+replicaCount: 1
+
+image:
+  repository: coveros/codeveros-training-service
+  pullPolicy: Always
+
+nameOverride: ""
+fullnameOverride: ""
+imagePullSecrets: []
+
+service:
+  type: ClusterIP
+  port: 8080
+
+env:
+  dbPort: "27017"
+  dbDatbase: "training"
+
+mongodb:
+  # codeveros currently doesn't use authentication between the service and the database
+  usePassword: false
+  nameOverride: training-service-mongodb
