@@ -3,6 +3,7 @@ replicaCount: 1
 image:
   repository: coveros/codeveros-auth-service
   pullPolicy: Always
+  tag: ""
 
 nameOverride: ""
 fullnameOverride: ""
