@@ -36,8 +36,8 @@ spec:
               port: http
           env:
             - name: TRAINING_SERVICE
-              value: {{ include "codeveros-gateway.trainingServiceEndpoint" . }}
+              value: {{ include "codeveros-gateway.trainingServiceEndpoint" . | quote }}
             - name: USER_SERVICE
-              value: {{ include "codeveros-gateway.userServiceEndpoint" . }}
+              value: {{ include "codeveros-gateway.userServiceEndpoint" . | quote }}
             - name: AUTH_SERVICE
-              value: {{ include "codeveros-gateway.authServiceEndpoint" . }}
+              value: {{ include "codeveros-gateway.authServiceEndpoint" . | quote }}
