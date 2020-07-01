@@ -16,3 +16,7 @@ service:
   type: NodePort
   port: 80
   nodePort:
+
+config:
+  enabled: false
+  data: {}
