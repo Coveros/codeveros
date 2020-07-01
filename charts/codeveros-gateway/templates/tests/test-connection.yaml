@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ include "codeveros-gateway.fullname" . }}-test-connection"
+  labels:
+  {{- include "codeveros-gateway.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  activeDeadlineSeconds: 60
+  template:
+    spec:
+      containers:
+        - name: wget
+          image: busybox
+          command: ['wget']
+          args:  ['{{ include "codeveros-gateway.fullname" . }}:{{ .Values.service.port }}/health-check']
+      restartPolicy: Never
