@@ -3,6 +3,7 @@ replicaCount: 1
 image:
   repository: coveros/codeveros-ui
   pullPolicy: Always
+  tag: ""
 
 nameOverride: ""
 fullnameOverride: ""
