@@ -1,0 +1,22 @@
+replicaCount: 1
+
+image:
+  repository: coveros/codeveros-gateway
+  pullPolicy: Always
+  tag: ""
+
+nameOverride: ""
+fullnameOverride: ""
+imagePullSecrets: []
+
+authServiceNameOverride: ""
+userServiceNameOverride: ""
+trainingServiceNameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 8080
+
+authServiceName: "codeveros-auth-service"
+trainingServiceName: "codeveros-training-service"
+userServiceName: "codeveros-user-service"
