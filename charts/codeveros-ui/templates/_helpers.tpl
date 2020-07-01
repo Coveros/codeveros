@@ -50,16 +50,3 @@ Selector labels
 app.kubernetes.io/name: {{ include "codeveros-ui.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
-
-{{/*
-Create Gateway Service Endpoint
-*/}}
-{{- define "codeveros-ui.gatewayServiceEndpoint" -}}
-{{- if .Values.gatewayServiceNameOverride -}}
-{{- $serviceName := .Values.gatewayServiceNameOverride | trunc 63 | trimSuffix "-" -}}
-{{- printf "http://%s:8080" $serviceName | trunc 63 | trimSuffix "-" -}}
-{{- else -}}
-{{- $serviceName := (printf "%s-%s" .Release.Name .Values.gatewayServiceName | trunc 63 | trimSuffix "-") -}}
-{{- printf "http://%s:8080" $serviceName | trunc 63 | trimSuffix "-" -}}
-{{- end -}}
-{{- end -}}
