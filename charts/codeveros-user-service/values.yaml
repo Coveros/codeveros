@@ -2,6 +2,7 @@ replicaCount: 1
 
 image:
   repository: coveros/codeveros-user-service
+  tag: ""
   pullPolicy: Always
 
 nameOverride: ""
