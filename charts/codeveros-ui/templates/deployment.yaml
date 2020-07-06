@@ -39,7 +39,7 @@ spec:
               value: {{ .Values.apiUrl }}
           {{- if .Values.config.enabled }}
           volumeMounts:
-          - name: {{ include "codeveros-ui.fullname" . }}
+          - name: nginx-config
             mountPath: /etc/nginx/conf.d/
           {{- end }}
       {{- if .Values.config.enabled }}
