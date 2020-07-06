@@ -9,14 +9,13 @@ nameOverride: ""
 fullnameOverride: ""
 imagePullSecrets: []
 
-gatewayServiceNameOverride: ""
-gatewayServiceName: codeveros-gateway
-
 service:
-  type: NodePort
+  type: ClusterIP
   port: 80
   nodePort:
 
 config:
   enabled: false
   data: {}
+
+apiUrl: /api

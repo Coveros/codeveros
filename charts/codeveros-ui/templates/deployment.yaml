@@ -34,9 +34,12 @@ spec:
             httpGet:
               path: /health-check
               port: http
+          env:
+            - name: API_URL
+              value: {{ .Values.apiUrl }}
           {{- if .Values.config.enabled }}
           volumeMounts:
-          - name: {{ include "codeveros-ui.fullname" . }}
+          - name: nginx-config
             mountPath: /etc/nginx/conf.d/
           {{- end }}
       {{- if .Values.config.enabled }}
