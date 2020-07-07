@@ -1,5 +1,36 @@
 apiVersion: v1
 entries:
+  codeveros:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2020-07-07T19:06:27.221176447Z"
+    dependencies:
+    - name: codeveros-user-service
+      repository: https://coveros.github.io/codeveros
+      version: 0.4.0
+    - name: codeveros-training-service
+      repository: https://coveros.github.io/codeveros
+      version: 0.4.0
+    - name: codeveros-auth-service
+      repository: https://coveros.github.io/codeveros
+      version: 0.4.0
+    - name: codeveros-gateway
+      repository: https://coveros.github.io/codeveros
+      version: 0.3.0
+    - name: codeveros-ui
+      repository: https://coveros.github.io/codeveros
+      version: 0.5.0
+    description: An umbrella chart for CODEveros
+    digest: 350c1acb82022d36c34512af8416e48c892dde273813d7387d12f38d804c255f
+    home: https://coveros.com
+    maintainers:
+    - email: justin.hollingsworth@coveros.com
+      name: justin-coveros
+    name: codeveros
+    type: application
+    urls:
+    - https://github.com/Coveros/codeveros/releases/download/codeveros-0.1.0/codeveros-0.1.0.tgz
+    version: 0.1.0
   codeveros-auth-service:
   - apiVersion: v2
     appVersion: "1.0"
