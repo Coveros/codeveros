@@ -3,7 +3,7 @@ name: codeveros-user-service
 description: Codeveros User Service Helm chart
 type: application
 version: 0.4.0
-appVersion: 1.0
+appVersion: "1.0"
 home: https://coveros.com
 maintainers:
   - name: justin-coveros
