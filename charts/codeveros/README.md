@@ -6,11 +6,11 @@ This chart installs CODEveros as a single helm release. It is largely an umbrell
 charts, along with an ingress or proxy to establish a single endpoint for external access. The proxy forwards requests 
 to the codeveros-gateway and codeveros-ui services.
 
-* [codeveros-auth-service](../codeveros-auth-service/README.md)
-* [codeveros-gateway](../codeveros-gateway/README.md)
-* [codeveros-training-service](../codeveros-training-service/README.md)
-* [codeveros-user-service](../codeveros-user-service/README.md)
-* [codeveros-ui](../codeveros-ui/README.md)
+* [codeveros-auth-service](../codeveros-auth-service)
+* [codeveros-gateway](../codeveros-gateway)
+* [codeveros-training-service](../codeveros-training-service)
+* [codeveros-user-service](../codeveros-user-service)
+* [codeveros-ui](../codeveros-ui)
 
 ## Prerequisites
 
