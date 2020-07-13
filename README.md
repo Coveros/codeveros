@@ -1,16 +1,16 @@
-# codeveros
-Monorepo for all Codeveros services
+# CODEveros
+Monorepo for all CODEveros services
 
 ## Helm Charts
 
 ### Available Charts
 
-##### codeveros
-##### codeveros-auth-service
-##### codeveros-training-service
-##### codeveros-ui
-##### codeveros-user-service
-##### codeveros-gateway
+* [codeveros](codeveros/)
+* [codeveros-auth-service](codeveros-auth-service/)
+* [codeveros-training-service](codeveros-training-service/)
+* [codeveros-ui](codeveros-ui/)
+* [codeveros-user-service](codeveros-user-service/)
+* [codeveros-gateway](codeveros-gateway/)
 
 
 ### Adding the Chart Repository
