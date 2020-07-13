@@ -1,4 +1,4 @@
-# Codeveros Gateway
+# CODEveros Gateway Chart
 
 ## Introduction
 

@@ -1,4 +1,4 @@
-# Codeveros Auth Service Chart
+# CODEveros Auth Service Chart
 
 ## Introduction
 
