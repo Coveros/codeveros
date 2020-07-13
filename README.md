@@ -5,12 +5,12 @@ Monorepo for all CODEveros services
 
 ### Available Charts
 
-* [codeveros](codeveros/)
-* [codeveros-auth-service](codeveros-auth-service/)
-* [codeveros-training-service](codeveros-training-service/)
-* [codeveros-ui](codeveros-ui/)
-* [codeveros-user-service](codeveros-user-service/)
-* [codeveros-gateway](codeveros-gateway/)
+* [codeveros](charts/codeveros/)
+* [codeveros-auth-service](charts/codeveros-auth-service/)
+* [codeveros-training-service](charts/codeveros-training-service/)
+* [codeveros-ui](charts/codeveros-ui/)
+* [codeveros-user-service](charts/codeveros-user-service/)
+* [codeveros-gateway](charts/codeveros-gateway/)
 
 
 ### Adding the Chart Repository
