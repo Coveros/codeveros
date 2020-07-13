@@ -1,4 +1,4 @@
-# CODEveros User Service
+# CODEveros User Service Chart
 
 ## Introduction
 

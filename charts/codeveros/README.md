@@ -1,4 +1,4 @@
-# Codeveros
+# CODEveros Chart
 
 ## Introduction
 

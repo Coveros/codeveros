@@ -1,4 +1,4 @@
-# CODEveros UI
+# CODEveros UI Chart
 
 ## Introduction
 

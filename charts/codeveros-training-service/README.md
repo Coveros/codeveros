@@ -1,4 +1,4 @@
-# CODEveros Training Service
+# CODEveros Training Service Chart
 
 ## Introduction
 
