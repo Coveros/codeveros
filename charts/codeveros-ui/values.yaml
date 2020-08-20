@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: coveros/codeveros-ui
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
   tag: ""
 
 nameOverride: ""
