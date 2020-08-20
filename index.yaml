@@ -94,6 +94,20 @@ entries:
   codeveros-auth-service:
   - apiVersion: v2
     appVersion: "1.0"
+    created: "2020-08-20T21:05:17.073737193Z"
+    description: Codeveros Auth Service Helm chart
+    digest: 94351a013b7c065032952a9927db2323f91d295292dbb165768d2738e5d32e93
+    home: https://coveros.com
+    maintainers:
+    - email: justin.hollingsworth@coveros.com
+      name: justin-coveros
+    name: codeveros-auth-service
+    type: application
+    urls:
+    - https://github.com/Coveros/codeveros/releases/download/codeveros-auth-service-0.4.2/codeveros-auth-service-0.4.2.tgz
+    version: 0.4.2
+  - apiVersion: v2
+    appVersion: "1.0"
     created: "2020-07-14T20:09:42.391652419Z"
     description: Codeveros Auth Service Helm chart
     digest: b048c961de02a211d916c54d61ec499f98e58acea4112de869f40ed602ea3ff1
@@ -123,6 +137,20 @@ entries:
   codeveros-gateway:
   - apiVersion: v2
     appVersion: "1.0"
+    created: "2020-08-20T21:05:17.251817933Z"
+    description: Codeveros Gateway Helm chart
+    digest: 1e8b81a72ff9cb6f1476a4007edd2c8c5edd9b482fcf488ad49219cb008c9ebd
+    home: https://coveros.com
+    maintainers:
+    - email: justin.hollingsworth@coveros.com
+      name: justin-coveros
+    name: codeveros-gateway
+    type: application
+    urls:
+    - https://github.com/Coveros/codeveros/releases/download/codeveros-gateway-0.3.2/codeveros-gateway-0.3.2.tgz
+    version: 0.3.2
+  - apiVersion: v2
+    appVersion: "1.0"
     created: "2020-07-14T20:09:42.513595016Z"
     description: Codeveros Gateway Helm chart
     digest: 01173e5ad2f830c0868928e17d0cd1311a4a46420631368aa0961a88c7a67f70
@@ -150,6 +178,24 @@ entries:
     - https://github.com/Coveros/codeveros/releases/download/codeveros-gateway-0.3.0/codeveros-gateway-0.3.0.tgz
     version: 0.3.0
   codeveros-training-service:
+  - apiVersion: v2
+    appVersion: "1.0"
+    created: "2020-08-20T21:05:17.378614018Z"
+    dependencies:
+    - name: mongodb
+      repository: https://kubernetes-charts.storage.googleapis.com
+      version: 7.8.4
+    description: Codeveros Training Service Helm chart
+    digest: d4f2ef20c7ed75cbe349069b0c98758d4e140c9f047f2481d883a5b0c12d9c3b
+    home: https://coveros.com
+    maintainers:
+    - email: justin.hollingsworth@coveros.com
+      name: justin-coveros
+    name: codeveros-training-service
+    type: application
+    urls:
+    - https://github.com/Coveros/codeveros/releases/download/codeveros-training-service-0.4.2/codeveros-training-service-0.4.2.tgz
+    version: 0.4.2
   - apiVersion: v2
     appVersion: "1.0"
     created: "2020-07-14T20:09:42.621503102Z"
@@ -189,6 +235,20 @@ entries:
   codeveros-ui:
   - apiVersion: v2
     appVersion: "1.0"
+    created: "2020-08-20T21:05:17.494468969Z"
+    description: Codeveros Angular UI Helm chart
+    digest: 9bfeff8c119842313c01f891eccfb85c0f0a89f283ae919c35f4f01229982b58
+    home: https://coveros.com
+    maintainers:
+    - email: justin.hollingsworth@coveros.com
+      name: justin-coveros
+    name: codeveros-ui
+    type: application
+    urls:
+    - https://github.com/Coveros/codeveros/releases/download/codeveros-ui-0.5.2/codeveros-ui-0.5.2.tgz
+    version: 0.5.2
+  - apiVersion: v2
+    appVersion: "1.0"
     created: "2020-07-14T20:09:42.730061688Z"
     description: Codeveros Angular UI Helm chart
     digest: d9f0b1d4bc96951a8f64a5088a13ae18d8bce0b8e924dc98c9c401b514ad7e7c
@@ -216,6 +276,24 @@ entries:
     - https://github.com/Coveros/codeveros/releases/download/codeveros-ui-0.5.0/codeveros-ui-0.5.0.tgz
     version: 0.5.0
   codeveros-user-service:
+  - apiVersion: v2
+    appVersion: "1.0"
+    created: "2020-08-20T21:05:17.61985885Z"
+    dependencies:
+    - name: mongodb
+      repository: https://kubernetes-charts.storage.googleapis.com
+      version: 7.8.4
+    description: Codeveros User Service Helm chart
+    digest: 4124579334d3fe16cf401c509748d01a044705f16828806b6ae296ab5354e057
+    home: https://coveros.com
+    maintainers:
+    - email: justin.hollingsworth@coveros.com
+      name: justin-coveros
+    name: codeveros-user-service
+    type: application
+    urls:
+    - https://github.com/Coveros/codeveros/releases/download/codeveros-user-service-0.4.2/codeveros-user-service-0.4.2.tgz
+    version: 0.4.2
   - apiVersion: v2
     appVersion: "1.0"
     created: "2020-07-14T20:09:42.830886169Z"
