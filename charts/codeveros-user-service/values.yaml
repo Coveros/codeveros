@@ -15,7 +15,7 @@ service:
 
 env:
   dbPort: "27017"
-  dbDatbase: "users"
+  dbDatabase: "users"
 
 mongodb:
   # codeveros currently doesn't use authentication between the service and the database

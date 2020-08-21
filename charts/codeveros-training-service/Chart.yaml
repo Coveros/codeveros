@@ -2,7 +2,7 @@ apiVersion: v2
 name: codeveros-training-service
 description: Codeveros Training Service Helm chart
 type: application
-version: 0.4.2
+version: 0.4.3
 appVersion: "1.0"
 home: https://coveros.com
 maintainers:
