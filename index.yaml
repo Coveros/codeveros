@@ -180,6 +180,24 @@ entries:
   codeveros-training-service:
   - apiVersion: v2
     appVersion: "1.0"
+    created: "2020-08-21T20:55:24.977815985Z"
+    dependencies:
+    - name: mongodb
+      repository: https://kubernetes-charts.storage.googleapis.com
+      version: 7.8.4
+    description: Codeveros Training Service Helm chart
+    digest: fb478111bebe6dd20012ccad6a6c6478dc61684a378c56f80c52fe018e7480e1
+    home: https://coveros.com
+    maintainers:
+    - email: justin.hollingsworth@coveros.com
+      name: justin-coveros
+    name: codeveros-training-service
+    type: application
+    urls:
+    - https://github.com/Coveros/codeveros/releases/download/codeveros-training-service-0.4.3/codeveros-training-service-0.4.3.tgz
+    version: 0.4.3
+  - apiVersion: v2
+    appVersion: "1.0"
     created: "2020-08-20T21:05:17.378614018Z"
     dependencies:
     - name: mongodb
@@ -276,6 +294,24 @@ entries:
     - https://github.com/Coveros/codeveros/releases/download/codeveros-ui-0.5.0/codeveros-ui-0.5.0.tgz
     version: 0.5.0
   codeveros-user-service:
+  - apiVersion: v2
+    appVersion: "1.0"
+    created: "2020-08-21T20:55:25.091527942Z"
+    dependencies:
+    - name: mongodb
+      repository: https://kubernetes-charts.storage.googleapis.com
+      version: 7.8.4
+    description: Codeveros User Service Helm chart
+    digest: 67d5b878eb0cfb67628c187e7e1c0ba16110ecbb9da0a1a79b23184c674d12ea
+    home: https://coveros.com
+    maintainers:
+    - email: justin.hollingsworth@coveros.com
+      name: justin-coveros
+    name: codeveros-user-service
+    type: application
+    urls:
+    - https://github.com/Coveros/codeveros/releases/download/codeveros-user-service-0.4.3/codeveros-user-service-0.4.3.tgz
+    version: 0.4.3
   - apiVersion: v2
     appVersion: "1.0"
     created: "2020-08-20T21:05:17.61985885Z"
