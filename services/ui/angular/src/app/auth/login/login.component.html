@@ -1,0 +1,36 @@
+<form [formGroup]="loginForm" novalidate (ngSubmit)="onLogin()">
+  <div class="form-container">
+    <mat-form-field appearance="outline">
+      <mat-label>Username</mat-label>
+      <input
+        matInput
+        formControlName="username"
+        id="sign-in-username"
+        required>
+      <mat-error *ngIf="username.hasError('required')">
+        This is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        type="password"
+        formControlName="password"
+        id="sign-in-password"
+        required>
+      <mat-error *ngIf="password.hasError('required')">
+        This is required
+      </mat-error>
+    </mat-form-field>
+    <div fxLayout="row" fxLayoutAlign="center">
+      <p>{{message}}</p>
+    </div>
+    <button
+      mat-raised-button
+      id="sign-in-button"
+      color="primary"
+      type="submit"
+      [disabled]="loggingIn || loginForm.invalid">Sign in</button>
+  </div>
+</form>

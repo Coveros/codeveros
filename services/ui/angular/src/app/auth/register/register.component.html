@@ -1,0 +1,88 @@
+<form [formGroup]="registerForm" novalidate (ngSubmit)="onRegister()">
+  <div class="form-container">
+    <mat-form-field appearance="outline">
+      <mat-label>First Name</mat-label>
+      <input
+        matInput
+        formControlName="firstName"
+        id="register-firstname"
+        required>
+      <mat-error *ngIf="registerForm.hasError('required', 'firstName')">
+        This is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Last Name</mat-label>
+      <input
+        matInput
+        formControlName="lastName"
+        id="register-lastname"
+        required>
+      <mat-error *ngIf="registerForm.hasError('required', 'lastName')">
+        This is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Username</mat-label>
+      <input
+        matInput
+        formControlName="username"
+        id="register-username"
+        required>
+      <mat-error *ngIf="registerForm.hasError('required', 'username')">
+        This is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Email Address</mat-label>
+      <input
+        type="email"
+        matInput
+        formControlName="email"
+        id="register-email"
+        required>
+      <mat-error *ngIf="registerForm.hasError('required', 'email') || registerForm.hasError('email', 'email')">
+        A valid email address is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        type="password"
+        formControlName="password"
+        autocomplete="new-password"
+        id="register-password"
+        required>
+      <mat-error *ngIf="registerForm.hasError('required', 'password')">
+        This is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Confirm password</mat-label>
+      <input
+        matInput
+        type="password"
+        formControlName="confirmPassword"
+        autocomplete="new-password"
+        [errorStateMatcher]="passwordErrorMatcher"
+        id="register-confirm-password"
+        required>
+      <mat-error *ngIf="registerForm.hasError('required', 'confirmPassword')">
+        This is required
+      </mat-error>
+      <mat-error *ngIf="!registerForm.hasError('required', 'confirmPassword') && registerForm.hasError('passwordMatch')">
+        Passwords must match
+      </mat-error>
+    </mat-form-field>
+    <div fxLayout="row" fxLayoutAlign="center">
+      <p>{{message}}</p>
+    </div>
+    <button
+      mat-raised-button
+      id="register-button"
+      color="primary"
+      type="submit"
+      [disabled]="submitting || registerForm.invalid">Register</button>
+  </div>
+</form>

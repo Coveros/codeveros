@@ -1,0 +1,51 @@
+table {
+  width: 100%;
+}
+
+.container {
+  padding: 16px;
+}
+
+tr.element-row:hover, .mat-list-item:hover {
+  background: #f5f5f5;
+}
+
+tr.element-row td {
+  border-bottom-width: 0;
+}
+
+.table-title-bar {
+  padding: 16px 24px 0;
+}
+
+.table-card,
+.list-card {
+  background-color: white;
+  margin-bottom: 16px;
+}
+
+.list-card {
+  max-width: 750px;
+}
+
+.mat-list .mat-icon,
+.table-actions .mat-icon {
+  display: none !important;
+}
+
+.mat-list-item {
+  height: auto !important;
+}
+
+.mat-list-item:hover .mat-icon,
+tr.element-row:hover .table-actions .mat-icon {
+  display: inline-block !important;
+}
+
+.description-content {
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+  padding-bottom: 8px !important;
+  color: rgba(0,0,0,0.54) !important;
+  line-height: 1.1em !important;
+}

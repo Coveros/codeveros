@@ -1,0 +1,21 @@
+.container {
+  height: 100%;
+  min-height: 100%;
+}
+.auth-box {
+  padding: 16px;
+  margin-top: 64px;
+  width: 350px;
+  max-width: 90%;
+  background: white;
+}
+
+.logo {
+  background: url('coveros-logo.png');
+  width: 187px;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-size: 187px 100px;
+  margin: auto;
+  padding-bottom: 16px;
+}

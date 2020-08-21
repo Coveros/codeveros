@@ -1,0 +1,91 @@
+<form [formGroup]="dialogForm" novalidate (ngSubmit)="onSubmit()" class="mat-typography">
+  <h2 mat-dialog-title>{{ title }}</h2>
+  <mat-dialog-content>
+    <div class="form-container">
+      <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <input
+          matInput
+          formControlName="firstName"
+          id="user-firstname"
+          required>
+        <mat-error *ngIf="dialogForm.hasError('required', 'firstName')">
+          This is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Last Name</mat-label>
+        <input
+          matInput
+          formControlName="lastName"
+          id="user-lastname"
+          required>
+        <mat-error *ngIf="dialogForm.hasError('required', 'lastName')">
+          This is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Email Address</mat-label>
+        <input
+          type="email"
+          matInput
+          formControlName="email"
+          id="user-email"
+          required>
+        <mat-error *ngIf="dialogForm.hasError('required', 'email')">
+          This is required
+        </mat-error>
+        <mat-error *ngIf="dialogForm.hasError('email', 'email')">
+          Invalid Email
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input
+          matInput
+          formControlName="username"
+          id="user-username"
+          required>
+        <mat-error *ngIf="dialogForm.hasError('required', 'username')">
+          This is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field *ngIf="!isEdit">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          type="password"
+          formControlName="password"
+          autocomplete="new-password"
+          id="user-password"
+          required>
+        <mat-error *ngIf="dialogForm.hasError('required', 'password')">
+          This is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field *ngIf="!isEdit">
+        <mat-label>Confirm password</mat-label>
+        <input
+          matInput
+          type="password"
+          formControlName="confirmPassword"
+          autocomplete="new-password"
+          [errorStateMatcher]="passwordErrorMatcher"
+          id="user-confirm-password"
+          required>
+        <mat-error *ngIf="dialogForm.hasError('required', 'confirmPassword')">
+          This is required
+        </mat-error>
+        <mat-error *ngIf="!dialogForm.hasError('required', 'confirmPassword') && dialogForm.hasError('passwordMatch')">
+          Passwords must match
+        </mat-error>
+      </mat-form-field>
+
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <span fxFlex></span>
+    <button mat-button mat-dialog-close id="user-cancel-button">Cancel</button>
+    <button mat-button type="submit" [disabled]="isSaving || dialogForm.invalid" id="user-save-button">Save</button>
+  </mat-dialog-actions>
+</form>

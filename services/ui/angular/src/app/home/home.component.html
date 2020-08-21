@@ -1,0 +1,42 @@
+<div class="mat-typography app-container" [class.is-mobile]="isMobile">
+  <div>
+    <mat-toolbar color="accent">
+      <button
+        mat-icon-button
+        (click)="onMenuClick()"
+        id="main-menu-toggle"
+        matTooltip="Menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <img id="logo" src="assets/coveros-logo.png" alt="Coveros Logo"/>
+      <span fxFlex></span>
+      <mat-icon [matTooltip]="username">face</mat-icon>
+      <button mat-icon-button
+              (click)="onSignOut()"
+              id="sign-out-button"
+              matTooltip="Sign Out"
+              aria-label="Sign Out">
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
+    </mat-toolbar>
+  </div>
+  <mat-sidenav-container>
+    <mat-sidenav
+      [mode]="sidenavMode"
+      [opened]="sidenavOpen">
+
+      <!--Should be a separate component-->
+
+      <mat-nav-list>
+        <h3 matSubheader>Menu</h3>
+        <a mat-list-item routerLink="/users" routerLinkActive="active" id="user-menu-item">Users</a>
+        <a mat-list-item routerLink="/training" routerLinkActive="active" id="training-menu-item">Training</a>
+        <a mat-list-item routerLink="/swagger" routerLinkActive="active" id="swagger-menu-item">API Reference</a>
+      </mat-nav-list>
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

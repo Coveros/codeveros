@@ -1,0 +1,212 @@
+openapi: 3.0.0
+info:
+  version: 0.0.1
+  title: CODEveros User Service
+  license:
+    name: ISC
+paths:
+  /api/user:
+    get:
+      summary: Return all users
+      operationId': listUsers
+      tags:
+        - user
+      responses:
+        200:
+          description: An array of users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Create a new user
+      operationId: createUser
+      tags:
+        - user
+      requestBody:
+        description: User to add to CODEveros
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewUser'
+      responses:
+        200:
+          description: The created user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/Error'
+                  - $ref: '#/components/schemas/ValidationError'
+  /api/user/{id}:
+    get:
+      summary: Return a single user based on ID
+      operationId: getUser
+      tags:
+        - user
+      parameters:
+        - name: id
+          in: path
+          description: ID of user to return
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      summary: Update an existing user based on ID
+      operationId: updateUser
+      tags:
+        - user
+      parameters:
+        - name: id
+          in: path
+          description: ID of user to update
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: User fields to update
+        content:
+          application/json:
+            schema:
+              properties:
+                firstName:
+                  description: Updated first name of the user
+                  type: string
+                lastName:
+                  description: Updated last name of the user
+                  type: string
+                username:
+                  description: Updated username of the user
+                  type: string
+                email:
+                  description: Updated email address of the user
+                  type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/Error'
+                  - $ref: '#/components/schemas/ValidationError'
+    delete:
+      summary: Delete an existing user based on ID
+      operationId: deleteUser
+      tags:
+        - user
+      parameters:
+        - name: id
+          in: path
+          description: ID of user to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/Error'
+                  - $ref: '#/components/schemas/ValidationError'
+
+components:
+  schemas:
+    NewUser:
+      type: object
+      required:
+        - username
+        - firstName
+        - lastName
+        - email
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+          writeOnly: true
+    User:
+      allOf:
+        - $ref: '#/components/schemas/NewUser'
+        - type: object
+          required:
+            - _id
+          properties:
+            _id:
+              type: string
+    Users:
+      type: array
+      items:
+        $ref: '#/components/schemas/User'
+    ValidationError:
+      type: object
+      properties:
+        status:
+          type: integer
+          minimum: 100
+          maximum: 600
+        invalidAttributes:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              rule:
+                type: string
+              message:
+                type: string
+    Error:
+      type: object
+      required:
+        - msg
+      properties:
+        msg:
+          type: string
+tags:
+  - name: user
+    description: User operations

@@ -1,6 +1,19 @@
 # CODEveros
 Monorepo for all CODEveros services
 
+## Services
+
+* [User Service](services/user-service)
+    * [Node.js](services/user-service/nodejs)
+* [Auth Service](services/auth-service)
+    * [Node.js](services/auth-service/nodejs)
+* [Training Service](services/training-service)
+    * [Node.js](services/training-service/nodejs)
+* [UI](services/ui)
+    * [Angular](services/ui/angular)
+* [Gateway](services/gateway)
+    * [Node.js](services/gateway/nodejs)
+
 ## Helm Charts
 
 ### Available Charts
@@ -25,3 +38,6 @@ To add the CODEveros Helm Chart repository, run `helm repo add`
 This repository uses GitHub Pages and a `gh-pages` branch to make published charts publicly available. It is structured 
 based on the example provided by [Charts Repo Actions Demo](https://github.com/helm/charts-repo-actions-demo).
 
+## Deployments
+
+[Insert picture of construction worker here]

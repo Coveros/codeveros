@@ -1,0 +1,12 @@
+.*
+node_modules
+e2e
+**/reports/
+chart
+
+npm-debug.log
+README.md
+build
+coverage
+docker_build.sh
+Jenkinsfile

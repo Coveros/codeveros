@@ -1,0 +1,9 @@
+.*
+node_modules
+README.md
+test
+Jenkinsfile
+chart
+**/__mocks__/
+docker-build.sh
+reports
