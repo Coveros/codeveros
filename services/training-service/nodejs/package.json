@@ -21,11 +21,11 @@
     "@coveros/codeveros-ms": "^0.3.2-dev"
   },
   "devDependencies": {
-    "jest": "^24.8.0",
-    "jest-junit": "^9.0.0",
-    "semistandard": "^14.2.0",
+    "jest": "^26.4.2",
+    "jest-junit": "^11.1.0",
+    "semistandard": "^14.2.3",
     "standard-json": "^1.1.0",
-    "mkdirp": "^0.5.1"
+    "mkdirp": "^1.0.4"
   },
   "semistandard": {
     "env": [
