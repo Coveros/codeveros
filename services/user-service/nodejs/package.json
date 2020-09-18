@@ -20,7 +20,7 @@
   "license": "ISC",
   "dependencies": {
     "@coveros/codeveros-ms": "^0.3.2-dev",
-    "bcrypt": "^3.0.7",
+    "bcrypt": "^5.0.0",
     "validator": "^12.0.0"
   },
   "devDependencies": {
