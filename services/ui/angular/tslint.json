@@ -1,0 +1,154 @@
+{
+  "extends": "tslint:recommended",
+  "rules": {
+    "align": {
+      "options": [
+        "parameters",
+        "statements"
+      ]
+    },
+    "array-type": false, // default is 'array' which requires T[] for types T
+    //    "arrow-parens": false, // removed from tslint:recommended, but I want this to be true
+    "arrow-return-shorthand": true,
+    "component-class-suffix": true,
+    "component-selector": {
+      "options": [
+        "element",
+        "codeveros",
+        "kebab-case"
+      ]
+    },
+    "contextual-lifecycle": true,
+    "curly": true,
+    "eofline": true,
+    "deprecation": {
+      "severity": "warning"
+    },
+    "directive-class-suffix": true,
+    "directive-selector": {
+      "options": [
+        "attribute",
+        "codeveros",
+        "camelCase"
+      ]
+    },
+    "import-blacklist": {
+      "options": [
+        "rxjs/Rx"
+      ]
+    },
+    "import-spacing": true,
+    "indent": {
+      "options": [
+        "spaces",
+        2
+      ]
+    },
+    "max-classes-per-file": false, // recommended is 1
+    "max-line-length": {
+      "options": [
+        140
+      ]
+    },
+    "member-ordering": {
+      "options": [
+        {
+          "order": [
+            "static-field",
+            "instance-field",
+            "static-method",
+            "instance-method"
+          ]
+        }
+      ]
+    },
+    "no-conflicting-lifecycle": true,
+    "no-console": {
+      "options": [
+        "debug",
+        "info",
+        "time",
+        "timeEnd",
+        "trace"
+      ]
+    },
+    "no-empty": false, // Consider removing, and using recommended true
+    "no-host-metadata-property": true,
+    "no-inferrable-types": {
+      "options": [
+        "ignore-params"
+      ]
+    },
+    "no-input-rename": true,
+    "no-inputs-metadata-property": true,
+    "no-non-null-assertion": true,
+    "no-output-native": true,
+    "no-output-on-prefix": true,
+    "no-output-rename": true,
+    "no-outputs-metadata-property": true,
+    "no-redundant-jsdoc": true,
+    "no-switch-case-fall-through": true,
+    "no-var-requires": false, // I want to remove this, and use the recommended value
+    "object-literal-key-quotes": {
+      "options": [
+        "as-needed"
+      ]
+    },
+    //    "ordered-imports": false, // no exist -- I like this one though
+    "quotemark": {
+      "options": [
+        "single"
+      ]
+    },
+    "semicolon": {
+      "options": [
+        "always"
+      ]
+    },
+    "space-before-function-paren": {
+      "options": {
+        "anonymous": "never",
+        "asyncArrow": "always",
+        "constructor": "never",
+        "method": "never",
+        "named": "never"
+      }
+    },
+    "template-banana-in-box": true,
+    "template-no-negated-async": true,
+    //    "trailing-comma": false, // no exist -- Removed from recommended, but I want this set
+    "typedef-whitespace": {
+      "options": [
+        {
+          "call-signature": "nospace",
+          "index-signature": "nospace",
+          "parameter": "nospace",
+          "property-declaration": "nospace",
+          "variable-declaration": "nospace"
+        },
+        {
+          "call-signature": "onespace",
+          "index-signature": "onespace",
+          "parameter": "onespace",
+          "property-declaration": "onespace",
+          "variable-declaration": "onespace"
+        }
+      ]
+    },
+    "use-lifecycle-interface": true,
+    "use-pipe-transform-interface": true,
+    "whitespace": {
+      "options": [
+        "check-branch",
+        "check-decl",
+        "check-operator",
+        "check-separator",
+        "check-type",
+        "check-typecast"
+      ]
+    }
+  },
+  "rulesDirectory": [
+    "codelyzer"
+  ]
+}

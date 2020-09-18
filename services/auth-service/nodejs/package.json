@@ -1,0 +1,44 @@
+{
+  "name": "@codeveros/auth-service",
+  "version": "1.0.0",
+  "description": "Simple authentication back-end service",
+  "private": true,
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "jest --logHeapUsage --no-cache",
+    "test-ci": "jest --coverage --ci --no-cache --logHeapUsage --reporters=default --reporters=jest-junit",
+    "checkstyle": "semistandard",
+    "checkstyle:ci": "mkdirp ./reports && semistandard --verbose | standard-json > ./reports/checkstyle.json",
+    "checkstyle:fix": "semistandard --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com:Coveros/codeveros.git"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@coveros/codeveros-ms": "0.2.0-dev",
+    "dotenv": "^8.2.0",
+    "jsonwebtoken": "^8.5.1"
+  },
+  "devDependencies": {
+    "jest": "^24.8.0",
+    "jest-junit": "^9.0.0",
+    "semistandard": "^14.2.0",
+    "standard-json": "^1.1.0",
+    "mkdirp": "^0.5.1"
+  },
+  "semistandard": {
+    "env": [
+      "jest"
+    ]
+  },
+  "jest": {
+    "coverageDirectory": "./reports/coverage",
+    "testEnvironment": "node"
+  },
+  "jest-junit": {
+    "outputDirectory": "./reports"
+  }
+}
