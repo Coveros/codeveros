@@ -28,8 +28,7 @@
               "src/theme.scss",
               "node_modules/swagger-ui/dist/swagger-ui.css"
             ],
-            "scripts": [],
-            "es5BrowserSupport": true
+            "scripts": []
           },
           "configurations": {
             "local": {
