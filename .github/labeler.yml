@@ -1,12 +1,18 @@
+# Add 'repo' label to any root file changes
+repo: ./*
+
+# Add 'workflow' label to any github action file changes
+workflow: .github/**/*
+
 # Add 'charts' to any changes within 'charts' folder or any subfolders
-charts: charts/*
+charts: charts/**/*
 
 # Add 'services' to any change within 'services' folder or any subfolders
-services: services/*
+services: services/**/*
 
 # Add service specific label to distinguish which services have changed
-auth-service: services/auth-service/*
-gateway: services/gateway/*
-training-service: services/training-service/*
-ui: services/ui/*
-user-service: services/user-service/*
+auth-service: services/auth-service/**/*
+gateway: services/gateway/**/*
+training-service: services/training-service/**/*
+ui: services/ui/**/*
+user-service: services/user-service/**/*
