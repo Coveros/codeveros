@@ -1,5 +1,9 @@
 name: Test Codeveros UI - Angular
 
+defaults:
+  run:
+    working-directory: services/ui/angular
+
 on:
   pull_request:
     branches:
