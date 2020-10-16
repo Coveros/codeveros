@@ -28,8 +28,7 @@
               "src/theme.scss",
               "node_modules/swagger-ui/dist/swagger-ui.css"
             ],
-            "scripts": [],
-            "es5BrowserSupport": true
+            "scripts": []
           },
           "configurations": {
             "local": {
@@ -106,7 +105,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": ["node_modules/hammerjs/hammer.min.js"],
+            "scripts": [],
             "assets": [
               "src/favicon.ico",
               "src/assets"
