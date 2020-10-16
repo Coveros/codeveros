@@ -5,8 +5,8 @@ charts: charts/*
 services: services/*
 
 # Add service specific label to distinguish which services have changed
-auth-service: services/auth-service/*
-gateway: services/gateway/*
-training-service: services/training-service/*
-ui: services/ui/*
-user-service: services/user-service/*
+auth-service: services/codeveros-auth-service/*
+gateway: services/codeveros-gateway/*
+training-service: services/codeveros-training-service/*
+ui: services/codeveros-ui/*
+user-service: services/codeveros-user-service/*
