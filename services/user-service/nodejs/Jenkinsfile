@@ -1,7 +1,10 @@
 #!/usr/bin/env groovy
 
-library 'codeveros-library'
+library 'codeveros-library@feature/monorepo'
 
 dir('services/user-service/nodejs') {
-  runNodeSvcPipeline repository: 'coveros/codeveros-user-service'
+  runNodeSvcPipeline([
+    repository: 'coveros/codeveros-user-service',
+    basePath: 'services/user-service/nodejs/'
+  ])
 }
