@@ -1,0 +1,9 @@
+#!/usr/bin/env groovy
+
+library 'codeveros-library@feature/monorepo'
+
+runAngularPipeline([
+  repository: 'coveros/codeveros-ui',
+  servicePath: 'services/ui/angular/',
+  chartPath: 'charts/codeveros-ui/'
+])

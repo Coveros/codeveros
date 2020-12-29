@@ -1,0 +1,9 @@
+#!/usr/bin/env groovy
+
+library 'codeveros-library@feature/monorepo'
+
+runNodeSvcPipeline([
+  repository: 'coveros/codeveros-gateway',
+  servicePath: 'services/gateway/nodejs/',
+  chartPath: 'charts/codeveros-gateway/'
+])
