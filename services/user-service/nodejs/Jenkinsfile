@@ -2,9 +2,7 @@
 
 library 'codeveros-library@feature/monorepo'
 
-dir('services/user-service/nodejs') {
-  runNodeSvcPipeline([
-    repository: 'coveros/codeveros-user-service',
-    basePath: 'services/user-service/nodejs/'
-  ])
-}
+runNodeSvcPipeline([
+  repository: 'coveros/codeveros-user-service',
+  basePath: 'services/user-service/nodejs/'
+])
