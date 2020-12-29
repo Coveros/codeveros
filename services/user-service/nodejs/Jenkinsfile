@@ -2,4 +2,6 @@
 
 library 'codeveros-library'
 
-runNodeSvcPipeline repository: 'coveros/codeveros-user-service'
+dir('services/user-service/nodejs') {
+  runNodeSvcPipeline repository: 'coveros/codeveros-user-service'
+}
