@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.coveros.codeveros</groupId>
+    <artifactId>codeveros-catalog-service</artifactId>
+    <version>${build.number}</version>
+
+    <prerequisites>
+        <maven>3.0.4</maven>
+    </prerequisites>
+
+    <properties>
+        <!-- General Project Settings -->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <!-- Test Run Information -->
+        <failsafe.threads>5</failsafe.threads>
+        <failsafe.verbosity>0</failsafe.verbosity>
+        <failsafe.groups.include></failsafe.groups.include>
+        <failsafe.groups.exclude></failsafe.groups.exclude>
+        <failsafe.files.include></failsafe.files.include>
+        <failsafe.files.exclude></failsafe.files.exclude>
+        <build.number>1.0-SNAPSHOT</build.number>
+    </properties>
+
+    <name>Selenified Maven Example</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.coveros</groupId>
+            <artifactId>selenified</artifactId>
+            <version>3.3.0</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>maven-releases</id>
+            <name>maven-releases</name>
+            <url>http://sonatype-nexus-service:8081/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>maven-snapshots</id>
+            <name>maven-snapshots</name>
+            <url>http://sonatype-nexus-service:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.0.0-M3</version>
+                <configuration>
+                    <parallel>methods</parallel>
+                    <threadCount>${failsafe.threads}</threadCount>
+                    <properties>
+                        <property>
+                            <name>surefire.testng.verbose</name>
+                            <value>${failsafe.verbosity}</value>
+                        </property>
+                        <property>
+                            <name>listener</name>
+                            <value>com.coveros.selenified.utilities.Transformer</value>
+                        </property>
+                    </properties>
+                    <groups>${failsafe.groups.include}</groups>
+                    <excludedGroups>${failsafe.groups.exclude}</excludedGroups>
+                    <includes>
+                        <include>${failsafe.files.include}</include>
+                    </includes>
+                    <excludes>
+                        <exclude>${failsafe.files.exclude}</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
