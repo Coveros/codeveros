@@ -2,7 +2,7 @@ apiVersion: v2
 name: codeveros-user-service
 description: Codeveros User Service Helm chart
 type: application
-version: 0.4.3
+version: 0.4.4
 appVersion: "1.0"
 home: https://coveros.com
 maintainers:
@@ -11,4 +11,4 @@ maintainers:
 dependencies:
   - name: mongodb
     version: 7.8.4
-    repository: https://kubernetes-charts.storage.googleapis.com
+    repository: https://charts.bitnami.com/bitnami
