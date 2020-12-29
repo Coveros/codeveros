@@ -4,6 +4,6 @@ library 'codeveros-library@feature/monorepo'
 
 runNodeSvcPipeline([
   repository: 'coveros/codeveros-user-service',
-  basePath: '/services/user-service/nodejs/',
-  chartPath: '/charts/codeveros-user-service/'
+  basePath: 'services/user-service/nodejs/',
+  chartPath: 'charts/codeveros-user-service/'
 ])
