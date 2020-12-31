@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "outDir": "./lib",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "strict": true,
+    "declaration": true,
+    "typeRoots": ["./types", "node_modules/@types", "node_modules/koa-body"]
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "lib",
+    "__tests__"
+  ]
+}

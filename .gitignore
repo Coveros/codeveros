@@ -2,4 +2,4 @@
 charts/*/charts
 
 .idea
-
+node_modules
