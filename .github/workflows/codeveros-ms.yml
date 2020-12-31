@@ -4,11 +4,11 @@ on:
   push:
     branches: [ master ]
     paths:
-      - libraries/codeveros-ms
+      - libraries/codeveros-ms/**
   pull_request:
     branches: [ master ]
     paths:
-      - libraries/codeveros-ms
+      - libraries/codeveros-ms/**
 
 defaults:
   run:

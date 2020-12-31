@@ -10,6 +10,12 @@ charts: charts/**/*
 # Add 'services' to any change within 'services' folder or any subfolders
 services: services/**/*
 
+# Add 'libraries' to any change within 'libraries' folder or any subfolders
+libraries: libraries/**/*
+
+# Add library specific label to distinguish which libraries have changed
+codeveros-ms: libraries/codeveros-ms/**/*
+
 # Add service specific label to distinguish which services have changed
 auth-service: services/auth-service/**/*
 gateway: services/gateway/**/*
