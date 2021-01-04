@@ -123,6 +123,20 @@ entries:
     version: 0.1.0
   codeveros-auth-service:
   - apiVersion: v2
+    appVersion: "1.1"
+    created: "2021-01-04T18:45:08.370015932Z"
+    description: Codeveros Auth Service Helm chart
+    digest: 46d95a6b206f27513aa12eba5e2b504db854c89b0a84857591512004d5a1c7d6
+    home: https://coveros.com
+    maintainers:
+    - email: justin.hollingsworth@coveros.com
+      name: justin-coveros
+    name: codeveros-auth-service
+    type: application
+    urls:
+    - https://github.com/Coveros/codeveros/releases/download/codeveros-auth-service-0.5.0/codeveros-auth-service-0.5.0.tgz
+    version: 0.5.0
+  - apiVersion: v2
     appVersion: "1.0"
     created: "2020-08-20T21:05:17.073737193Z"
     description: Codeveros Auth Service Helm chart
@@ -166,6 +180,20 @@ entries:
     version: 0.4.0
   codeveros-gateway:
   - apiVersion: v2
+    appVersion: "1.1"
+    created: "2021-01-04T18:45:08.463848147Z"
+    description: Codeveros Gateway Helm chart
+    digest: c75c6cf918913884f55b9375257eb081e6fc3c7fcfb0dfcb013f058cee463e84
+    home: https://coveros.com
+    maintainers:
+    - email: justin.hollingsworth@coveros.com
+      name: justin-coveros
+    name: codeveros-gateway
+    type: application
+    urls:
+    - https://github.com/Coveros/codeveros/releases/download/codeveros-gateway-0.4.0/codeveros-gateway-0.4.0.tgz
+    version: 0.4.0
+  - apiVersion: v2
     appVersion: "1.0"
     created: "2020-08-20T21:05:17.251817933Z"
     description: Codeveros Gateway Helm chart
@@ -208,6 +236,24 @@ entries:
     - https://github.com/Coveros/codeveros/releases/download/codeveros-gateway-0.3.0/codeveros-gateway-0.3.0.tgz
     version: 0.3.0
   codeveros-training-service:
+  - apiVersion: v2
+    appVersion: "1.1"
+    created: "2021-01-04T18:45:08.588018Z"
+    dependencies:
+    - name: mongodb
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.3.3
+    description: Codeveros Training Service Helm chart
+    digest: 0a4f826d2215cb04f6eafac57a86410e582a7048ddab419819a85c3ed579fbd7
+    home: https://coveros.com
+    maintainers:
+    - email: justin.hollingsworth@coveros.com
+      name: justin-coveros
+    name: codeveros-training-service
+    type: application
+    urls:
+    - https://github.com/Coveros/codeveros/releases/download/codeveros-training-service-0.5.0/codeveros-training-service-0.5.0.tgz
+    version: 0.5.0
   - apiVersion: v2
     appVersion: "1.0"
     created: "2020-08-21T20:55:24.977815985Z"
@@ -282,6 +328,20 @@ entries:
     version: 0.4.0
   codeveros-ui:
   - apiVersion: v2
+    appVersion: "1.1"
+    created: "2021-01-04T18:45:08.724906069Z"
+    description: Codeveros Angular UI Helm chart
+    digest: a90ae5b9234ad8b1eed5713be5e7e4c33741b51e1d7aab9481a89f392c99b2aa
+    home: https://coveros.com
+    maintainers:
+    - email: justin.hollingsworth@coveros.com
+      name: justin-coveros
+    name: codeveros-ui
+    type: application
+    urls:
+    - https://github.com/Coveros/codeveros/releases/download/codeveros-ui-0.6.0/codeveros-ui-0.6.0.tgz
+    version: 0.6.0
+  - apiVersion: v2
     appVersion: "1.0"
     created: "2020-08-20T21:05:17.494468969Z"
     description: Codeveros Angular UI Helm chart
@@ -324,6 +384,24 @@ entries:
     - https://github.com/Coveros/codeveros/releases/download/codeveros-ui-0.5.0/codeveros-ui-0.5.0.tgz
     version: 0.5.0
   codeveros-user-service:
+  - apiVersion: v2
+    appVersion: "1.1"
+    created: "2021-01-04T18:45:08.851190024Z"
+    dependencies:
+    - name: mongodb
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.3.3
+    description: Codeveros User Service Helm chart
+    digest: 71b882b7ab7d28902afe0b2af9f01c64f48963f3ff2c8be4d88760e3634063b0
+    home: https://coveros.com
+    maintainers:
+    - email: justin.hollingsworth@coveros.com
+      name: justin-coveros
+    name: codeveros-user-service
+    type: application
+    urls:
+    - https://github.com/Coveros/codeveros/releases/download/codeveros-user-service-0.5.0/codeveros-user-service-0.5.0.tgz
+    version: 0.5.0
   - apiVersion: v2
     appVersion: "1.0"
     created: "2020-08-21T20:55:25.091527942Z"
