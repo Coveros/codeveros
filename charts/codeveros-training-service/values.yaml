@@ -19,5 +19,6 @@ env:
 
 mongodb:
   # codeveros currently doesn't use authentication between the service and the database
-  usePassword: false
+  auth:
+    enabled: false
   nameOverride: training-service-mongodb
