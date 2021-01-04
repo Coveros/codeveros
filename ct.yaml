@@ -3,6 +3,6 @@ remote: origin
 chart-dirs:
   - charts
 chart-repos:
-  - stable=https://kubernetes-charts.storage.googleapis.com
+  - bitnami=https://charts.bitnami.com/bitnami
   - codeveros=https://coveros.github.io/codeveros
 helm-extra-args: --timeout 600s
