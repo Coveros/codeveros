@@ -1,5 +1,5 @@
 # Compile UI
-FROM node:12.14 AS build
+FROM node:14.15-buster AS build
 
 WORKDIR /src
 COPY package*.json ./
