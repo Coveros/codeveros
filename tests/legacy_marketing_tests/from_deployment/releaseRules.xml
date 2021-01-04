@@ -1,0 +1,33 @@
+<ruleset comparisonMethod="maven"
+         xmlns="http://mojo.codehaus.org/versions-maven-plugin/rule/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://mojo.codehaus.org/versions-maven-plugin/rule/2.0.0 http://mojo.codehaus.org/versions-maven-plugin/xsd/rule-2.0.0.xsd">
+
+    <rules>
+        <rule groupId="com.coveros.codeveros" artifactId ="codeveros-auth-ervice" comparisonMethod="maven">
+            <ignoreVersions>
+                <!--AuthService--><ignoreVersion type="regex">.*-\b(?:(?!word)\w)+\b</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+        <rule groupId="com.coveros.codeveros" artifactId ="codeveros-ui" comparisonMethod="maven">
+            <ignoreVersions>
+                <!--angular-ui--><ignoreVersion type="regex">.*-\b(?:(?!word)\w)+\b</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+        <rule groupId="com.coveros.codeveros" artifactId ="codeveros-user-service" comparisonMethod="maven">
+            <ignoreVersions>
+                <!--codeveros-user-service--><ignoreVersion type="regex">.*-\b(?:(?!word)\w)+\b</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+        <rule groupId="com.coveros.codeveros" artifactId ="codeveros-catalog-service" comparisonMethod="maven">
+            <ignoreVersions>
+                <!--codeveros-catalog-service--><ignoreVersion type="regex">.*-\b(?:(?!word)\w)+\b</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+        <rule groupId="com.coveros.codeveros" artifactId ="gateway" comparisonMethod="maven">
+            <ignoreVersions>
+                <!--gateway--><ignoreVersion type="regex">.*-\b(?:(?!word)\w)+\b</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+    </rules>
+</ruleset>
