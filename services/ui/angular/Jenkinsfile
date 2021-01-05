@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-library 'codeveros-library@feature'
+library 'codeveros-library'
 
 runAngularPipeline([
   repository: 'coveros/codeveros-ui',
