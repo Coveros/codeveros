@@ -1,5 +1,8 @@
 # Helm chart automated files
 charts/*/charts
 
+*.iml
 .idea
+
 node_modules
+target
