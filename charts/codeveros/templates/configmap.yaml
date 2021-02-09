@@ -1,4 +1,4 @@
-{{- if not .Values.ingress.enabled }}
+{{- if .Values.nginx.enabled }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -8,12 +8,6 @@ data:
     server {
       listen 80;
       server_name localhost;
-
-      location /health-check {
-        access_log off;
-        return 200 'OK';
-        add_header Content-Type text/plain;
-      }
 
       location /api/ {
         proxy_pass {{ include "codeveros.gatewayEndpoint" . }};

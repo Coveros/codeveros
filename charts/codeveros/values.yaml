@@ -2,19 +2,16 @@ nameOverride: ""
 fullnameOverride: ""
 imagePullSecrets: []
 
-ingress:
+codeveros-ui:
+  ingress:
+    enabled: false
+
+codeveros-gateway:
+  ingress:
+    enabled: false
+
+nginx:
   enabled: false
-  annotations:
-    kubernetes.io/ingress.class: nginx
-  hostName:
-
-proxy:
-  imageRepository: nginx
-  imageTag: 1.19.0
-  imagePullPolicy: IfNotPresent
-  replicaCount: 1
-
-service:
-  type: NodePort
-  port: 80
-  nodePort:
+  service:
+    type: NodePort
+  existingServerBlockConfigMap: '{{ include "codeveros.fullname" . }}'
