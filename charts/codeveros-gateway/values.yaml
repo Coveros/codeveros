@@ -20,3 +20,8 @@ service:
 authServiceName: "codeveros-auth-service"
 trainingServiceName: "codeveros-training-service"
 userServiceName: "codeveros-user-service"
+
+ingress:
+  annotations: {}
+  enabled: false
+  host:

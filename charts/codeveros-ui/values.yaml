@@ -19,3 +19,8 @@ config:
   data: {}
 
 apiUrl: /api
+
+ingress:
+  annotations: {}
+  enabled: false
+  host:
