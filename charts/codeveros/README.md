@@ -1,9 +1,9 @@
-# CODEveros Chart
+# Codeveros Chart
 
 ## Introduction
 
-This chart installs CODEveros as a single helm release. It is largely an umbrella for the lower-level service
-charts, along with an ingress or proxy to establish a single endpoint for external access. The proxy forwards requests 
+This chart installs Codeveros as a single helm release. It is largely an umbrella for the lower-level service
+charts, along with an optional proxy to establish a single endpoint for external access. The proxy forwards requests 
 to the codeveros-gateway and codeveros-ui services.
 
 * [codeveros-auth-service](../codeveros-auth-service)
@@ -14,10 +14,10 @@ to the codeveros-gateway and codeveros-ui services.
 
 ## Prerequisites
 
-Add the CODEveros chart repository
+Add the Codeveros chart repository
 
 ```shell script
-$ helm repo add codeveros https://coveros.github.io/codeveros
+helm repo add codeveros https://coveros.github.io/codeveros
 ```
 
 ## Installing the Chart
@@ -25,41 +25,43 @@ $ helm repo add codeveros https://coveros.github.io/codeveros
 To install the chart with the release name `my-release`:
 
 ```shell script
-$ helm install my-release codeveros/codeveros
+helm install my-release codeveros/codeveros
 ```
 
-The above command deploys CODEveros on the Kubernetes cluster in the default configuration. The [configuration](#configuration) 
+The above command deploys Codeveros on the Kubernetes cluster in the default configuration. The [configuration](#configuration) 
 section lists the parameters that can be configured during installation.
 
 ## Configuration
 
-The following table lists the configurable parameters and their default values.
+This umbrella chart doesn't have any custom values, all available configuration is from its child
+charts.
 
-| Parameter                      | Description                                  | Default                                  |
-| ------------------------------ | -------------------------------------------- | ---------------------------------------  |
-| `nameOverride`                 | Override the resource name prefix            | Not Set                                  |
-| `fullnameOverride`             | Override the full resource names             | Not Set                                  |
-| `imagePullSecrets`             | Image pull secrets                           | `[]`                                     |
-| `ingress.enabled`              | Create an ingress for codeveros              | `false`                                  |
-| `ingress.annotations`          | Annotations to enhance ingress configuration | `{ kubernetes.io/ingress.class: nginx }` |
-| `ingress.hostName`             | Codeveros ingress hostname                   | Not Set                                  |
-| `proxy.imageRepository`        | Proxy image                                  | `nginx`                                  |
-| `proxy.imageTag`               | Proxy version                                | `1.19.0`                                 |
-| `proxy.imagePullPolicy`        | Proxy image pull policy                      | `IfNotPresent`                           |
-| `proxy.replicaCount`           | Number of proxy replicas                     | `1`                                      |
-| `service.type`                 | Proxy service type                           | `NodePort`                               |
-| `service.port`                 | Proxy service port                           | `80`                                     |
-| `service.nodePort`             | Proxy node port                              | Not Set                                  |
+By default, the nginx proxy is enabled, and the codeveros-ui and codeveros-gateways are disabled.
 
+Set `proxy.enabled` to `false` to not install the nginx dependency and to not add the codeveros
+ConfigMap.
 
-```shell script
-$ helm install my-release --set ingress.enabled=true codeveros/codeveros
+### Ingress Example
+
+The `codeveros-ui` and `codeveros-gateway` charts include optional ingresses.
+
+To make Codeveros accessible at `https://codeveros.local`:
+
+```yaml
+# my-values.yaml
+
+codeveros-ui:
+  ingress:
+    enabled: true
+    host: codeveros.local
+codeveros-gateway:
+  ingress:
+    enabled: true
+    host: codeveros.local
+proxy:
+  enabled: false
 ```
-The above example turns on the ingress.
-
-Alternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart.
-For example,
 
 ```shell script
-$ helm install my-release -f my-values.yaml codeveros/codeveros
+helm install my-release -f my-values.yaml codeveros/codeveros
 ```
