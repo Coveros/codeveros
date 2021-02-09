@@ -7,9 +7,9 @@ apiVersion: networking.k8s.io/v1beta1
 {{- end }}
 kind: Ingress
 metadata:
-  name: {{ include "codeveros-ui.fullname" . }}
+  name: {{ include "codeveros-gateway.fullname" . }}
   labels:
-  {{- include "codeveros-ui.labels" . | nindent 4 }}
+  {{- include "codeveros-gateway.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
   {{- toYaml . | nindent 4 }}
@@ -18,17 +18,17 @@ spec:
   rules:
     - http:
         paths:
-          - path: /
+          - path: /api
             {{- if $latestVersion }}
             pathType: Prefix
             backend:
               service:
-                name: {{ include "codeveros-ui.fullname" . }}
+                name: {{ include "codeveros-gateway.fullname" . }}
                 port:
                   number: {{ .Values.service.port }}
             {{- else }}
             backend:
-              serviceName: {{ include "codeveros-ui.fullname" . }}
+              serviceName: {{ include "codeveros-gateway.fullname" . }}
               servicePort: {{ .Values.service.port }}
             {{- end }}
       {{- if .Values.ingress.host }}
