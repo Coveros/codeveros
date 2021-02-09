@@ -211,6 +211,20 @@ entries:
   codeveros-gateway:
   - apiVersion: v2
     appVersion: "1.1"
+    created: "2021-02-09T18:25:04.571116674Z"
+    description: Codeveros Gateway Helm chart
+    digest: d2847c8af0d262d45cdcf036d2b67cb6aa4f2727269df2e6f916e08ac1e2b9b2
+    home: https://coveros.com
+    maintainers:
+    - email: justin.hollingsworth@coveros.com
+      name: justin-coveros
+    name: codeveros-gateway
+    type: application
+    urls:
+    - https://github.com/Coveros/codeveros/releases/download/codeveros-gateway-0.5.0/codeveros-gateway-0.5.0.tgz
+    version: 0.5.0
+  - apiVersion: v2
+    appVersion: "1.1"
     created: "2021-01-04T18:45:08.463848147Z"
     description: Codeveros Gateway Helm chart
     digest: c75c6cf918913884f55b9375257eb081e6fc3c7fcfb0dfcb013f058cee463e84
@@ -357,6 +371,20 @@ entries:
     - https://github.com/Coveros/codeveros/releases/download/codeveros-training-service-0.4.0/codeveros-training-service-0.4.0.tgz
     version: 0.4.0
   codeveros-ui:
+  - apiVersion: v2
+    appVersion: "1.1"
+    created: "2021-02-09T18:25:04.877181036Z"
+    description: Codeveros Angular UI Helm chart
+    digest: ee107096498c14b1e9bcdeba03cc7b05a3727452146e74ac09a8988a6860833a
+    home: https://coveros.com
+    maintainers:
+    - email: justin.hollingsworth@coveros.com
+      name: justin-coveros
+    name: codeveros-ui
+    type: application
+    urls:
+    - https://github.com/Coveros/codeveros/releases/download/codeveros-ui-0.7.0/codeveros-ui-0.7.0.tgz
+    version: 0.7.0
   - apiVersion: v2
     appVersion: "1.1"
     created: "2021-01-04T18:45:08.724906069Z"
