@@ -1,5 +1,5 @@
 {{- if .Values.ingress.enabled }}
-{{ $latestVersion := .Capabilities.KubeVersion.APIVersions.Has "networking.k8s.io/v1" }}
+{{ $latestVersion := .Capabilities.APIVersions.Has "networking.k8s.io/v1" }}
 {{- if $latestVersion }}
 apiVersion: networking.k8s.io/v1
 {{- else }}
