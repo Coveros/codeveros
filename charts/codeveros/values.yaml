@@ -10,4 +10,4 @@ nginx:
   enabled: false
   service:
     type: NodePort
-  existingServerBlockConfigmap: "{{ .Release.Name }}-nginx"
+  existingServerBlockConfigmap: "{{ .Release.Name }}-proxy"
