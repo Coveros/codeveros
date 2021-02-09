@@ -4,9 +4,10 @@
 
 {{- define "codeveros.labels" -}}
 helm.sh/chart: {{ include "codeveros.chart" . }}
-{{ include "codeveros.selectorLabels" . }}
+app.kubernetes.io/name: {{ .Chart.Name }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
-app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}

@@ -1,7 +1,3 @@
-nameOverride: ""
-fullnameOverride: ""
-imagePullSecrets: []
-
 codeveros-ui:
   ingress:
     enabled: false
