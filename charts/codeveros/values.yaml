@@ -6,8 +6,8 @@ codeveros-gateway:
   ingress:
     enabled: false
 
-nginx:
-  enabled: false
+proxy:
+  enabled: true
   service:
     type: NodePort
-  existingServerBlockConfigmap: "{{ .Release.Name }}-proxy"
+  existingServerBlockConfigmap: "{{ .Release.Name }}-proxy-config"

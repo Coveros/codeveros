@@ -27,4 +27,5 @@ dependencies:
   - name: nginx
     version: 8.5.3
     repository: https://charts.bitnami.com/bitnami
-    condition: nginx.enabled
+    condition: proxy.enabled
+    alias: proxy
