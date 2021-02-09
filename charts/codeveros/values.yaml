@@ -14,4 +14,4 @@ nginx:
   enabled: false
   service:
     type: NodePort
-  existingServerBlockConfigMap: '{{ include "codeveros.fullname" . }}'
+  existingServerBlockConfigmap: "{{ .Release.Name }}-nginx"
