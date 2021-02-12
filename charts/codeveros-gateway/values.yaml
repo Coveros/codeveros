@@ -24,4 +24,5 @@ userServiceName: "codeveros-user-service"
 ingress:
   annotations: {}
   enabled: false
-  host:
+  host: ""
+  tlsSecretName: ""
