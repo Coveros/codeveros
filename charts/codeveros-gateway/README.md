@@ -49,5 +49,10 @@ The following table lists the configurable parameters and their default values.
 | `authServiceName`              | Auth service service name                    | `codeveros-auth-service`                 |
 | `userServiceName`              | User service service name                    | `codeveros-user-service`                 |
 | `trainingServiceName`          | Training service service name                | `codeveros-training-service`             |
+| `ingress.enabled`              | Enable ingress                               | `false`                                  |
+| `ingress.annotations`          | Ingress Annotations                          | `{}`                                     |
+| `ingress.host`                 | Ingress Host                                 | Not Set                                  |
+| `ingress.tlsSecretName`        | Ingress TLS SecretName                       | Not Set                                  |
 
-The image tag defaults to the Chart AppVersion
+
+The image tag defaults to the Chart AppVersion.

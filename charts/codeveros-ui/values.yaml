@@ -23,4 +23,5 @@ apiUrl: /api
 ingress:
   annotations: {}
   enabled: false
-  host:
+  host: ""
+  tlsSecretName: ""

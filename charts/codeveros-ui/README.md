@@ -44,5 +44,9 @@ The following table lists the configurable parameters and their default values.
 | `config.enabled`               | Enable proxy configmap configuration         | `false`                                  |
 | `config.data`                  | Proxy configmap data                         | `{}`                                     |
 | `apiUrl`                       | API base URL                                 | `/api`                                   |
+| `ingress.enabled`              | Enable ingress                               | `false`                                  |
+| `ingress.annotations`          | Ingress Annotations                          | `{}`                                     |
+| `ingress.host`                 | Ingress Host                                 | Not Set                                  |
+| `ingress.tlsSecretName`        | Ingress TLS SecretName                       | Not Set                                  |
 
-The image tag defaults to the Chart AppVersion
+The image tag defaults to the Chart AppVersion.
