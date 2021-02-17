@@ -18,7 +18,7 @@ spec:
   rules:
     - http:
         paths:
-          - path: /
+          - path: {{ .Values.ingress.path }}
             {{- if $latestVersion }}
             pathType: Prefix
             backend:

@@ -24,4 +24,5 @@ ingress:
   annotations: {}
   enabled: false
   host: ""
+  path: "/"
   tlsSecretName: ""
