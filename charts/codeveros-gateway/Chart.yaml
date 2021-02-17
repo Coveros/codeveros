@@ -2,7 +2,7 @@ apiVersion: v2
 name: codeveros-gateway
 description: Codeveros Gateway Helm chart
 type: application
-version: 0.6.0
+version: 0.6.1
 appVersion: "1.1"
 home: https://coveros.com
 maintainers:
