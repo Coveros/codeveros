@@ -2,7 +2,7 @@ apiVersion: v2
 name: codeveros
 description: An umbrella chart for Codeveros
 type: application
-version: 0.4.0
+version: 0.5.0
 appVersion: 1.0.0
 home: https://coveros.com
 maintainers:
@@ -19,10 +19,10 @@ dependencies:
     version: 0.5.0
     repository: https://coveros.github.io/codeveros
   - name: codeveros-gateway
-    version: 0.6.1
+    version: 0.6.2
     repository: https://coveros.github.io/codeveros
   - name: codeveros-ui
-    version: 0.8.1
+    version: 0.8.2
     repository: https://coveros.github.io/codeveros
   - name: nginx
     version: 8.5.3
