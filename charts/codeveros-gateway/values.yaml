@@ -25,4 +25,5 @@ ingress:
   annotations: {}
   enabled: false
   host: ""
+  path: "/api"
   tlsSecretName: ""
