@@ -315,6 +315,20 @@ entries:
     version: 0.4.0
   codeveros-gateway:
   - apiVersion: v2
+    appVersion: 1.1.1
+    created: "2021-05-05T20:39:52.219554579Z"
+    description: Codeveros Gateway Helm chart
+    digest: 14c3fb273b06530e010bd01000094e0e8ca2ae1088a4a72b7f0c97d0e5b9bfd9
+    home: https://coveros.com
+    maintainers:
+    - email: justin.hollingsworth@coveros.com
+      name: justin-coveros
+    name: codeveros-gateway
+    type: application
+    urls:
+    - https://github.com/Coveros/codeveros/releases/download/codeveros-gateway-0.6.3/codeveros-gateway-0.6.3.tgz
+    version: 0.6.3
+  - apiVersion: v2
     appVersion: "1.1"
     created: "2021-02-17T22:00:51.149126125Z"
     description: Codeveros Gateway Helm chart
@@ -427,6 +441,24 @@ entries:
     - https://github.com/Coveros/codeveros/releases/download/codeveros-gateway-0.3.0/codeveros-gateway-0.3.0.tgz
     version: 0.3.0
   codeveros-training-service:
+  - apiVersion: v2
+    appVersion: 1.1.1
+    created: "2021-05-05T20:39:52.337667041Z"
+    dependencies:
+    - name: mongodb
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.3.3
+    description: Codeveros Training Service Helm chart
+    digest: d13570193867e232fa1fb54201569d2c99b188f352af01a0287f40336c5b82c1
+    home: https://coveros.com
+    maintainers:
+    - email: justin.hollingsworth@coveros.com
+      name: justin-coveros
+    name: codeveros-training-service
+    type: application
+    urls:
+    - https://github.com/Coveros/codeveros/releases/download/codeveros-training-service-0.5.1/codeveros-training-service-0.5.1.tgz
+    version: 0.5.1
   - apiVersion: v2
     appVersion: "1.1"
     created: "2021-01-04T18:45:08.588018Z"
@@ -645,6 +677,24 @@ entries:
     - https://github.com/Coveros/codeveros/releases/download/codeveros-ui-0.5.0/codeveros-ui-0.5.0.tgz
     version: 0.5.0
   codeveros-user-service:
+  - apiVersion: v2
+    appVersion: 1.1.1
+    created: "2021-05-05T20:39:52.490891081Z"
+    dependencies:
+    - name: mongodb
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.3.3
+    description: Codeveros User Service Helm chart
+    digest: bb90d22ec84159ae9ac0e6098e153b4b4aacd841c680c42346c30595cfeed359
+    home: https://coveros.com
+    maintainers:
+    - email: justin.hollingsworth@coveros.com
+      name: justin-coveros
+    name: codeveros-user-service
+    type: application
+    urls:
+    - https://github.com/Coveros/codeveros/releases/download/codeveros-user-service-0.5.1/codeveros-user-service-0.5.1.tgz
+    version: 0.5.1
   - apiVersion: v2
     appVersion: "1.1"
     created: "2021-01-04T18:45:08.851190024Z"
