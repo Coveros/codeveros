@@ -20,6 +20,8 @@ interface LoginResponse {
   providedIn: 'root'
 })
 export class AuthService {
+  redirectUrl: string;
+
   private endpoint = `${environment.apiUrl}/auth`;
   private loggedInUser: User;
 
@@ -34,8 +36,6 @@ export class AuthService {
       localStorage.setItem('access_token', token);
     }
   }
-
-  redirectUrl: string;
 
   constructor(
     private router: Router,

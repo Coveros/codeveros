@@ -15,6 +15,8 @@ import { MatSort } from '@angular/material/sort';
   styleUrls: [ './training-list.component.scss' ]
 })
 export class TrainingListComponent implements OnInit, OnDestroy {
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
   displayedColumns = [ 'name', 'description', 'duration', 'type', 'actions' ];
   loading = true;
   dataSource = new CovTableSource<Training>();
@@ -24,8 +26,6 @@ export class TrainingListComponent implements OnInit, OnDestroy {
     workshop: 'Workshop',
     course: 'Course'
   };
-
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(
     private confirmDialogService: ConfirmDialogService,

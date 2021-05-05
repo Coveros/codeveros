@@ -14,11 +14,11 @@ import { CovTableSource } from '../../shared/cov-table-source';
   styleUrls: [ './user-list.component.scss' ]
 })
 export class UserListComponent implements OnInit, OnDestroy {
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
   displayedColumns = [ 'username', 'firstName', 'lastName', 'email', 'actions' ];
   loading = true;
   dataSource = new CovTableSource<User>();
-
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(
     private confirmDialogService: ConfirmDialogService,

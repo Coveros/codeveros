@@ -23,18 +23,17 @@ module.exports = function (config) {
       'karma-jasmine',
       'karma-chrome-launcher',
       'karma-junit-reporter',
-      'karma-coverage-istanbul-reporter',
+      'karma-coverage',
       '@angular-devkit/build-angular/plugins/karma'
     ],
-    coverageIstanbulReporter: {
+    coverageReporter: {
       dir: path.join(__dirname, './reports/coverage'),
-      reports: ['html', 'lcovonly', 'text-summary'],
-      fixWebpackSourcePaths: true,
-      'report-config': {
-        html: {
-          subdir: 'lcov-report'
-        }
-      }
+      reporters: [
+        { type: 'html', subdir: 'lcov-report' },
+        { type: 'lcovonly', subdir: '.' },
+        { type: 'text-summary' }
+      ],
+      fixWebpackSourcePaths: true
     },
     junitReporter: {
       outputFile: path.resolve(__dirname, './reports/junit.xml')
