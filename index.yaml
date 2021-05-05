@@ -3,6 +3,41 @@ entries:
   codeveros:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2021-05-05T20:49:40.887845737Z"
+    dependencies:
+    - name: codeveros-user-service
+      repository: https://coveros.github.io/codeveros
+      version: 0.5.1
+    - name: codeveros-training-service
+      repository: https://coveros.github.io/codeveros
+      version: 0.5.1
+    - name: codeveros-auth-service
+      repository: https://coveros.github.io/codeveros
+      version: 0.5.0
+    - name: codeveros-gateway
+      repository: https://coveros.github.io/codeveros
+      version: 0.6.3
+    - name: codeveros-ui
+      repository: https://coveros.github.io/codeveros
+      version: 0.8.3
+    - alias: proxy
+      condition: proxy.enabled
+      name: nginx
+      repository: https://charts.bitnami.com/bitnami
+      version: 8.5.3
+    description: An umbrella chart for Codeveros
+    digest: 7d72572c02c316e2abadf8c00e66a9e951f1e850c6a1467109d04119176c3acd
+    home: https://coveros.com
+    maintainers:
+    - email: justin.hollingsworth@coveros.com
+      name: justin-coveros
+    name: codeveros
+    type: application
+    urls:
+    - https://github.com/Coveros/codeveros/releases/download/codeveros-0.6.0/codeveros-0.6.0.tgz
+    version: 0.6.0
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2021-02-17T22:08:25.506649262Z"
     dependencies:
     - name: codeveros-user-service
