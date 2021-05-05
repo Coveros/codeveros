@@ -13,11 +13,12 @@ import {AppRoutingModule} from './app-routing.module';
 import {CoreModule} from './core/core.module';
 import { environment } from '../environments/environment';
 import { HomeComponent } from './home/home.component';
-import {WelcomeComponent} from './welcome/welcome.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
-export function tokenGetter() {
-  return localStorage.getItem('access_token');
-}
+const apiDomain = environment.apiUrl
+  .split('://')
+  .pop()
+  .split('/', 1)[0] || '/';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ export function tokenGetter() {
     HttpClientModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter
+        tokenGetter: () => localStorage.getItem('access_token'),
+        allowedDomains: [apiDomain]
       }
     }),
     CoreModule,

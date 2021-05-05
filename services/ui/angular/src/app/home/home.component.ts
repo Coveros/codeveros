@@ -10,12 +10,13 @@ import {ConfirmDialogService} from '../shared/confirm-dialog/confirm-dialog.serv
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  private destroyed$ = new Subject<boolean>();
   sidenavOpen = true;
   sidenavMode = 'side';
   isMobile = false;
   isXs = false;
   username = '';
+
+  private destroyed$ = new Subject<boolean>();
 
   constructor(
     private mediaOberver: MediaObserver,
