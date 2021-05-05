@@ -519,6 +519,20 @@ entries:
     version: 0.4.0
   codeveros-ui:
   - apiVersion: v2
+    appVersion: "1.2"
+    created: "2021-05-05T19:47:48.900223042Z"
+    description: Codeveros Angular UI Helm chart
+    digest: c0a30a96f56c1930ee6c4189dbc70cb91db31994b27c9fd8361cc2c7079d9b7e
+    home: https://coveros.com
+    maintainers:
+    - email: justin.hollingsworth@coveros.com
+      name: justin-coveros
+    name: codeveros-ui
+    type: application
+    urls:
+    - https://github.com/Coveros/codeveros/releases/download/codeveros-ui-0.8.3/codeveros-ui-0.8.3.tgz
+    version: 0.8.3
+  - apiVersion: v2
     appVersion: "1.1"
     created: "2021-02-17T22:00:51.263768258Z"
     description: Codeveros Angular UI Helm chart
