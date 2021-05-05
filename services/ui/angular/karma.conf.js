@@ -30,7 +30,7 @@ module.exports = function (config) {
       dir: path.join(__dirname, './reports/coverage'),
       reporters: [
         { type: 'html', subdir: 'lcov-report' },
-        { type: 'lcovonly' },
+        { type: 'lcovonly', subdir: '.' },
         { type: 'text-summary' }
       ],
       fixWebpackSourcePaths: true
