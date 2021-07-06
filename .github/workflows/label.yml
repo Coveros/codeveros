@@ -6,7 +6,9 @@
 # https://github.com/actions/labeler
 
 name: Labeler
-on: [pull_request]
+# Do not check out, build, or run untrusted code from the pull
+# request with this event.
+on: pull_request_target
 
 jobs:
   label:
