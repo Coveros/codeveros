@@ -4,10 +4,11 @@ on:
   push:
     branches:
       - master
+    tags:
+      - 'v*'
   pull_request:
     branches:
       - master
-
 env:
   node_version: 14.x
   REGISTRY: ghcr.io
@@ -61,6 +62,15 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: ${{ env.REGISTRY }}/${{ matrix.image_name }}
+          tags: |
+            type=sha
+            type=ref,event=pr
+            type=ref,event=branch
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}},enable=${{ !startsWith(github.ref, 'refs/tags/v0.') }}
+            type=edge
+
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
