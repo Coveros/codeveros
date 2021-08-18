@@ -1,6 +1,11 @@
 name: Build, Test, and Push Codeveros Service Images
 
 on:
+  push:
+    branches:
+      - master
+    paths:
+      - services/**
   pull_request:
     branches:
       - master
