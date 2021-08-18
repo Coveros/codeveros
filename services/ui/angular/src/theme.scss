@@ -1,6 +1,6 @@
-@import '~@angular/material/theming';
+@use '~@angular/material' as mat;
 
-@include mat-core();
+@include mat.core();
 
 $new-primary: (
   100: #ffffff,
@@ -10,12 +10,12 @@ $new-primary: (
   500: #E0E0E0,
   600: #757575,
   contrast: (
-    100: $dark-primary-text,
-    200: $dark-primary-text,
-    300: $dark-primary-text,
-    400: $dark-primary-text,
-    500: $dark-primary-text,
-    600: $light-primary-text
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: rgba(black, 0.87),
+    600: white
   )
 );
 
@@ -24,9 +24,9 @@ $new-secondary: (
   200: #00acc1,
   300: #007c91,
   contrast: (
-    100: $dark-primary-text,
-    200: $dark-primary-text,
-    300: $light-primary-text
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: white
   )
 );
 
@@ -35,9 +35,9 @@ $app-blue: (
   400: #57b7e8,
   600: #469dd5,
   contrast: (
-    200: $dark-primary-text,
-    400: $light-primary-text,
-    600: $light-primary-text
+    200: rgba(black, 0.87),
+    400: white,
+    600: white
   )
 );
 
@@ -46,16 +46,16 @@ $app-green: (
   500: #00c29b,
   700: #00a17a,
   contrast: (
-    300: $light-primary-text,
-    500: $light-primary-text,
-    700: $light-primary-text
+    300: white,
+    500: white,
+    700: white
   )
 );
 
-$app-accent: mat-palette($new-primary, 200, 100, 300);
-$app-primary: mat-palette($new-secondary, 200, 100, 300);
-$app-warn: mat-palette($mat-red);
+$app-accent: mat.define-palette($new-primary, 200, 100, 300);
+$app-primary: mat.define-palette($new-secondary, 200, 100, 300);
+$app-warn: mat.define-palette(mat.$red-palette);
 
-$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
+$app-theme: mat.define-light-theme($app-primary, $app-accent, $app-warn);
 
-@include angular-material-theme($app-theme);
+@include mat.all-component-themes($app-theme);

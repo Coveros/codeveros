@@ -1,8 +1,19 @@
+# Compile UI
+FROM node:14.15-buster AS build
+
+WORKDIR /src
+COPY package*.json ./
+RUN npm ci --quiet
+
+COPY . .
+RUN rm -rf dist/
+RUN npm run build.production
+
 FROM nginx:1.19-alpine
 
 ENV API_URL /api
 
-COPY dist/codeveros-ui /usr/share/nginx/html
+COPY --from=build /src/dist/codeveros-ui /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY 0-setup-env.sh /docker-entrypoint.d
 
