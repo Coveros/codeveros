@@ -8,7 +8,9 @@
     "start": "ng serve",
     "start.proxy": "ng serve --proxy-config proxy.json",
     "test": "ng test --code-coverage",
+    "test-ci": "npm run test",
     "checkstyle": "ng lint",
+    "checkstyle:ci": "npm run checkstyle",
     "e2e": "ng e2e",
     "build": "ng build",
     "build.production": "ng build -c production"

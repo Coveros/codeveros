@@ -43,8 +43,4 @@ Run `ng lint` to execute the code style checks.
 
 To build the docker image, execute the script `docker-build.sh`in the top level directory. By default the created image is tagged as latest. This script accepts the version tag
 as an argument. For example, `./docker-build.sh 1.0.0` will create the docker image `codeveros\ui:1.0.0` This file performs all node and npm commands as part of the Docker build,
-and does not require any setup or building of files (nor does it require node to be installed) prior to executing this script. This file uses the `Dockerfile.multistage` 
-dockerfile.
-
-Alternatively, you may choose to build the docker image using the pre-built dist files following the build step above. The default `Dockerfile` simply copies the contents of the
-dist folder into the built image. This file is mainly used as part of the CI pipeline which requires building and testing the application prior to building the docker image.
+and does not require any setup or building of files (nor does it require node to be installed) prior to executing this script.

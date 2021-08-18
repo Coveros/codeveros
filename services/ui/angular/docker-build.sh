@@ -9,4 +9,4 @@ fi
 
 DOCKER_IMAGE="coveros/codeveros-ui:${VERSION}"
 
-docker build -t "$DOCKER_IMAGE" -f Dockerfile.multistage .
+docker build -t "$DOCKER_IMAGE" .

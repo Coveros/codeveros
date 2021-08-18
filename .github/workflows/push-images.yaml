@@ -1,24 +1,35 @@
-name: Test Codeveros Auth Service - Node.js
+name: Build, Test, and Push Codeveros Service Images
 
 on:
   pull_request:
     branches:
       - master
     paths:
-      - services/auth-service/nodejs/**
-
-defaults:
-  run:
-    working-directory: services/auth-service/nodejs
+      - services/**
 
 env:
-  node_version: 12.x
+  node_version: 14.x
   REGISTRY: ghcr.io
-  IMAGE_NAME: coveros/codeveros-auth-service
 
 jobs:
-  build:
+  build-node-services:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - context: services/auth-service/nodejs
+            image_name: coveros/codeveros-auth-service
+          - context: services/gateway/nodejs
+            image_name: coveros/codeveros-gateway
+          - context: services/training-service/nodejs
+            image_name: coveros/codeveros-training-service
+          - context: services/user-service/nodejs
+            image_name: coveros/codeveros-user-service
+          - context: services/ui/angular
+            image_name: coveros/codeveros-ui
+    defaults:
+      run:
+        working-directory: ${{ matrix.context }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -48,12 +59,12 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.REGISTRY }}/${{ matrix.image_name }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
-          context: services/auth-service/nodejs
+          context: ${{ matrix.context }}
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
