@@ -4,7 +4,7 @@ const fs = require('fs');
 
 try {
   const services = JSON.parse(core.getInput('services'));
-  const serviceOptions = yaml.load(fs.readFileSync('.github/actions/get-matrix/services.yml'));
+  const serviceOptions = yaml.load(fs.readFileSync('.github/get-matrix.yml'));
   let include = [];
   for (let service of services) {
     if (serviceOptions.hasOwnProperty(service)) {
