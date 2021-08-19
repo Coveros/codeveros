@@ -17,6 +17,8 @@ jobs:
     outputs:
       contexts: ${{ steps.filter.outputs.changes }}
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
       - name: Check for changes
         uses: dorny/paths-filter@v2
         id: filter
@@ -27,6 +29,15 @@ jobs:
             "services/training-service": services/training-service/nodejs/**
             "services/user-service": services/user-service/nodejs/**
             "services/ui/angular": services/ui/angular/**
+      - name: Run Hello World action
+        id: hello
+        uses: .github/actions/hello-world
+        with:
+          who-to-greet: 'Codeveros the Reference App'
+      - name: Get the output time
+        run: echo "The time was ${{ steps.hello.outputs.time }}"
+
+
 
   lint-and-test:
     runs-on: ubuntu-latest
