@@ -31,7 +31,7 @@ jobs:
             "services/ui/angular": services/ui/angular/**
       - name: Run Hello World action
         id: hello
-        uses: .github/actions/hello-world
+        uses: './.github/actions/hello-world'
         with:
           who-to-greet: 'Codeveros the Reference App'
       - name: Get the output time
