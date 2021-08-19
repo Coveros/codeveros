@@ -4683,39 +4683,14 @@ var __webpack_exports__ = {};
 const core = __nccwpck_require__(370);
 const yaml = __nccwpck_require__(183);
 const fs = __nccwpck_require__(747);
-const path = __nccwpck_require__(622);
-
-const serviceValues = {
-  'auth-service': {
-    context: 'services/auth-service/nodejs',
-    image: 'coveros/codeveros-auth-service'
-  },
-  'gateway': {
-    context: 'services/gateway/nodejs',
-    image: 'coveros/codeveros-gateway'
-  },
-  'training-service': {
-    context: 'services/training-service/nodejs',
-    image: 'coveros/codeveros-training-service'
-  },
-  'user-service': {
-    context: 'services/user-service/nodejs',
-    image: 'coveros/codeveros-user-service'
-  },
-  'ui': {
-    context: 'services/ui/angular',
-    image: 'coveros/codeveros-ui'
-  }
-};
 
 try {
   const services = JSON.parse(core.getInput('services'));
-  const svcYaml = yaml.load(fs.readFileSync('.github/actions/get-matrix/services.yml'));
-  console.log(`the service yaml: ${svcYaml}`);
+  const serviceOptions = yaml.load(fs.readFileSync('.github/actions/get-matrix/services.yml'));
   let include = [];
   for (let service of services) {
-    if (serviceValues.hasOwnProperty(service)) {
-      include.push(serviceValues[service])
+    if (serviceOptions.hasOwnProperty(service)) {
+      include.push(serviceOptions[service])
     }
   }
   core.setOutput('matrix', JSON.stringify({ include }));
