@@ -28,7 +28,7 @@ const serviceValues = {
 
 try {
   const services = JSON.parse(core.getInput('services'));
-  const svcYaml = yaml.load(fs.readFileSync(path.resolve('../services.yml')));
+  const svcYaml = yaml.load(fs.readFileSync('.github/actions/get-matrix/services.yml'));
   console.log(`the service yaml: ${svcYaml}`);
   let include = [];
   for (let service of services) {
