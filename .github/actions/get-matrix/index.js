@@ -24,14 +24,20 @@ const serviceValues = {
 };
 
 try {
-  const services = JSON.parse(core.getInput('services'));
-  let include = [];
-  for (let service of services) {
-    if (serviceValues.hasOwnProperty(service)) {
-      include.push(serviceValues[service])
-    }
-  }
-  core.setOutput('matrix', JSON.stringify({ include }));
+  const servicesInput = core.getInput('services');
+  // const services = JSON.parse(core.getInput('services'));
+
+  console.log(`The servicesInput: ${servicesInput}`);
+
+  // let include = [];
+  // for (let service of services) {
+  //   if (serviceValues.hasOwnProperty(service)) {
+  //     include.push(serviceValues[service])
+  //   }
+  // }
+  // core.setOutput('matrix', JSON.stringify({ include }));
+
+  core.setOutput('matrix', JSON.stringify({ include: [] } ));
 } catch (error) {
   core.setFailed(error.message);
 }
