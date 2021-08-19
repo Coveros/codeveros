@@ -33,7 +33,7 @@ jobs:
         id: hello
         uses: './.github/actions/get-matrix'
         with:
-          services: ${{ steps.filters.outputs.changes }}
+          services: ${{ steps.filter.outputs.changes }}
       - name: Display output
         run: echo "The time was ${{ steps.hello.outputs.matrix }}"
 
