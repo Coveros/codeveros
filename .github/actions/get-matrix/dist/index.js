@@ -575,43 +575,37 @@ var __webpack_exports__ = {};
 const core = __nccwpck_require__(370);
 
 const serviceValues = {
-  auth: {
+  'auth-service': {
     context: 'services/auth-service/nodejs',
     image: 'coveros/codeveros-auth-service'
   },
-  gateway: {
+  'gateway': {
     context: 'services/gateway/nodejs',
     image: 'coveros/codeveros-gateway'
   },
-  training: {
+  'training-service': {
     context: 'services/training-service/nodejs',
     image: 'coveros/codeveros-training-service'
   },
-  user: {
+  'user-service': {
     context: 'services/user-service/nodejs',
     image: 'coveros/codeveros-user-service'
   },
-  ui: {
+  'ui': {
     context: 'services/ui/angular',
     image: 'coveros/codeveros-ui'
   }
 };
 
 try {
-  const servicesInput = core.getInput('services');
-  // const services = JSON.parse(core.getInput('services'));
-
-  console.log(`The servicesInput: ${servicesInput}`);
-
-  // let include = [];
-  // for (let service of services) {
-  //   if (serviceValues.hasOwnProperty(service)) {
-  //     include.push(serviceValues[service])
-  //   }
-  // }
-  // core.setOutput('matrix', JSON.stringify({ include }));
-
-  core.setOutput('matrix', JSON.stringify({ include: [] } ));
+  const services = JSON.parse(core.getInput('services'));
+  let include = [];
+  for (let service of services) {
+    if (serviceValues.hasOwnProperty(service)) {
+      include.push(serviceValues[service])
+    }
+  }
+  core.setOutput('matrix', JSON.stringify({ include }));
 } catch (error) {
   core.setFailed(error.message);
 }

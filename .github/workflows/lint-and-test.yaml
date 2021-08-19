@@ -24,11 +24,11 @@ jobs:
         id: filter
         with:
           filters: |
-            "services/auth-service/nodejs": services/auth-service/nodejs/**
-            "services/gateway/nodejs": services/gateway/nodejs/**
-            "services/training-service": services/training-service/nodejs/**
-            "services/user-service": services/user-service/nodejs/**
-            "services/ui/angular": services/ui/angular/**
+            "auth-service": services/auth-service/nodejs/**
+            "gateway": services/gateway/nodejs/**
+            "training-service": services/training-service/nodejs/**
+            "user-service": services/user-service/nodejs/**
+            "ui": services/ui/angular/**
       - name: Get matrix values
         id: hello
         uses: './.github/actions/get-matrix'
