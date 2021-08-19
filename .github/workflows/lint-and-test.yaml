@@ -23,12 +23,7 @@ jobs:
         uses: dorny/paths-filter@v2
         id: filter
         with:
-          filters: |
-            "auth-service": services/auth-service/nodejs/**
-            "gateway": services/gateway/nodejs/**
-            "training-service": services/training-service/nodejs/**
-            "user-service": services/user-service/nodejs/**
-            "ui": services/ui/angular/**
+          filters: .github/filters.yml
       - name: Get matrix values
         id: get-matrix
         uses: './.github/actions/get-matrix'
