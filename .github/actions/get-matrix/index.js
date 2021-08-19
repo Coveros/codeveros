@@ -1,4 +1,7 @@
 const core = require('@actions/core');
+const yaml = require('js-yaml');
+const fs = require('fs');
+const path = require('path');
 
 const serviceValues = {
   'auth-service': {
@@ -25,6 +28,8 @@ const serviceValues = {
 
 try {
   const services = JSON.parse(core.getInput('services'));
+  const svcYaml = yaml.load(fs.readFileSync(path.resolve('../services.yml')));
+  console.log(`the service yaml: ${svcYaml}`);
   let include = [];
   for (let service of services) {
     if (serviceValues.hasOwnProperty(service)) {
