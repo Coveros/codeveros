@@ -8,6 +8,7 @@ try {
   let include = [];
   for (let service of services) {
     if (serviceOptions.hasOwnProperty(service)) {
+      core.info(`Including ${service} values in output`);
       include.push(serviceOptions[service])
     }
   }
