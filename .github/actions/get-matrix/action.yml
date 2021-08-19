@@ -1,0 +1,13 @@
+name: Get Matrix Values
+description: Get matrix values based on changed services
+inputs:
+  services:
+    description: Services to matrix
+    required: true
+    default: ''
+outputs:
+  matrix:
+    description: JSON array of matrix values
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

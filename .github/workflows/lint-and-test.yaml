@@ -29,13 +29,13 @@ jobs:
             "services/training-service": services/training-service/nodejs/**
             "services/user-service": services/user-service/nodejs/**
             "services/ui/angular": services/ui/angular/**
-      - name: Run Hello World action
+      - name: Get matrix values
         id: hello
-        uses: './.github/actions/hello-world'
+        uses: './.github/actions/get-matrix'
         with:
-          who-to-greet: 'Codeveros the Reference App'
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+          services: ${{ steps.filters.outputs.changes }}
+      - name: Display output
+        run: echo "The time was ${{ steps.hello.outputs.matrix }}"
 
 
 
