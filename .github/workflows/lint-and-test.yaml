@@ -15,7 +15,7 @@ jobs:
   changes:
     runs-on: ubuntu-latest
     outputs:
-      contexts: ${{ steps.filter.output.changes }}
+      contexts: ${{ steps.filter.outputs.changes }}
     steps:
       - name: Check for changes
         uses: dorny/paths-filter@v2
