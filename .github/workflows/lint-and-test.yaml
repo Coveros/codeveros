@@ -1,0 +1,56 @@
+name: Lint and Test Services
+
+on:
+  pull_request:
+    branches: [master]
+    paths: ["services/**"]
+
+env:
+  NODE_VERSION: 14.x
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - context: services/auth-service/nodejs
+          - context: services/gateway/nodejs
+          - context: services/training-service/nodejs
+          - context: services/user-service/nodejs
+          - context: services/ui/angular
+    defaults:
+      run:
+        working-directory: ${{ matrix.context }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Check for changes
+        uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            service:
+              - "${{ matrix.context }}/**"
+
+      - name: No changes detected
+        if: ${{ steps.changes.outputs.service == 'false' }}
+        run: echo "No changes detected, skipping"
+
+      - name: Install NPM Dependencies
+        if: ${{ steps.changes.outputs.service == 'true' }}
+        run: npm ci --quiet
+
+      - name: Lint Code
+        if: ${{ steps.changes.outputs.service == 'true' }}
+        run: npm run checkstyle:ci
+
+      - name: Unit Test
+        if: ${{ steps.changes.outputs.service == 'true' }}
+        run: npm run test-ci
