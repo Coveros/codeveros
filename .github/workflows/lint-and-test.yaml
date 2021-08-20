@@ -15,7 +15,7 @@ jobs:
   changes:
     runs-on: ubuntu-latest
     outputs:
-      matrix-include: ${{ steps.get-changed.outputs.filtered }}
+      matrix-include: ${{ steps.set-matrix.outputs.filtered }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
