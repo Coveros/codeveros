@@ -28,8 +28,15 @@ jobs:
         id: get-changed
         uses: './.github/actions/filter-options'
         with:
-          options: '.github/get-matrix.yml'
+          options: .github/get-matrix.yml
           filters: ${{ steps.filter.outputs.changes }}
+
+  check-output:
+    runs-on: ubuntu-latest
+    needs: changes
+    steps:
+      - name: Output
+        run: echo "${{ needs.changes.outputs.matrix-includes }}"
 
   lint-and-test:
     runs-on: ubuntu-latest
