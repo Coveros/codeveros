@@ -30,7 +30,7 @@ try {
       selected.push(options[optionToSelect]);
     }
     else {
-      core.info(`'${optonToSelect}' not found in options input, skipping`);
+      core.info(`'${optionToSelect}' not found in options input, skipping`);
     }
   }
   core.setOutput('filtered', JSON.stringify(selected));
