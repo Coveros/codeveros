@@ -26,7 +26,7 @@ jobs:
           filters: .github/filters.yml
       - name: Filter service values based on code changes
         id: set-matrix
-        uses: '.github/actions/filter-options'
+        uses: './.github/actions/filter-options'
         with:
           options: .github/service-values.yml
           options-to-select: ${{ steps.filter.outputs.changes }}
