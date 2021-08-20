@@ -1,3 +1,3 @@
-# CODEveros Auth Service Node.js
+# Codeveros Auth Service Node.js
 
-Repository for Node.js-based CODEveros Auth Service
+Repository for Node.js-based Codeveros Auth Service

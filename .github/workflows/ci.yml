@@ -1,0 +1,80 @@
+# Runs on pull requests to master when there are changes to the service files in services/
+# Lints and Unit tests the services that have changed
+
+name: CI
+
+on:
+  pull_request:
+    branches: [master]
+    paths: ["services/**"]
+  push:
+    branches: [master]
+    tags: ["v*"]
+
+env:
+  NODE_VERSION: 14.x
+  REGISTRY: ghcr.io
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix-include: ${{ steps.set-matrix.outputs.filtered }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Check for changes
+        uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: .github/filters.yml
+      - name: Filter service values based on code changes
+        id: set-matrix
+        uses: './.github/actions/filter-options'
+        with:
+          options: .github/service-values.yml
+          options-to-select: ${{ steps.filter.outputs.changes }}
+
+  lint-and-test:
+    runs-on: ubuntu-latest
+    needs: changes
+    strategy:
+      matrix:
+        include: ${{ fromJSON(needs.changes.outputs.matrix-include) }}
+    defaults:
+      run:
+        working-directory: ${{ matrix.context }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install NPM Dependencies
+        run: npm ci --quiet
+
+      - name: Lint Code
+        run: npm run checkstyle:ci
+
+      - name: Unit Test
+        run: npm run test-ci
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: ${{ env.REGISTRY }}/${{ matrix.image }}
+          tags: |
+            type=sha
+            type=ref,event=pr
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: ${{ matrix.context }}
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
