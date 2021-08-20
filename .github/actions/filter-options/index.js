@@ -25,7 +25,7 @@ try {
 
   let selected = [];
   for (let optionToSelect of optionsToSelect) {
-    if (options.hasOwnProperty(optionsToSelect)) {
+    if (options.hasOwnProperty(optionToSelect)) {
       core.info(`Including ${optionToSelect} values in output`);
       selected.push(options[optionToSelect]);
     }
