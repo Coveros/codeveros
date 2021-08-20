@@ -2,14 +2,14 @@ name: Filter options based on input
 description: Get filtered options based on selected input
 inputs:
   options:
-    description: Possible values
+    description: Possible values (Either a path to a yaml file, or a yaml string)
     required: true
-  filters:
-    description: Options to filter
+  options-to-select:
+    description: Options to select (an array of option keys)
     required: true
 outputs:
   filtered:
-    description: JSON array of filtered values
+    description: JSON array of filtered values based on selected options
 runs:
   using: 'node12'
   main: 'dist/index.js'

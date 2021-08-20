@@ -4701,15 +4701,18 @@ function getFileContent(filePath) {
 try {
   const optionsInput = core.getInput('options');
   const optionsYamlStr = isPathInput(optionsInput) ? getFileContent(optionsInput) : optionsInput;
-
   const options = yaml.load(optionsYamlStr);
-  const optionFilters = JSON.parse(core.getInput('filters'));
+
+  const optionsToSelect = JSON.parse(core.getInput('options-to-select'));
 
   let selected = [];
-  for (let optionFilter of optionFilters) {
-    if (options.hasOwnProperty(optionFilter)) {
-      core.info(`Including ${optionFilter} values in output`);
-      selected.push(options[optionFilter]);
+  for (let optionToSelect of optionsToSelect) {
+    if (options.hasOwnProperty(optionsToSelect)) {
+      core.info(`Including ${optionToSelect} values in output`);
+      selected.push(options[optionToSelect]);
+    }
+    else {
+      core.info(`'${optonToSelect}' not found in options input, skipping`);
     }
   }
   core.setOutput('filtered', JSON.stringify(selected));
