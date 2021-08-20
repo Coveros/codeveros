@@ -1,6 +1,6 @@
 # Codeveros UI
 
-Codeveros UI angular application.
+Codeveros UI Angular application.
 
 ## Installing dependencies:
 
