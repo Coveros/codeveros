@@ -15,7 +15,7 @@ jobs:
   changes:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.get-matrix.outputs.matrix }}
+      matrix-includes: ${{ steps.get-changed.outputs.filtered }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -24,17 +24,19 @@ jobs:
         id: filter
         with:
           filters: .github/filters.yml
-      - name: Get matrix values
-        id: get-matrix
-        uses: './.github/actions/get-matrix'
+      - name: Get changed services values
+        id: get-changed
+        uses: './.github/actions/filter-options'
         with:
-          services: ${{ steps.filter.outputs.changes }}
+          options: '.github/get-matrix.yml'
+          filters: ${{ steps.filter.outputs.changes }}
 
   lint-and-test:
     runs-on: ubuntu-latest
     needs: changes
     strategy:
-      matrix: ${{ fromJSON(needs.changes.outputs.matrix) }}
+      matrix:
+        includes: ${{ fromJSON(needs.changes.outputs.matrix-includes) }}
     defaults:
       run:
         working-directory: ${{ matrix.context }}

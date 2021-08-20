@@ -1,0 +1,15 @@
+name: Filter options based on input
+description: Get filtered options based on selected input
+inputs:
+  options:
+    description: Possible values
+    required: true
+  filters:
+    description: Options to filter
+    required: true
+outputs:
+  filtered:
+    description: JSON array of filtered values
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
