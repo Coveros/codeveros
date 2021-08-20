@@ -1,7 +1,7 @@
 # Runs on pull requests to master when there are changes to the service files in services/
 # Lints and Unit tests the services that have changed
 
-name: CI
+name: Service CI
 
 on:
   pull_request:
@@ -10,6 +10,7 @@ on:
   push:
     branches: [master]
     tags: ["v*"]
+    paths: ["services/**"]
 
 env:
   NODE_VERSION: 14.x
