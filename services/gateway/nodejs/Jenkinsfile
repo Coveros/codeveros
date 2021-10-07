@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-library 'codeveros-library@feature/unstubbing-stages'
+library 'codeveros-library'
 
 runNodeSvcPipeline([
   repository: 'coveros/codeveros-gateway',
