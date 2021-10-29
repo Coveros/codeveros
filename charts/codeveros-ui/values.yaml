@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: coveros/codeveros-ui
+  repository: ghcr.io/coveros/codeveros-ui
   pullPolicy: IfNotPresent
   tag: ""
 
