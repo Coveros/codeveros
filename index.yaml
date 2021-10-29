@@ -293,6 +293,20 @@ entries:
     version: 0.1.0
   codeveros-auth-service:
   - apiVersion: v2
+    appVersion: 1.3.0
+    created: "2021-10-29T20:41:29.753776453Z"
+    description: Codeveros Auth Service Helm chart
+    digest: d2edfdad7f4f06aaea6d07eb8a4431762c59c274a5fa70c80724dbddfb68ac8a
+    home: https://coveros.com
+    maintainers:
+    - email: justin.hollingsworth@coveros.com
+      name: justin-coveros
+    name: codeveros-auth-service
+    type: application
+    urls:
+    - https://github.com/Coveros/codeveros/releases/download/codeveros-auth-service-0.6.0/codeveros-auth-service-0.6.0.tgz
+    version: 0.6.0
+  - apiVersion: v2
     appVersion: "1.1"
     created: "2021-01-04T18:45:08.370015932Z"
     description: Codeveros Auth Service Helm chart
@@ -349,6 +363,20 @@ entries:
     - https://github.com/Coveros/codeveros/releases/download/codeveros-auth-service-0.4.0/codeveros-auth-service-0.4.0.tgz
     version: 0.4.0
   codeveros-gateway:
+  - apiVersion: v2
+    appVersion: 1.3.0
+    created: "2021-10-29T20:41:29.969693064Z"
+    description: Codeveros Gateway Helm chart
+    digest: 75d62bb8d3200742073e7b9f01e8cb354139c5513b9762ba6b2b222a44cd28f1
+    home: https://coveros.com
+    maintainers:
+    - email: justin.hollingsworth@coveros.com
+      name: justin-coveros
+    name: codeveros-gateway
+    type: application
+    urls:
+    - https://github.com/Coveros/codeveros/releases/download/codeveros-gateway-0.7.0/codeveros-gateway-0.7.0.tgz
+    version: 0.7.0
   - apiVersion: v2
     appVersion: 1.1.1
     created: "2021-05-05T20:39:52.219554579Z"
@@ -477,6 +505,24 @@ entries:
     version: 0.3.0
   codeveros-training-service:
   - apiVersion: v2
+    appVersion: 1.3.0
+    created: "2021-10-29T20:41:30.183414642Z"
+    dependencies:
+    - name: mongodb
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.3.3
+    description: Codeveros Training Service Helm chart
+    digest: 3a8e019064515784646fb1630a4c49a7a9104f21c206569aa89e8675e4904673
+    home: https://coveros.com
+    maintainers:
+    - email: justin.hollingsworth@coveros.com
+      name: justin-coveros
+    name: codeveros-training-service
+    type: application
+    urls:
+    - https://github.com/Coveros/codeveros/releases/download/codeveros-training-service-0.6.0/codeveros-training-service-0.6.0.tgz
+    version: 0.6.0
+  - apiVersion: v2
     appVersion: 1.1.1
     created: "2021-05-05T20:39:52.337667041Z"
     dependencies:
@@ -585,6 +631,20 @@ entries:
     - https://github.com/Coveros/codeveros/releases/download/codeveros-training-service-0.4.0/codeveros-training-service-0.4.0.tgz
     version: 0.4.0
   codeveros-ui:
+  - apiVersion: v2
+    appVersion: 1.3.0
+    created: "2021-10-29T20:41:30.378972451Z"
+    description: Codeveros Angular UI Helm chart
+    digest: f9a49f1edea527adebae21a41e4383f72faf184dfb81e7fc2f7fb864780e2407
+    home: https://coveros.com
+    maintainers:
+    - email: justin.hollingsworth@coveros.com
+      name: justin-coveros
+    name: codeveros-ui
+    type: application
+    urls:
+    - https://github.com/Coveros/codeveros/releases/download/codeveros-ui-0.9.0/codeveros-ui-0.9.0.tgz
+    version: 0.9.0
   - apiVersion: v2
     appVersion: "1.2"
     created: "2021-05-05T19:47:48.900223042Z"
@@ -712,6 +772,24 @@ entries:
     - https://github.com/Coveros/codeveros/releases/download/codeveros-ui-0.5.0/codeveros-ui-0.5.0.tgz
     version: 0.5.0
   codeveros-user-service:
+  - apiVersion: v2
+    appVersion: 1.3.0
+    created: "2021-10-29T20:41:30.609207875Z"
+    dependencies:
+    - name: mongodb
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.3.3
+    description: Codeveros User Service Helm chart
+    digest: 62102bfb53639155a8fd25ca391d9d574d20727a2079818cff015e25731cc7d9
+    home: https://coveros.com
+    maintainers:
+    - email: justin.hollingsworth@coveros.com
+      name: justin-coveros
+    name: codeveros-user-service
+    type: application
+    urls:
+    - https://github.com/Coveros/codeveros/releases/download/codeveros-user-service-0.6.0/codeveros-user-service-0.6.0.tgz
+    version: 0.6.0
   - apiVersion: v2
     appVersion: 1.1.1
     created: "2021-05-05T20:39:52.490891081Z"
