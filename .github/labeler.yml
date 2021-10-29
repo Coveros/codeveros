@@ -1,6 +1,9 @@
 # Add 'repo' label to any root file changes
 repo: ./*
 
+# Add 'test' label to any top-level test changes
+test: tests/**/*
+
 # Add 'workflow' label to any github action file changes
 workflow: .github/**/*
 
