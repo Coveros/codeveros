@@ -1,4 +1,4 @@
-# Codeveros
+# Codeveros - [kəʊd-ver-əʊs]
 Monorepo for all Codeveros services
 
 ## Services
