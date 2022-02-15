@@ -1,3 +1,3 @@
-# CODEveros Gateway Node.js
+# Codeveros Gateway Node.js
 
-Repository for Node.js-based CODEveros Gateway
+Repository for Node.js-based Codeveros Gateway

@@ -1,5 +1,5 @@
-# CODEveros
-Monorepo for all CODEveros services
+# Codeveros - [kəʊd-ver-əʊs]
+Monorepo for all Codeveros services
 
 ## Services
 
@@ -27,7 +27,7 @@ Monorepo for all CODEveros services
 
 
 ### Adding the Chart Repository
-To add the CODEveros Helm Chart repository, run `helm repo add`
+To add the Codeveros Helm Chart repository, run `helm repo add`
 
 `helm repo add codeveros https://coveros.github.io/codeveros`
 

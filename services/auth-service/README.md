@@ -1,4 +1,4 @@
-# CODEveros Auth Service
+# Codeveros Auth Service
 
 Simple authentication back-end service
 

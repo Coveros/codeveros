@@ -1,6 +1,6 @@
-# CODEveros User Service
+# Codeveros User Service
 
-Repository for CODEveros User Service
+Repository for Codeveros User Service
 
 ## Implementation Options
 

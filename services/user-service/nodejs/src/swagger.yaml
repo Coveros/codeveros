@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   version: 0.0.1
-  title: CODEveros User Service
+  title: Codeveros User Service
   license:
     name: ISC
 paths:
@@ -30,7 +30,7 @@ paths:
       tags:
         - user
       requestBody:
-        description: User to add to CODEveros
+        description: User to add to Codeveros
         required: true
         content:
           application/json:

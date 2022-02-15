@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   version: 0.0.1
-  title: CODEveros Training Service
+  title: Codeveros Training Service
   license:
     name: ISC
 paths:
@@ -30,7 +30,7 @@ paths:
       tags:
         - training
       requestBody:
-        description: Training to add to CODEveros
+        description: Training to add to Codeveros
         required: true
         content:
           application/json:
