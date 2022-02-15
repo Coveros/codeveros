@@ -30,7 +30,7 @@ public class MainPage {
 
     public void assertHeader() {
         header.waitForState().displayed();
-        header.assertEquals().text("Welcome to CODEveros");
+        header.assertEquals().text("Welcome to Codeveros");
     }
 
     public void openMenu(){
@@ -62,6 +62,6 @@ public class MainPage {
         logoutPopUp.assertEquals().text("Sign out?");
         cancelLogoutButton.click();
         header.waitForState().displayed();
-        header.assertEquals().text("Welcome to CODEveros");
+        header.assertEquals().text("Welcome to Codeveros");
     }
 }

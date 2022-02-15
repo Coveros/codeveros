@@ -1,3 +1,3 @@
-# CODEveros Training Service Node.js
+# Codeveros Training Service Node.js
 
-Repository for Node.js-based CODEveros Training Service
+Repository for Node.js-based Codeveros Training Service

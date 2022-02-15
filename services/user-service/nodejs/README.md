@@ -1,3 +1,3 @@
-# CODEveros User Service Node.js
+# Codeveros User Service Node.js
 
-Repository for Node.js-based CODEveros User Service
+Repository for Node.js-based Codeveros User Service

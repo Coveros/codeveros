@@ -1,6 +1,6 @@
-# CODEveros Training Service
+# Codeveros Training Service
 
-Repository for CODEveros Training Service
+Repository for Codeveros Training Service
 
 ## Implementation Options
 

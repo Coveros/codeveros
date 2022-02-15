@@ -4,7 +4,7 @@ const merge = require('deepmerge');
 const baseSpec = {
   openapi: '3.0.0',
   info: {
-    title: 'CODEveros',
+    title: 'Codeveros',
     description: 'Microservice Reference Application',
     contact: {
       name: 'Coveros Support',
