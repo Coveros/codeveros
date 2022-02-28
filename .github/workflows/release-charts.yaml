@@ -6,7 +6,7 @@ on:
       - master
     paths: 
       - charts/**
-      - !charts/**/README.md
+      - '!charts/**/README.md'
 
 jobs:
   release:
