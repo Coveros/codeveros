@@ -1,21 +1,23 @@
+def servicePath = 'service/ui/angular'
+def imageRepo = 'ryaniswalking/ui'
 node {
     stage('cleanup'){
         cleanWs()
     }
     checkout scm
-    dir('services/ui/angular'){
-        stage('Dependencies'){
-            docker.image('node:14.16').inside { //creates node in docker then go inside
-                //run these
-                 sh 'npm ci --quiet --cache="./npm"' //copies the user, mounts the directories, maps it to the exact same location as node agent, gives permissions\
-                //define location of cache files to be in the workspace.
-            }
-        }
-        stage('Build') {
-            docker.image('node:14.16').inside {
-                sh 'npm run build.production --cache="./npm"'
-            }
-        }
+    dir(imageRepo){
+        // stage('Dependencies'){
+        //     docker.image('node:14.16').inside { //creates node in docker then go inside
+        //         //run these
+        //          sh 'npm ci --quiet --cache="./npm"' //copies the user, mounts the directories, maps it to the exact same location as node agent, gives permissions\
+        //         //define location of cache files to be in the workspace.
+        //     }
+        // }
+        // stage('Build') {
+        //     docker.image('node:14.16').inside {
+        //         sh 'npm run build.production --cache="./npm"'
+        //     }
+        // }
         // stage('lint') {
         //     try{
         //         echo 'Linting'
@@ -29,10 +31,19 @@ node {
         //     }
         // }
         stage('deliver'){
-            if(env.BRANCH_NAME=='master'){
+            if(env.BRANCH_NAME=='develop'){
                 docker.withRegistry('', 'dockerhub')  //since we are using docker hub, use empty string     
-                    def myImage = docker.build("ryaniswalking/ui:${env.BUILD_ID}") //has all docker functions
+                    def myImage = docker.build("${imageRepo}:${env.BUILD_ID}") //has all docker functions
                     myImage.push()
+                    myImage.push('dev')
+                    
+            }
+        }
+        stage('promote'){
+            if(env.BRANCH_NAME=='master'){
+                docker.withRegistry('', 'dockerhub')
+                    def myImage = docker.image("${imageRepo}:dev") 
+                    myImage.pull()
                     myImage.push('latest')
 
             }
