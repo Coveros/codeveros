@@ -1,6 +1,6 @@
 node {
         stage('cleanup'){
-            cleanWS()
+            cleanWs()
         }
         checkout scm
         dir('services/ui/angular'){
