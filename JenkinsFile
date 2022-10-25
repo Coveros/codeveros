@@ -1,8 +1,8 @@
 node {
-    checkout scm
     stage('cleanup'){
         cleanWs()
     }
+    checkout scm
     dir('services/ui/angular'){
         stage('Dependencies'){
             docker.image('node:14.16').inside { //creates node in docker then go inside
