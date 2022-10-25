@@ -1,5 +1,4 @@
 node {
-    checkout
     stage('Build') {
         echo 'Hello World'
     }
