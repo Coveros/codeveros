@@ -25,5 +25,12 @@ node {
                     echo 'Failed linting ' + e.toString()
                 }
             }
+            stage('test') {
+                    docker.image('buildkite/puppeteer:8.0.0').inside { //Configure the test stage to use image
+                        //run these
+                        sh 'npm run test --cache="./npm"'  //copies the user, mounts the directories, maps it to the exact same location as node agent, gives permissions\
+                        //define location of cache files to be in the workspace.
+                }
+            }
         }
 }
