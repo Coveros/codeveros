@@ -28,5 +28,14 @@ node {
 			}
 		}
 		*/
+		stage('Deliver') {
+			if (env.BRANCH_NAME == 'master') {
+				docker.withRegistry('', 'DockerHub') {
+					def myImage = docker.build("njcorrea/ui:${env.BUILD_ID}")
+					myImage.push()
+					myImage.push('latest')
+				}
+			}
+		}
 	}
 }
