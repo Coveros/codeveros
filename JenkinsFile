@@ -16,16 +16,25 @@ node {
                 sh 'npm run build.production --cache="./npm"'
             }
         }
-        stage('lint') {
-            try{
-                echo 'Linting'
-            }catch(Exception e) {
-                echo 'Failed linting ' + e.toString()
-            }
-        }
-        stage('test'){
-            docker.image('buildkite/puppeteer:8.0.0').inside {
-                sh 'npm run test --cache="./npm"'
+        // stage('lint') {
+        //     try{
+        //         echo 'Linting'
+        //     }catch(Exception e) {
+        //         echo 'Failed linting ' + e.toString()
+        //     }
+        // }
+        // stage('test'){
+        //     docker.image('buildkite/puppeteer:8.0.0').inside {
+        //         sh 'npm run test --cache="./npm"'
+        //     }
+        // }
+        stage('deliver'){
+            if(env.BRANCH_NAME=='master'){
+                docker.withRegistry('', 'dockerhub')  //since we are using docker hub, use empty string     
+                    def myImage = docker.build("ryaniswalking/ui:${env.BUILD_ID}") //has all docker functions
+                    myImage.push()
+                    myImage.push('latest')
+                    
             }
         }
     }
