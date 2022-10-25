@@ -5,6 +5,7 @@ node {
 
     checkout scm
 
+/*
     dir('services/ui/angular') {
         stage('dependencies') {
             docker.image('node:14.16').inside {
@@ -32,5 +33,14 @@ node {
             }
         }
         */
-    }
+        stage('deliver') {
+            if(env.BRANCH_NAME == 'master') {
+                docker.withRegistry('', 'docker') {
+                    def myImage = docker.build("rawrool/ui:${env.BUILD_ID}")
+                    myImage.push()
+                    myImage.push('latest')
+                }
+            }
+        }
+    //}
 }
