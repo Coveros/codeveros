@@ -1,8 +1,8 @@
 node {
-    checkout scm
     stage('cleanup') { // should be in the beginning of the pipeline
         cleanWs() // clean workspace - ensures every time we build it, we pull the latest dependencies since we cleaned workspace
     }
+    checkout scm
     dir('services/ui/angular') {
         stage('Dependencies') {
             // install node
