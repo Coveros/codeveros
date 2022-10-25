@@ -34,7 +34,7 @@ node {
                     def myImage = docker.build("ryaniswalking/ui:${env.BUILD_ID}") //has all docker functions
                     myImage.push()
                     myImage.push('latest')
-                    
+
             }
         }
     }
