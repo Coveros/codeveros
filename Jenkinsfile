@@ -23,7 +23,7 @@ node {
 		}
 		stage('Test') {
 			docker.image('buildkite/puppeteer:8.0.0').inside {
-				sh 'npm run run test --cache="./npm"'
+				sh 'npm run test --cache="./npm"'
 			}
 		}
 	}
