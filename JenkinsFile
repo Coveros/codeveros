@@ -1,5 +1,5 @@
-node{
-    stage{'Build'}{
+node {
+    stage{'Build'} {
         echo 'Hello World'
     }
 }
