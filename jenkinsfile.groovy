@@ -37,7 +37,7 @@ node {
             stage('deliver') {
                 if(env.BRANCH_NAME == 'master'){
                     docker.withRegistry('', 'docker1') {
-                        def myImage=docker.build("mpadmanabhan/ui:${env.BUILD_ID}")
+                        def myImage=docker.build("manjushamenon/ui:${env.BUILD_ID}")
                         myImage.push()
                         myImage.push(‘latest’)
                     }
