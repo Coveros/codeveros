@@ -14,6 +14,7 @@ node {
 				sh 'npm run build.production --cache="./npm"'
 			}
 		}
+		/*
 		stage('Lint') {
 			try {
 				echo 'linting'
@@ -26,5 +27,6 @@ node {
 				sh 'npm run test --cache="./npm"'
 			}
 		}
+		*/
 	}
 }
