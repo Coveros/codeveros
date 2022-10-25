@@ -4,7 +4,7 @@ node {
         stage('Dependencies'){
             docker.image('node:14.16').inside { //creates node in docker then go inside
                 //run these
-                sh 'npm cl --quiet --cache="./npm"'  //copies the user, mounts the directories, maps it to the exact same location as node agent, gives permissions\
+                sh 'npm ci --quiet --cache="./npm"'  //copies the user, mounts the directories, maps it to the exact same location as node agent, gives permissions\
                 //define location of cache files to be in the workspace.
             }
         }
