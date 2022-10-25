@@ -7,12 +7,14 @@ node {
         stage('Dependencies'){
             docker.image('node:14.16').inside { //creates node in docker then go inside
                 //run these
-                sh 'npm run build.production --cache="./npm"'  //copies the user, mounts the directories, maps it to the exact same location as node agent, gives permissions\
+                 sh 'npm ci --quiet --cache="./npm"' //copies the user, mounts the directories, maps it to the exact same location as node agent, gives permissions\
                 //define location of cache files to be in the workspace.
             }
         }
         stage('Build') {
-            echo 'Hello World'
+            docker.image('node:14.16').inside {
+                sh 'npm run build.production --cache="./npm"'
+            }
         }
         stage('lint') {
             try{
