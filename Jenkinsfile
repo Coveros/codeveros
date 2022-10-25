@@ -12,8 +12,9 @@ node {
             }
         }
         stage('Build') {
-            echo 'Hello World'
-            sh 'npm run build.production --cache="./npm"'
+            docker.image('node:14.16').inside {
+                sh 'npm run build.production --cache="./npm"'
+            }    
         }
         stage('Lint') {
             try {
