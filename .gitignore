@@ -1,5 +1,6 @@
 # Helm chart automated files
 charts/*/charts
+charts/*/Chart.lock
 
 *.iml
 .idea
