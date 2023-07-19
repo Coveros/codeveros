@@ -7,3 +7,5 @@ charts/*/Chart.lock
 
 node_modules
 target
+
+.env*

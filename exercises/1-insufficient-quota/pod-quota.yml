@@ -6,4 +6,5 @@ spec:
   hard:
     pods: "8"
 
-# for $n in {1..15}; do kubectl apply -f pod-quota.yml --namespace=namespace${n}; done
+# for n in {1..15}; do kubectl apply -f pod-quota.yml --namespace=namespace${n}; done
+# kubectl apply -f pod-quote.yml --namespace=namespace
