@@ -1,4 +1,4 @@
-FROM node:14.15-buster
+FROM node:22.17
 
 # Create server directory
 WORKDIR /usr/src/server

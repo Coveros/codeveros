@@ -13,7 +13,7 @@ on:
     paths: ["services/**"]
 
 env:
-  NODE_VERSION: 14.x
+  NODE_VERSION: 22.x
   REGISTRY: ghcr.io
 
 jobs:

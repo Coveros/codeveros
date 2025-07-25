@@ -1,4 +1,4 @@
-FROM node:14.15-alpine
+FROM node:22.17-alpine
 
 # Create server directory
 WORKDIR /usr/src/server

@@ -1,9 +1,12 @@
 {
   "name": "codeveros-gateway",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Basic node Gateway for simple, straight docker example",
   "main": "src/app.js",
   "private": true,
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "scripts": {
     "start": "node src/app.js",
     "test": "jest --logHeapUsage --no-cache",
