@@ -23,14 +23,14 @@
   "license": "ISC",
   "dependencies": {
     "@coveros/codeveros-ms": "^0.5.0-dev",
-    "bcrypt": "^5.0.1",
-    "validator": "^13.7.0"
+    "bcrypt": "^6.0.0",
+    "validator": "^13.15.15"
   },
   "devDependencies": {
-    "jest": "^27.0.6",
-    "jest-junit": "^12.2.0",
-    "mkdirp": "^1.0.4",
-    "semistandard": "^16.0.1",
+    "jest": "^30.0.5",
+    "jest-junit": "^16.0.0",
+    "mkdirp": "^3.0.1",
+    "semistandard": "^17.0.0",
     "standard-json": "^1.1.0"
   },
   "semistandard": {
