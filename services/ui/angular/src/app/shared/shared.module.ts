@@ -53,7 +53,6 @@ const exportedModules = [
 @NgModule({
   imports: [ ...exportedModules ],
   exports: [ ...exportedModules ],
-  declarations: [ ConfirmDialogComponent ],
-  entryComponents: [ ConfirmDialogComponent ]
+  declarations: [ ConfirmDialogComponent ]
 })
 export class SharedModule {}

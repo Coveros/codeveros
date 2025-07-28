@@ -16,9 +16,6 @@ import { SharedModule } from '../shared/shared.module';
   ],
   exports: [
     TrainingListComponent
-  ],
-  entryComponents: [
-    TrainingDialogComponent
   ]
 })
 export class TrainingModule {}
