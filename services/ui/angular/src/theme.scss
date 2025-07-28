@@ -1,5 +1,6 @@
 @use '@angular/material' as mat;
 
+@include mat.all-component-typographies();
 @include mat.core();
 
 $new-primary: (

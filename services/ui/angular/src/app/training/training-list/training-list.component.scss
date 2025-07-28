@@ -6,7 +6,7 @@ table {
   padding: 16px;
 }
 
-tr.element-row:hover, .mat-list-item:hover {
+tr.element-row:hover, .mat-mdc-list-item:hover {
   background: #f5f5f5;
 }
 
@@ -28,16 +28,16 @@ tr.element-row td {
   max-width: 750px;
 }
 
-.mat-list .mat-icon,
+.mat-mdc-list .mat-icon,
 .table-actions .mat-icon {
   display: none !important;
 }
 
-.mat-list-item {
+.mat-mdc-list-item {
   height: auto !important;
 }
 
-.mat-list-item:hover .mat-icon,
+.mat-mdc-list-item:hover .mat-icon,
 tr.element-row:hover .table-actions .mat-icon {
   display: inline-block !important;
 }
