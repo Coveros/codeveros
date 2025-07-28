@@ -82,21 +82,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "codeveros-ui:build"
+            "buildTarget": "codeveros-ui:build"
           },
           "configurations": {
             "local": {
-              "browserTarget": "codeveros-ui:build:local"
+              "buildTarget": "codeveros-ui:build:local"
             },
             "production": {
-              "browserTarget": "codeveros-ui:build:production"
+              "buildTarget": "codeveros-ui:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "codeveros-ui:build"
+            "buildTarget": "codeveros-ui:build"
           }
         },
         "test": {
