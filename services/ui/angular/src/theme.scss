@@ -53,10 +53,10 @@ $app-green: (
   )
 );
 
-$app-accent: mat.define-palette($new-primary, 200, 100, 300);
-$app-primary: mat.define-palette($new-secondary, 200, 100, 300);
-$app-warn: mat.define-palette(mat.$red-palette);
+$app-accent: mat.m2-define-palette($new-primary, 200, 100, 300);
+$app-primary: mat.m2-define-palette($new-secondary, 200, 100, 300);
+$app-warn: mat.m2-define-palette(mat.$m2-red-palette);
 
-$app-theme: mat.define-light-theme($app-primary, $app-accent, $app-warn);
+$app-theme: mat.m2-define-light-theme($app-primary, $app-accent, $app-warn);
 
 @include mat.all-component-themes($app-theme);
