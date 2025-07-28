@@ -8,15 +8,15 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host 0.0.0.0",
-    "start.proxy": "ng serve --host 0.0.0.0 --proxy-config proxy.json",
+    "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider ng serve --host 0.0.0.0",
+    "start.proxy": "cross-env NODE_OPTIONS=--openssl-legacy-provider ng serve --host 0.0.0.0 --proxy-config proxy.json",
     "test": "ng test --code-coverage",
     "test-ci": "npm run test",
     "checkstyle": "ng lint",
     "checkstyle:ci": "npm run checkstyle",
     "e2e": "ng e2e",
-    "build": "ng build",
-    "build.production": "ng build -c production"
+    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider ng build",
+    "build.production": "cross-env NODE_OPTIONS=--openssl-legacy-provider ng build -c production"
   },
   "repository": {
     "type": "git",
@@ -57,6 +57,7 @@
     "@types/node": "^15.14.7",
     "@typescript-eslint/eslint-plugin": "^4.29.2",
     "@typescript-eslint/parser": "^4.29.2",
+    "cross-env": "^10.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-import": "^2.24.0",
     "eslint-plugin-jsdoc": "^36.0.7",
