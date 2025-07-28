@@ -7,7 +7,8 @@ import {ConfirmDialogService} from '../shared/confirm-dialog/confirm-dialog.serv
 
 @Component({
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  standalone: false
 })
 export class HomeComponent implements OnInit, OnDestroy {
   sidenavOpen = true;

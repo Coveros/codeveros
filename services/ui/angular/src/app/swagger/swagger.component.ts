@@ -4,7 +4,8 @@ import * as SwaggerUI from 'swagger-ui';
 import { SwaggerService } from './swagger.service';
 
 @Component({
-  template: '<div id="swagger"></div>'
+  template: '<div id="swagger"></div>',
+  standalone: false
 })
 export class SwaggerComponent implements OnInit {
   constructor(private swaggerService: SwaggerService) { }

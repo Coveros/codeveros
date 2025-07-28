@@ -12,7 +12,8 @@ import { MatSort } from '@angular/material/sort';
 
 @Component({
   templateUrl: './training-list.component.html',
-  styleUrls: [ './training-list.component.scss' ]
+  styleUrls: [ './training-list.component.scss' ],
+  standalone: false
 })
 export class TrainingListComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort, {static: true}) sort: MatSort;

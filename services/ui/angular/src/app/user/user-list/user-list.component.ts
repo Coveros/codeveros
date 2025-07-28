@@ -11,7 +11,8 @@ import { CovTableSource } from '../../shared/cov-table-source';
 
 @Component({
   templateUrl: './user-list.component.html',
-  styleUrls: [ './user-list.component.scss' ]
+  styleUrls: [ './user-list.component.scss' ],
+  standalone: false
 })
 export class UserListComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort, {static: true}) sort: MatSort;

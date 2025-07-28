@@ -9,7 +9,8 @@ import {PasswordMatchErrorMatcher} from '../../shared/password-match-validator/p
 
 @Component({
   templateUrl: './user-dialog.component.html',
-  styleUrls: [ './user-dialog.component.scss' ]
+  styleUrls: [ './user-dialog.component.scss' ],
+  standalone: false
 })
 export class UserDialogComponent implements OnInit {
   passwordErrorMatcher = new PasswordMatchErrorMatcher();

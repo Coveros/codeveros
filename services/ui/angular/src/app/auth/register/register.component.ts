@@ -8,7 +8,8 @@ import {PasswordMatchErrorMatcher} from '../../shared/password-match-validator/p
 @Component({
   selector: 'codeveros-register',
   templateUrl: './register.component.html',
-  styleUrls: [ './register.component.scss' ]
+  styleUrls: [ './register.component.scss' ],
+  standalone: false
 })
 export class RegisterComponent implements OnInit {
   passwordErrorMatcher = new PasswordMatchErrorMatcher();

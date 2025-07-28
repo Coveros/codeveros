@@ -19,7 +19,8 @@ interface TypeOption {
 
 @Component({
   templateUrl: './training-dialog.component.html',
-  styleUrls: [ './training-dialog.component.scss' ]
+  styleUrls: [ './training-dialog.component.scss' ],
+  standalone: false
 })
 export class TrainingDialogComponent implements OnInit {
   training: Training;
