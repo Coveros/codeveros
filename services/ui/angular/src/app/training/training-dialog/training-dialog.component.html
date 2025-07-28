@@ -9,9 +9,11 @@
           formControlName="name"
           id="training-name"
           required>
-        <mat-error *ngIf="dialogForm.hasError('required', 'name')">
-          This is required
-        </mat-error>
+        @if (dialogForm.hasError('required', 'name')) {
+          <mat-error>
+            This is required
+          </mat-error>
+        }
       </mat-form-field>
       <mat-form-field>
         <mat-label>Description</mat-label>
@@ -28,13 +30,17 @@
         <mat-form-field fxFlex="50">
           <mat-label>Type</mat-label>
           <mat-select formControlName="type" required id="training-type">
-            <mat-option *ngFor="let option of typeOptions" [value]="option.value" [id]="option.id">{{option.viewValue}}</mat-option>
+            @for (option of typeOptions; track option) {
+              <mat-option [value]="option.value" [id]="option.id">{{option.viewValue}}</mat-option>
+            }
           </mat-select>
         </mat-form-field>
         <mat-form-field fxFlex="50">
           <mat-label>Duration (# of Days)</mat-label>
           <mat-select formControlName="duration" required id="training-duration">
-            <mat-option *ngFor="let option of durationOptions" [value]="option.value" [id]="option.id">{{option.viewValue}}</mat-option>
+            @for (option of durationOptions; track option) {
+              <mat-option [value]="option.value" [id]="option.id">{{option.viewValue}}</mat-option>
+            }
           </mat-select>
         </mat-form-field>
       </div>

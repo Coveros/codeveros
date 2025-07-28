@@ -1,5 +1,7 @@
 <div class="mat-typography">
-  <h2 mat-dialog-title *ngIf="!hideTitle">{{ title }}</h2>
+  @if (!hideTitle) {
+    <h2 mat-dialog-title>{{ title }}</h2>
+  }
   <mat-dialog-content>
     {{ message }}
   </mat-dialog-content>
