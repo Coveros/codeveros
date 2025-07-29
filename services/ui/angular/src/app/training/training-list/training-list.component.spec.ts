@@ -1,16 +1,18 @@
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TestBed, waitForAsync, ComponentFixture } from '@angular/core/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { TrainingListComponent } from './training-list.component';
 import { TrainingModule } from '../training.module';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('TrainingListComponent', () => {
   let component: TrainingListComponent;
   let fixture: ComponentFixture<TrainingListComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [ TrainingModule, HttpClientTestingModule ]
+      imports: [TrainingModule],
+      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
     }).compileComponents();
   }));
 

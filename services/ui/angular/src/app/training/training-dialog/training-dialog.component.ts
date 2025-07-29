@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 import {Training} from '../training.interface';
@@ -19,11 +19,12 @@ interface TypeOption {
 
 @Component({
   templateUrl: './training-dialog.component.html',
-  styleUrls: [ './training-dialog.component.scss' ]
+  styleUrls: [ './training-dialog.component.scss' ],
+  standalone: false
 })
 export class TrainingDialogComponent implements OnInit {
   training: Training;
-  dialogForm: FormGroup;
+  dialogForm: UntypedFormGroup;
   isSaving = false;
   isEdit = false;
   title: string;
@@ -46,7 +47,7 @@ export class TrainingDialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<TrainingDialogComponent>,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private trainingService: TrainingService
   ) {
     this.training = data.training || {};

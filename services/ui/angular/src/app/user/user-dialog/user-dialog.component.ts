@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 import {User} from '../user.interface';
@@ -9,12 +9,13 @@ import {PasswordMatchErrorMatcher} from '../../shared/password-match-validator/p
 
 @Component({
   templateUrl: './user-dialog.component.html',
-  styleUrls: [ './user-dialog.component.scss' ]
+  styleUrls: [ './user-dialog.component.scss' ],
+  standalone: false
 })
 export class UserDialogComponent implements OnInit {
   passwordErrorMatcher = new PasswordMatchErrorMatcher();
   user: User;
-  dialogForm: FormGroup;
+  dialogForm: UntypedFormGroup;
   isSaving = false;
   isEdit = false;
   title: string;
@@ -22,7 +23,7 @@ export class UserDialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<UserDialogComponent>,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private userService: UserService
   ) {
     this.user = data.user || {};
@@ -40,8 +41,8 @@ export class UserDialogComponent implements OnInit {
     });
 
     if (!this.isEdit) {
-      this.dialogForm.addControl('password',   new FormControl('', Validators.required ));
-      this.dialogForm.addControl('confirmPassword',   new FormControl('', Validators.required ));
+      this.dialogForm.addControl('password',   new UntypedFormControl('', Validators.required ));
+      this.dialogForm.addControl('confirmPassword',   new UntypedFormControl('', Validators.required ));
       this.dialogForm.setValidators(passwordMatchValidator('password', 'confirmPassword'));
     }
   }

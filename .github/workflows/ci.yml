@@ -1,19 +1,19 @@
-# Runs on pull requests to master when there are changes to the service files in services/
+# Runs on pull requests to main when there are changes to the service files in services/
 # Lints and Unit tests the services that have changed
 
 name: Service CI
 
 on:
   pull_request:
-    branches: [master]
+    branches: [main]
     paths: ["services/**"]
   push:
-    branches: [master]
+    branches: [main]
     tags: ["v*"]
     paths: ["services/**"]
 
 env:
-  NODE_VERSION: 14.x
+  NODE_VERSION: 22.x
   REGISTRY: ghcr.io
 
 jobs:
@@ -25,7 +25,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Check for changes
-        uses: dorny/paths-filter@v2
+        uses: dorny/paths-filter@v3
         id: filter
         with:
           filters: .github/filters.yml

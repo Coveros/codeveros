@@ -1,8 +1,11 @@
 {
   "name": "@codeveros/auth-service",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Simple authentication back-end service",
   "private": true,
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js",
@@ -18,16 +21,16 @@
   },
   "license": "ISC",
   "dependencies": {
-    "@coveros/codeveros-ms": "^0.5.0-dev",
-    "dotenv": "^8.2.0",
-    "jsonwebtoken": "^8.5.1"
+    "@coveros/codeveros-ms": "^0.6.0-dev",
+    "dotenv": "^17.2.1",
+    "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
-    "jest": "^27.0.6",
-    "jest-junit": "^12.2.0",
-    "semistandard": "^16.0.1",
+    "jest": "^30.0.5",
+    "jest-junit": "^16.0.0",
+    "semistandard": "^17.0.0",
     "standard-json": "^1.1.0",
-    "mkdirp": "^1.0.4"
+    "mkdirp": "^3.0.1"
   },
   "semistandard": {
     "env": [

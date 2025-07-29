@@ -9,9 +9,11 @@
           formControlName="firstName"
           id="user-firstname"
           required>
-        <mat-error *ngIf="dialogForm.hasError('required', 'firstName')">
-          This is required
-        </mat-error>
+        @if (dialogForm.hasError('required', 'firstName')) {
+          <mat-error>
+            This is required
+          </mat-error>
+        }
       </mat-form-field>
       <mat-form-field>
         <mat-label>Last Name</mat-label>
@@ -20,9 +22,11 @@
           formControlName="lastName"
           id="user-lastname"
           required>
-        <mat-error *ngIf="dialogForm.hasError('required', 'lastName')">
-          This is required
-        </mat-error>
+        @if (dialogForm.hasError('required', 'lastName')) {
+          <mat-error>
+            This is required
+          </mat-error>
+        }
       </mat-form-field>
       <mat-form-field>
         <mat-label>Email Address</mat-label>
@@ -32,12 +36,16 @@
           formControlName="email"
           id="user-email"
           required>
-        <mat-error *ngIf="dialogForm.hasError('required', 'email')">
-          This is required
-        </mat-error>
-        <mat-error *ngIf="dialogForm.hasError('email', 'email')">
-          Invalid Email
-        </mat-error>
+        @if (dialogForm.hasError('required', 'email')) {
+          <mat-error>
+            This is required
+          </mat-error>
+        }
+        @if (dialogForm.hasError('email', 'email')) {
+          <mat-error>
+            Invalid Email
+          </mat-error>
+        }
       </mat-form-field>
       <mat-form-field>
         <mat-label>Username</mat-label>
@@ -46,45 +54,56 @@
           formControlName="username"
           id="user-username"
           required>
-        <mat-error *ngIf="dialogForm.hasError('required', 'username')">
-          This is required
-        </mat-error>
+        @if (dialogForm.hasError('required', 'username')) {
+          <mat-error>
+            This is required
+          </mat-error>
+        }
       </mat-form-field>
-      <mat-form-field *ngIf="!isEdit">
-        <mat-label>Password</mat-label>
-        <input
-          matInput
-          type="password"
-          formControlName="password"
-          autocomplete="new-password"
-          id="user-password"
-          required>
-        <mat-error *ngIf="dialogForm.hasError('required', 'password')">
-          This is required
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field *ngIf="!isEdit">
-        <mat-label>Confirm password</mat-label>
-        <input
-          matInput
-          type="password"
-          formControlName="confirmPassword"
-          autocomplete="new-password"
-          [errorStateMatcher]="passwordErrorMatcher"
-          id="user-confirm-password"
-          required>
-        <mat-error *ngIf="dialogForm.hasError('required', 'confirmPassword')">
-          This is required
-        </mat-error>
-        <mat-error *ngIf="!dialogForm.hasError('required', 'confirmPassword') && dialogForm.hasError('passwordMatch')">
-          Passwords must match
-        </mat-error>
-      </mat-form-field>
+      @if (!isEdit) {
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            type="password"
+            formControlName="password"
+            autocomplete="new-password"
+            id="user-password"
+            required>
+          @if (dialogForm.hasError('required', 'password')) {
+            <mat-error>
+              This is required
+            </mat-error>
+          }
+        </mat-form-field>
+      }
+      @if (!isEdit) {
+        <mat-form-field>
+          <mat-label>Confirm password</mat-label>
+          <input
+            matInput
+            type="password"
+            formControlName="confirmPassword"
+            autocomplete="new-password"
+            [errorStateMatcher]="passwordErrorMatcher"
+            id="user-confirm-password"
+            required>
+          @if (dialogForm.hasError('required', 'confirmPassword')) {
+            <mat-error>
+              This is required
+            </mat-error>
+          }
+          @if (!dialogForm.hasError('required', 'confirmPassword') && dialogForm.hasError('passwordMatch')) {
+            <mat-error>
+              Passwords must match
+            </mat-error>
+          }
+        </mat-form-field>
+      }
 
     </div>
   </mat-dialog-content>
-  <mat-dialog-actions>
-    <span fxFlex></span>
+  <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close id="user-cancel-button">Cancel</button>
     <button mat-button type="submit" [disabled]="isSaving || dialogForm.invalid" id="user-save-button">Save</button>
   </mat-dialog-actions>

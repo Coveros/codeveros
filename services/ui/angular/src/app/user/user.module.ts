@@ -16,9 +16,6 @@ import { SharedModule } from '../shared/shared.module';
   ],
   exports: [
     UserListComponent
-  ],
-  entryComponents: [
-    UserDialogComponent
   ]
 })
 export class UserModule { }

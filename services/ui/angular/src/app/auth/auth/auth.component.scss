@@ -1,7 +1,17 @@
 .container {
+  display: flex;
+  flex-direction: column;
   height: 100%;
   min-height: 100%;
 }
+
+.center-row {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
 .auth-box {
   padding: 16px;
   margin-top: 64px;

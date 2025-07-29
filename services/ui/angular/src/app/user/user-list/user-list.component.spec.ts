@@ -1,16 +1,18 @@
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TestBed, waitForAsync, ComponentFixture } from '@angular/core/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { UserListComponent } from './user-list.component';
 import { UserModule } from '../user.module';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('UserListComponent', () => {
   let component: UserListComponent;
   let fixture: ComponentFixture<UserListComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [ UserModule, HttpClientTestingModule ]
+      imports: [UserModule],
+      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
     }).compileComponents();
   }));
 

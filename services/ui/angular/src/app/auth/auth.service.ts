@@ -51,7 +51,7 @@ export class AuthService {
     }
 
     const user = await this.http.get<User>(`${this.endpoint}/loggedin`).pipe(
-      catchError((err, caught) => of(null))
+      catchError(() => of(null))
     ).toPromise();
     if (user && user._id) {
       this.loggedInUser = user;

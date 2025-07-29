@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
@@ -11,9 +11,10 @@ import { CovTableSource } from '../../shared/cov-table-source';
 
 @Component({
   templateUrl: './user-list.component.html',
-  styleUrls: [ './user-list.component.scss' ]
+  styleUrls: [ './user-list.component.scss' ],
+  standalone: false
 })
-export class UserListComponent implements OnInit, OnDestroy {
+export class UserListComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   displayedColumns = [ 'username', 'firstName', 'lastName', 'email', 'actions' ];
@@ -34,9 +35,6 @@ export class UserListComponent implements OnInit, OnDestroy {
         this.loading = false;
         this.dataSource.data = users;
       });
-  }
-
-  ngOnDestroy(): void {
   }
 
   openAddDialog(): void {

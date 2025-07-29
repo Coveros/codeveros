@@ -1,5 +1,5 @@
 # Compile UI
-FROM node:14.15-buster AS build
+FROM node:22.17 AS build
 
 WORKDIR /src
 COPY package*.json ./
@@ -9,7 +9,7 @@ COPY . .
 RUN rm -rf dist/
 RUN npm run build.production
 
-FROM nginx:1.19-alpine
+FROM nginx:1.28-alpine
 
 ENV API_URL /api
 

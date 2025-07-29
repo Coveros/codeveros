@@ -3,7 +3,8 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {ConfirmDialogData} from './ConfirmDialogData';
 
 @Component({
-  templateUrl: './confirm-dialog.component.html'
+  templateUrl: './confirm-dialog.component.html',
+  standalone: false
 })
 export class ConfirmDialogComponent {
   title: string;

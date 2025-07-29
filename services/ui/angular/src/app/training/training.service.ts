@@ -33,7 +33,7 @@ export class TrainingService {
     return this.http.delete<Training>(`${this.endpoint}/${id}`);
   }
 
-  updateTraining(id: string, body: { [key: string ]: any}): Observable<Training> {
+  updateTraining(id: string, body: Record<string, any>): Observable<Training> {
     return this.http.put<Training>(`${this.endpoint}/${id}`, body);
   }
 }
