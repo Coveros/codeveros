@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit {
           this.message = 'Failed registration';
         }
       },
-      err => {
+      () => {
         this.submitting = false;
         this.message = 'Failed registration';
 

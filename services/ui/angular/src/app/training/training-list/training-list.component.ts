@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -15,7 +15,7 @@ import { MatSort } from '@angular/material/sort';
   styleUrls: [ './training-list.component.scss' ],
   standalone: false
 })
-export class TrainingListComponent implements OnInit, OnDestroy {
+export class TrainingListComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   displayedColumns = [ 'name', 'description', 'duration', 'type', 'actions' ];
@@ -43,9 +43,6 @@ export class TrainingListComponent implements OnInit, OnDestroy {
         this.dataSource.data = training;
         this.loading = false;
       });
-  }
-
-  ngOnDestroy(): void {
   }
 
   openAddDialog(): void {

@@ -28,7 +28,7 @@ export class UserService {
     return this.http.delete<User>(`${this.endpoint}/${id}`);
   }
 
-  updateUser(id: string, body: { [key: string ]: any}): Observable<User> {
+  updateUser(id: string, body: Record<string, any>): Observable<User> {
     return this.http.put<User>(`${this.endpoint}/${id}`, body);
   }
 }

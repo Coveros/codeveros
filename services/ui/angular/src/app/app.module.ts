@@ -39,7 +39,9 @@ const apiDomain = environment.apiUrl
     CoreModule,
     SharedModule,
     AuthModule,
-    AppRoutingModule], providers: [
+    AppRoutingModule
+  ],
+  providers: [
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 3000}},
     {
       provide: TRAINING_CONFIG,

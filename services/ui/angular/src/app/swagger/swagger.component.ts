@@ -13,7 +13,6 @@ export class SwaggerComponent implements OnInit {
   ngOnInit() {
     this.swaggerService.getConfig().subscribe(spec => {
       SwaggerUI({
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         dom_id: '#swagger',
         spec
       }).preauthorizeApiKey('bearerAuth', localStorage.getItem('access_token'));
