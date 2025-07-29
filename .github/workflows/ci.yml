@@ -5,10 +5,10 @@ name: Service CI
 
 on:
   pull_request:
-    branches: [master]
+    branches: [main]
     paths: ["services/**"]
   push:
-    branches: [master]
+    branches: [main]
     tags: ["v*"]
     paths: ["services/**"]
 
