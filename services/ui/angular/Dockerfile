@@ -9,7 +9,7 @@ COPY . .
 RUN rm -rf dist/
 RUN npm run build.production
 
-FROM nginx:1.19-alpine
+FROM nginx:1.28-alpine
 
 ENV API_URL /api
 
