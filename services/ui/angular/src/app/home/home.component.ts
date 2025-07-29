@@ -1,9 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {MediaChange, MediaObserver} from '@angular/flex-layout';
 import {Subject} from 'rxjs';
-import {takeUntil, filter, map} from 'rxjs/operators';
+import {takeUntil} from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 import {ConfirmDialogService} from '../shared/confirm-dialog/confirm-dialog.service';
+import { BreakpointObserver, Breakpoints, BreakpointState } from "@angular/cdk/layout";
+import { MatDrawerMode } from "@angular/material/sidenav";
 
 @Component({
   templateUrl: './home.component.html',
@@ -12,7 +13,7 @@ import {ConfirmDialogService} from '../shared/confirm-dialog/confirm-dialog.serv
 })
 export class HomeComponent implements OnInit, OnDestroy {
   sidenavOpen = true;
-  sidenavMode = 'side';
+  sidenavMode: MatDrawerMode = 'side';
   isMobile = false;
   isXs = false;
   username = '';
@@ -20,21 +21,18 @@ export class HomeComponent implements OnInit, OnDestroy {
   private destroyed$ = new Subject<boolean>();
 
   constructor(
-    private mediaOberver: MediaObserver,
+    private breakpointObserver: BreakpointObserver,
     private authService: AuthService,
     private confirmDialogService: ConfirmDialogService
   ) {}
 
   ngOnInit(): void {
-    this.mediaOberver.asObservable()
-      .pipe(
-        takeUntil(this.destroyed$),
-        filter((changes: MediaChange[]) => changes.length > 0),
-        map((changes: MediaChange[]) => changes[0])
-      )
-      .subscribe((change: MediaChange) => {
-        this.isXs = (change.mqAlias === 'xs');
-        this.isMobile = this.isXs || (change.mqAlias === 'sm');
+    this.breakpointObserver
+      .observe([Breakpoints.XSmall, Breakpoints.Small])
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe((state: BreakpointState) => {
+        this.isXs = state.breakpoints[Breakpoints.XSmall] ?? false;
+        this.isMobile = this.isXs || (state.breakpoints[Breakpoints.Small] ?? false);
         this.sidenavOpen = !this.isMobile;
         this.sidenavMode = (this.isMobile) ? 'over' : 'side';
       });

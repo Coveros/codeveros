@@ -26,8 +26,8 @@
           id="training-description"
           required></textarea>
       </mat-form-field>
-      <div fxLayout="row" fxLayoutGap="16px">
-        <mat-form-field fxFlex="50">
+      <div class="form-row">
+        <mat-form-field>
           <mat-label>Type</mat-label>
           <mat-select formControlName="type" required id="training-type">
             @for (option of typeOptions; track option) {
@@ -35,7 +35,7 @@
             }
           </mat-select>
         </mat-form-field>
-        <mat-form-field fxFlex="50">
+        <mat-form-field>
           <mat-label>Duration (# of Days)</mat-label>
           <mat-select formControlName="duration" required id="training-duration">
             @for (option of durationOptions; track option) {
@@ -46,8 +46,7 @@
       </div>
     </div>
   </mat-dialog-content>
-  <mat-dialog-actions>
-    <span fxFlex></span>
+  <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close id="training-cancel-button">Cancel</button>
     <button mat-button type="submit" [disabled]="isSaving || dialogForm.invalid" id="training-save-button">Save</button>
   </mat-dialog-actions>

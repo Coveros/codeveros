@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as SwaggerUI from 'swagger-ui';
+import SwaggerUI from 'swagger-ui';
 
 import { SwaggerService } from './swagger.service';
 

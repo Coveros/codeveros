@@ -16,6 +16,7 @@ tr.element-row td {
 
 .table-title-bar {
   padding: 16px 24px 0;
+  display: flex;
 }
 
 .table-card,
@@ -48,4 +49,12 @@ tr.element-row:hover .table-actions .mat-icon {
   padding-bottom: 8px !important;
   color: rgba(0,0,0,0.54) !important;
   line-height: 1.1em !important;
+}
+
+.flex-spacer {
+  flex: 1 1 auto;
+}
+
+.flex-row {
+  display: flex;
 }
