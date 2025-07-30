@@ -1,21 +1,45 @@
 # Add 'repo' label to any root file changes
-repo: ./*
+repo:
+  - changed-files:
+    - any-glob-to-any-file: './*'
 
 # Add 'test' label to any top-level test changes
-test: tests/**/*
+test:
+  - changed-files:
+    - any-glob-to-any-file: 'tests/**/*'
 
-# Add 'workflow' label to any github action file changes
-workflow: .github/**/*
+# Add 'workflow' label to any GitHub action file changes
+workflow:
+  - changed-files:
+    - any-glob-to-any-file: '.github/**/*'
 
 # Add 'charts' to any changes within 'charts' folder or any subfolders
-charts: charts/**/*
+charts:
+  - changed-files:
+    - any-glob-to-any-file: 'charts/**/*'
 
 # Add 'services' to any change within 'services' folder or any subfolders
-services: services/**/*
+services:
+  - changed-files:
+    - any-glob-to-any-file: 'services/**/*'
 
-# Add service specific label to distinguish which services have changed
-auth-service: services/auth-service/**/*
-gateway: services/gateway/**/*
-training-service: services/training-service/**/*
-ui: services/ui/**/*
-user-service: services/user-service/**/*
+# Add service-specific label to distinguish which services have changed
+auth-service:
+  - changed-files:
+    - any-glob-to-any-file: 'services/auth-service/**/*'
+
+gateway:
+  - changed-files:
+    - any-glob-to-any-file: 'services/gateway/**/*'
+
+training-service:
+  - changed-files:
+    - any-glob-to-any-file: 'services/training-service/**/*'
+
+ui:
+  - changed-files:
+    - any-glob-to-any-file: 'services/ui/**/*'
+
+user-service:
+  - changed-files:
+    - any-glob-to-any-file: 'services/user-service/**/*'
