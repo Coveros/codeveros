@@ -1,0 +1,7 @@
+owner: Coveros
+git-repo: codeveros
+chart-repos:
+  - bitnami=https://charts.bitnami.com/bitnami
+index-path: index.yaml
+package-path: .cr-release-packages
+release-name-template: "{{ .Name }}-{{ .Version }}"
