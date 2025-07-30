@@ -1,6 +1,6 @@
-const core = require('@actions/core');
-const yaml = require('js-yaml');
-const fs = require('fs');
+import * as core from '@actions/core';
+import yaml from 'js-yaml';
+import fs from 'fs';
 
 function isPathInput(text) {
   return !(text.includes('\n') || text.includes(':'))

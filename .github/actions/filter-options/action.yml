@@ -11,5 +11,5 @@ outputs:
   filtered:
     description: JSON array of filtered values based on selected options
 runs:
-  using: 'node12'
+  using: 'node20'
   main: 'dist/index.js'
