@@ -11,12 +11,8 @@ describe('AuthService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ AuthModule ],
-      providers: [
-        provideRouter([]),
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting()
-      ]
+      imports: [AuthModule],
+      providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()],
     });
     service = TestBed.inject(AuthService);
   });

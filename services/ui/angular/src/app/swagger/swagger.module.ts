@@ -4,12 +4,7 @@ import { SwaggerRoutingModule } from './swagger-routing.module';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [
-    SwaggerComponent
-  ],
-  imports: [
-    SharedModule,
-    SwaggerRoutingModule
-  ]
+  declarations: [SwaggerComponent],
+  imports: [SharedModule, SwaggerRoutingModule],
 })
-export class SwaggerModule { }
+export class SwaggerModule {}

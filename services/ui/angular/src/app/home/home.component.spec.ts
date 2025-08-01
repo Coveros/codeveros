@@ -21,25 +21,22 @@ describe('HomeComponent', () => {
         username: 'testuser',
         firstName: 'bob',
         lastName: 'bob',
-        email: 'bob@bob.com'
-      })
+        email: 'bob@bob.com',
+      }),
     };
 
     TestBed.configureTestingModule({
-      declarations: [ HomeComponent ],
-      imports: [
-        BrowserAnimationsModule,
-        SharedModule
-      ],
+      declarations: [HomeComponent],
+      imports: [BrowserAnimationsModule, SharedModule],
       providers: [
         provideRouter([]),
         {
           provide: AuthService,
-          useValue: authServiceStub
+          useValue: authServiceStub,
         },
         provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting()
-      ]
+        provideHttpClientTesting(),
+      ],
     }).compileComponents();
   }));
 

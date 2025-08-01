@@ -12,7 +12,7 @@ describe('TrainingListComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [TrainingModule],
-      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()],
     }).compileComponents();
   }));
 
@@ -24,5 +24,4 @@ describe('TrainingListComponent', () => {
   it('should create the training list', () => {
     expect(component).toBeDefined();
   });
-
 });

@@ -13,7 +13,7 @@ describe('SwaggerComponent', () => {
     TestBed.configureTestingModule({
       declarations: [SwaggerComponent],
       imports: [SharedModule],
-      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()],
     }).compileComponents();
   }));
 

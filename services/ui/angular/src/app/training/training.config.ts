@@ -1,4 +1,4 @@
-import {InjectionToken} from '@angular/core';
+import { InjectionToken } from '@angular/core';
 
 class TrainingConfig {
   endpoint = 'api/training';
@@ -6,7 +6,7 @@ class TrainingConfig {
 
 const TRAINING_CONFIG = new InjectionToken<TrainingConfig>('training.config', {
   providedIn: 'root',
-  factory: () => new TrainingConfig()
+  factory: () => new TrainingConfig(),
 });
 
 export { TrainingConfig, TRAINING_CONFIG };

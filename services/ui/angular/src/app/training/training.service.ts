@@ -1,20 +1,20 @@
-import {Inject, Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {Training} from './training.interface';
-import {HttpClient} from '@angular/common/http';
-import {TRAINING_CONFIG, TrainingConfig} from './training.config';
+import { Inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Training } from './training.interface';
+import { HttpClient } from '@angular/common/http';
+import { TRAINING_CONFIG, TrainingConfig } from './training.config';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TrainingService {
   private endpoint: string;
 
   constructor(
     @Inject(TRAINING_CONFIG) trainingConfig: TrainingConfig,
-    private http: HttpClient
+    private http: HttpClient,
   ) {
-      this.endpoint = trainingConfig.endpoint;
+    this.endpoint = trainingConfig.endpoint;
   }
 
   getAll(): Observable<Training[]> {

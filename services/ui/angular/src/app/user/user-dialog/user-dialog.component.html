@@ -4,60 +4,33 @@
     <div class="form-container">
       <mat-form-field>
         <mat-label>First Name</mat-label>
-        <input
-          matInput
-          formControlName="firstName"
-          id="user-firstname"
-          required>
+        <input matInput formControlName="firstName" id="user-firstname" required />
         @if (dialogForm.hasError('required', 'firstName')) {
-          <mat-error>
-            This is required
-          </mat-error>
+          <mat-error> This is required </mat-error>
         }
       </mat-form-field>
       <mat-form-field>
         <mat-label>Last Name</mat-label>
-        <input
-          matInput
-          formControlName="lastName"
-          id="user-lastname"
-          required>
+        <input matInput formControlName="lastName" id="user-lastname" required />
         @if (dialogForm.hasError('required', 'lastName')) {
-          <mat-error>
-            This is required
-          </mat-error>
+          <mat-error> This is required </mat-error>
         }
       </mat-form-field>
       <mat-form-field>
         <mat-label>Email Address</mat-label>
-        <input
-          type="email"
-          matInput
-          formControlName="email"
-          id="user-email"
-          required>
+        <input type="email" matInput formControlName="email" id="user-email" required />
         @if (dialogForm.hasError('required', 'email')) {
-          <mat-error>
-            This is required
-          </mat-error>
+          <mat-error> This is required </mat-error>
         }
         @if (dialogForm.hasError('email', 'email')) {
-          <mat-error>
-            Invalid Email
-          </mat-error>
+          <mat-error> Invalid Email </mat-error>
         }
       </mat-form-field>
       <mat-form-field>
         <mat-label>Username</mat-label>
-        <input
-          matInput
-          formControlName="username"
-          id="user-username"
-          required>
+        <input matInput formControlName="username" id="user-username" required />
         @if (dialogForm.hasError('required', 'username')) {
-          <mat-error>
-            This is required
-          </mat-error>
+          <mat-error> This is required </mat-error>
         }
       </mat-form-field>
       @if (!isEdit) {
@@ -69,11 +42,10 @@
             formControlName="password"
             autocomplete="new-password"
             id="user-password"
-            required>
+            required
+          />
           @if (dialogForm.hasError('required', 'password')) {
-            <mat-error>
-              This is required
-            </mat-error>
+            <mat-error> This is required </mat-error>
           }
         </mat-form-field>
       }
@@ -87,20 +59,16 @@
             autocomplete="new-password"
             [errorStateMatcher]="passwordErrorMatcher"
             id="user-confirm-password"
-            required>
+            required
+          />
           @if (dialogForm.hasError('required', 'confirmPassword')) {
-            <mat-error>
-              This is required
-            </mat-error>
+            <mat-error> This is required </mat-error>
           }
           @if (!dialogForm.hasError('required', 'confirmPassword') && dialogForm.hasError('passwordMatch')) {
-            <mat-error>
-              Passwords must match
-            </mat-error>
+            <mat-error> Passwords must match </mat-error>
           }
         </mat-form-field>
       }
-
     </div>
   </mat-dialog-content>
   <mat-dialog-actions align="end">

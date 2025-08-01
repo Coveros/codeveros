@@ -1,6 +1,6 @@
 export enum TrainingType {
   Presentation = 'presentation',
-  Workshop = 'workshop'
+  Workshop = 'workshop',
 }
 
 export interface Training {

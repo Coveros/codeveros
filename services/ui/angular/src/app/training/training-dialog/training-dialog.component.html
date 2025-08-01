@@ -4,15 +4,9 @@
     <div class="form-container">
       <mat-form-field>
         <mat-label>Name</mat-label>
-        <input
-          matInput
-          formControlName="name"
-          id="training-name"
-          required>
+        <input matInput formControlName="name" id="training-name" required />
         @if (dialogForm.hasError('required', 'name')) {
-          <mat-error>
-            This is required
-          </mat-error>
+          <mat-error> This is required </mat-error>
         }
       </mat-form-field>
       <mat-form-field>
@@ -24,14 +18,15 @@
           cdkAutosizeMaxRows="10"
           formControlName="description"
           id="training-description"
-          required></textarea>
+          required
+        ></textarea>
       </mat-form-field>
       <div class="form-row">
         <mat-form-field>
           <mat-label>Type</mat-label>
           <mat-select formControlName="type" required id="training-type">
             @for (option of typeOptions; track option) {
-              <mat-option [value]="option.value" [id]="option.id">{{option.viewValue}}</mat-option>
+              <mat-option [value]="option.value" [id]="option.id">{{ option.viewValue }}</mat-option>
             }
           </mat-select>
         </mat-form-field>
@@ -39,7 +34,7 @@
           <mat-label>Duration (# of Days)</mat-label>
           <mat-select formControlName="duration" required id="training-duration">
             @for (option of durationOptions; track option) {
-              <mat-option [value]="option.value" [id]="option.id">{{option.viewValue}}</mat-option>
+              <mat-option [value]="option.value" [id]="option.id">{{ option.viewValue }}</mat-option>
             }
           </mat-select>
         </mat-form-field>

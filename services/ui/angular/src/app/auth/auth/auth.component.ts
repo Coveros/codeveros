@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   templateUrl: './auth.component.html',
-  styleUrls: [ './auth.component.scss' ],
-  standalone: false
+  styleUrls: ['./auth.component.scss'],
+  standalone: false,
 })
-export class AuthComponent { }
+export class AuthComponent {}

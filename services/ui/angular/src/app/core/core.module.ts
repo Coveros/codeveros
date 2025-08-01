@@ -1,13 +1,9 @@
-import {NgModule, Optional, SkipSelf} from '@angular/core';
-import {PageNotFoundComponent} from './not-found.component';
+import { NgModule, Optional, SkipSelf } from '@angular/core';
+import { PageNotFoundComponent } from './not-found.component';
 
 @NgModule({
-  declarations: [
-    PageNotFoundComponent
-  ],
-  exports: [
-    PageNotFoundComponent
-  ]
+  declarations: [PageNotFoundComponent],
+  exports: [PageNotFoundComponent],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

@@ -13,18 +13,10 @@ describe('LoginComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginComponent ],
-      imports: [
-        BrowserAnimationsModule,
-        SharedModule,
-      ],
-      providers: [
-        provideRouter([]),
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting()
-      ]
-    })
-    .compileComponents();
+      declarations: [LoginComponent],
+      imports: [BrowserAnimationsModule, SharedModule],
+      providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;

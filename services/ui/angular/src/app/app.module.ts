@@ -15,17 +15,10 @@ import { environment } from '../environments/environment';
 import { HomeComponent } from './home/home.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 
-const apiDomain = environment.apiUrl
-  .split('://')
-  .pop()
-  .split('/', 1)[0] || '/';
+const apiDomain = environment.apiUrl.split('://').pop().split('/', 1)[0] || '/';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    WelcomeComponent
-  ],
+  declarations: [AppComponent, HomeComponent, WelcomeComponent],
   bootstrap: [AppComponent],
   imports: [
     BrowserModule,
@@ -33,23 +26,23 @@ const apiDomain = environment.apiUrl
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem('access_token'),
-        allowedDomains: [apiDomain]
-      }
+        allowedDomains: [apiDomain],
+      },
     }),
     CoreModule,
     SharedModule,
     AuthModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [
-    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 3000}},
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 3000 } },
     {
       provide: TRAINING_CONFIG,
       useValue: {
-        endpoint: `${environment.apiUrl}/training`
-      }
+        endpoint: `${environment.apiUrl}/training`,
+      },
     },
-    provideHttpClient(withInterceptorsFromDi())
-  ]
+    provideHttpClient(withInterceptorsFromDi()),
+  ],
 })
-export class AppModule { }
+export class AppModule {}

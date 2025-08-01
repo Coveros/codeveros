@@ -1,10 +1,10 @@
-import {Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {ConfirmDialogData} from './ConfirmDialogData';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ConfirmDialogData } from './ConfirmDialogData';
 
 @Component({
   templateUrl: './confirm-dialog.component.html',
-  standalone: false
+  standalone: false,
 })
 export class ConfirmDialogComponent {
   title: string;
@@ -15,9 +15,7 @@ export class ConfirmDialogComponent {
   confirmId: string;
   hideTitle: boolean;
 
-  constructor(
-    @Inject(MAT_DIALOG_DATA) public data: ConfirmDialogData
-  ) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: ConfirmDialogData) {
     data = data || {};
     this.hideTitle = data.hideTitle || false;
     this.title = data.title || 'Confirmation';

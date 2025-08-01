@@ -10,7 +10,7 @@ describe('SwaggerService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [],
-      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()],
     });
     service = TestBed.inject(SwaggerService);
   });
