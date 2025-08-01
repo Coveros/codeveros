@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {RouterModule} from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -18,7 +18,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import {ConfirmDialogComponent} from './confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { MatSortModule } from '@angular/material/sort';
 
 const mdModules = [
@@ -37,7 +37,7 @@ const mdModules = [
   MatTableModule,
   MatTabsModule,
   MatToolbarModule,
-  MatTooltipModule
+  MatTooltipModule,
 ];
 
 const exportedModules = [
@@ -45,12 +45,12 @@ const exportedModules = [
   FormsModule,
   ReactiveFormsModule,
   RouterModule,
-  ...mdModules
+  ...mdModules,
 ];
 
 @NgModule({
-  imports: [ ...exportedModules ],
-  exports: [ ...exportedModules ],
-  declarations: [ ConfirmDialogComponent ]
+  imports: [...exportedModules],
+  exports: [...exportedModules],
+  declarations: [ConfirmDialogComponent],
 })
 export class SharedModule {}

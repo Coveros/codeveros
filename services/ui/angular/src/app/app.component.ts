@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'codeveros-root',
   template: '<router-outlet></router-outlet>',
-  standalone: false
+  standalone: false,
 })
 export class AppComponent {}

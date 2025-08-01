@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import {of, Observable} from 'rxjs';
-import {catchError, map} from 'rxjs/operators';
+import { of, Observable } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import {Registration} from './registration.interface';
+import { Registration } from './registration.interface';
 import { environment } from '../../environments/environment';
 
 interface User {
@@ -17,7 +17,7 @@ interface LoginResponse {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   redirectUrl: string;
@@ -39,7 +39,7 @@ export class AuthService {
 
   constructor(
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
   ) {}
 
   async isLoggedIn(): Promise<boolean> {
@@ -50,9 +50,10 @@ export class AuthService {
       return true;
     }
 
-    const user = await this.http.get<User>(`${this.endpoint}/loggedin`).pipe(
-      catchError(() => of(null))
-    ).toPromise();
+    const user = await this.http
+      .get<User>(`${this.endpoint}/loggedin`)
+      .pipe(catchError(() => of(null)))
+      .toPromise();
     if (user && user._id) {
       this.loggedInUser = user;
       return true;
@@ -69,21 +70,27 @@ export class AuthService {
 
   login(username: string, password: string): Observable<boolean> {
     this.token = null;
-    return this.http.post<LoginResponse>(`${this.endpoint}/login`, {username, password})
-      .pipe(map(({ token, user }) => {
-        this.token = token;
-        this.loggedInUser = user;
-        return !!token;
-      }));
+    return this.http
+      .post<LoginResponse>(`${this.endpoint}/login`, { username, password })
+      .pipe(
+        map(({ token, user }) => {
+          this.token = token;
+          this.loggedInUser = user;
+          return !!token;
+        }),
+      );
   }
 
   register(registration: Registration): Observable<boolean> {
-    return this.http.post<LoginResponse>(`${this.endpoint}/register`, registration)
-      .pipe(map( ({ token, user }) => {
-        this.token = token;
-        this.loggedInUser = user;
-        return !!token;
-      }));
+    return this.http
+      .post<LoginResponse>(`${this.endpoint}/register`, registration)
+      .pipe(
+        map(({ token, user }) => {
+          this.token = token;
+          this.loggedInUser = user;
+          return !!token;
+        }),
+      );
   }
 
   logout() {

@@ -15,9 +15,7 @@ describe('AuthComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        AuthModule,
-      ],
+      imports: [AuthModule],
       providers: [
         provideRouter([]),
         provideHttpClient(withInterceptorsFromDi()),

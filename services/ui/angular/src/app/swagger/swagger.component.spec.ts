@@ -3,7 +3,10 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { SwaggerComponent } from './swagger.component';
 import { SharedModule } from '../shared/shared.module';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 
 describe('SwaggerComponent', () => {
   let component: SwaggerComponent;
@@ -13,7 +16,10 @@ describe('SwaggerComponent', () => {
     TestBed.configureTestingModule({
       declarations: [SwaggerComponent],
       imports: [SharedModule],
-      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+      ],
     }).compileComponents();
   }));
 

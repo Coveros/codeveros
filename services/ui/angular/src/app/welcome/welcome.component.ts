@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.css'],
-  standalone: false
+  standalone: false,
 })
 export class WelcomeComponent {}

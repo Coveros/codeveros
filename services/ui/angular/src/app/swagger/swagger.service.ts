@@ -5,10 +5,9 @@ import { Observable } from 'rxjs';
 type SwaggerConfig = Record<string, any>;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SwaggerService {
-
   constructor(private http: HttpClient) {}
 
   getConfig(): Observable<SwaggerConfig> {

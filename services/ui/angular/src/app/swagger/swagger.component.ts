@@ -5,18 +5,17 @@ import { SwaggerService } from './swagger.service';
 
 @Component({
   template: '<div id="swagger"></div>',
-  standalone: false
+  standalone: false,
 })
 export class SwaggerComponent implements OnInit {
-  constructor(private swaggerService: SwaggerService) { }
+  constructor(private swaggerService: SwaggerService) {}
 
   ngOnInit() {
-    this.swaggerService.getConfig().subscribe(spec => {
+    this.swaggerService.getConfig().subscribe((spec) => {
       SwaggerUI({
         dom_id: '#swagger',
-        spec
+        spec,
       }).preauthorizeApiKey('bearerAuth', localStorage.getItem('access_token'));
     });
   }
-
 }

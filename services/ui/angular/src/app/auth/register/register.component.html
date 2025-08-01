@@ -6,11 +6,10 @@
         matInput
         formControlName="firstName"
         id="register-firstname"
-        required>
+        required
+      />
       @if (registerForm.hasError('required', 'firstName')) {
-        <mat-error>
-          This is required
-        </mat-error>
+        <mat-error> This is required </mat-error>
       }
     </mat-form-field>
     <mat-form-field appearance="outline">
@@ -19,11 +18,10 @@
         matInput
         formControlName="lastName"
         id="register-lastname"
-        required>
+        required
+      />
       @if (registerForm.hasError('required', 'lastName')) {
-        <mat-error>
-          This is required
-        </mat-error>
+        <mat-error> This is required </mat-error>
       }
     </mat-form-field>
     <mat-form-field appearance="outline">
@@ -32,11 +30,10 @@
         matInput
         formControlName="username"
         id="register-username"
-        required>
+        required
+      />
       @if (registerForm.hasError('required', 'username')) {
-        <mat-error>
-          This is required
-        </mat-error>
+        <mat-error> This is required </mat-error>
       }
     </mat-form-field>
     <mat-form-field appearance="outline">
@@ -46,11 +43,13 @@
         matInput
         formControlName="email"
         id="register-email"
-        required>
-      @if (registerForm.hasError('required', 'email') || registerForm.hasError('email', 'email')) {
-        <mat-error>
-          A valid email address is required
-        </mat-error>
+        required
+      />
+      @if (
+        registerForm.hasError('required', 'email') ||
+        registerForm.hasError('email', 'email')
+      ) {
+        <mat-error> A valid email address is required </mat-error>
       }
     </mat-form-field>
     <mat-form-field appearance="outline">
@@ -61,11 +60,10 @@
         formControlName="password"
         autocomplete="new-password"
         id="register-password"
-        required>
+        required
+      />
       @if (registerForm.hasError('required', 'password')) {
-        <mat-error>
-          This is required
-        </mat-error>
+        <mat-error> This is required </mat-error>
       }
     </mat-form-field>
     <mat-form-field appearance="outline">
@@ -77,26 +75,29 @@
         autocomplete="new-password"
         [errorStateMatcher]="passwordErrorMatcher"
         id="register-confirm-password"
-        required>
+        required
+      />
       @if (registerForm.hasError('required', 'confirmPassword')) {
-        <mat-error>
-          This is required
-        </mat-error>
+        <mat-error> This is required </mat-error>
       }
-      @if (!registerForm.hasError('required', 'confirmPassword') && registerForm.hasError('passwordMatch')) {
-        <mat-error>
-          Passwords must match
-        </mat-error>
+      @if (
+        !registerForm.hasError('required', 'confirmPassword') &&
+        registerForm.hasError('passwordMatch')
+      ) {
+        <mat-error> Passwords must match </mat-error>
       }
     </mat-form-field>
     <div fxLayout="row" fxLayoutAlign="center">
-      <p>{{message}}</p>
+      <p>{{ message }}</p>
     </div>
     <button
       mat-raised-button
       id="register-button"
       color="primary"
       type="submit"
-      [disabled]="submitting || registerForm.invalid">Register</button>
+      [disabled]="submitting || registerForm.invalid"
+    >
+      Register
+    </button>
   </div>
 </form>
