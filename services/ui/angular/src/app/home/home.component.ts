@@ -3,7 +3,11 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 import { ConfirmDialogService } from '../shared/confirm-dialog/confirm-dialog.service';
-import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
+import {
+  BreakpointObserver,
+  Breakpoints,
+  BreakpointState,
+} from '@angular/cdk/layout';
 import { MatDrawerMode } from '@angular/material/sidenav';
 
 @Component({
@@ -32,7 +36,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroyed$))
       .subscribe((state: BreakpointState) => {
         this.isXs = state.breakpoints[Breakpoints.XSmall] ?? false;
-        this.isMobile = this.isXs || (state.breakpoints[Breakpoints.Small] ?? false);
+        this.isMobile =
+          this.isXs || (state.breakpoints[Breakpoints.Small] ?? false);
         this.sidenavOpen = !this.isMobile;
         this.sidenavMode = this.isMobile ? 'over' : 'side';
       });

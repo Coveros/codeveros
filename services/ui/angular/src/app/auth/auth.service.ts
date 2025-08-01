@@ -70,23 +70,27 @@ export class AuthService {
 
   login(username: string, password: string): Observable<boolean> {
     this.token = null;
-    return this.http.post<LoginResponse>(`${this.endpoint}/login`, { username, password }).pipe(
-      map(({ token, user }) => {
-        this.token = token;
-        this.loggedInUser = user;
-        return !!token;
-      }),
-    );
+    return this.http
+      .post<LoginResponse>(`${this.endpoint}/login`, { username, password })
+      .pipe(
+        map(({ token, user }) => {
+          this.token = token;
+          this.loggedInUser = user;
+          return !!token;
+        }),
+      );
   }
 
   register(registration: Registration): Observable<boolean> {
-    return this.http.post<LoginResponse>(`${this.endpoint}/register`, registration).pipe(
-      map(({ token, user }) => {
-        this.token = token;
-        this.loggedInUser = user;
-        return !!token;
-      }),
-    );
+    return this.http
+      .post<LoginResponse>(`${this.endpoint}/register`, registration)
+      .pipe(
+        map(({ token, user }) => {
+          this.token = token;
+          this.loggedInUser = user;
+          return !!token;
+        }),
+      );
   }
 
   logout() {

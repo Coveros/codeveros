@@ -47,7 +47,9 @@ export class UserListComponent implements OnInit {
     dialogRef.afterClosed().subscribe((newUser: User) => {
       if (newUser) {
         this.dataSource.data = [newUser, ...this.dataSource.data];
-        this.matSnackBar.open(`User: ${newUser.firstName} ${newUser.lastName} added`);
+        this.matSnackBar.open(
+          `User: ${newUser.firstName} ${newUser.lastName} added`,
+        );
       }
     });
   }
@@ -61,13 +63,17 @@ export class UserListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((updated: User) => {
       if (updated) {
-        const index = this.dataSource.data.findIndex((t) => t._id === updated._id);
+        const index = this.dataSource.data.findIndex(
+          (t) => t._id === updated._id,
+        );
         if (index > -1) {
           const currUsers = [...this.dataSource.data];
           currUsers[index] = updated;
           this.dataSource.data = currUsers;
         }
-        this.matSnackBar.open(`User: ${updated.firstName} ${updated.lastName} updated`);
+        this.matSnackBar.open(
+          `User: ${updated.firstName} ${updated.lastName} updated`,
+        );
       }
     });
   }
@@ -84,8 +90,12 @@ export class UserListComponent implements OnInit {
       .subscribe((confirmed) => {
         if (confirmed) {
           this.userService.deleteUser(user._id).subscribe((deletedUser) => {
-            this.dataSource.data = this.dataSource.data.filter((t: User) => t._id !== deletedUser._id);
-            this.matSnackBar.open(`User ${deletedUser.firstName} ${deletedUser.lastName} removed`);
+            this.dataSource.data = this.dataSource.data.filter(
+              (t: User) => t._id !== deletedUser._id,
+            );
+            this.matSnackBar.open(
+              `User ${deletedUser.firstName} ${deletedUser.lastName} removed`,
+            );
           });
         }
       });

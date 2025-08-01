@@ -2,29 +2,53 @@
   <div class="form-container">
     <mat-form-field appearance="outline">
       <mat-label>First Name</mat-label>
-      <input matInput formControlName="firstName" id="register-firstname" required />
+      <input
+        matInput
+        formControlName="firstName"
+        id="register-firstname"
+        required
+      />
       @if (registerForm.hasError('required', 'firstName')) {
         <mat-error> This is required </mat-error>
       }
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Last Name</mat-label>
-      <input matInput formControlName="lastName" id="register-lastname" required />
+      <input
+        matInput
+        formControlName="lastName"
+        id="register-lastname"
+        required
+      />
       @if (registerForm.hasError('required', 'lastName')) {
         <mat-error> This is required </mat-error>
       }
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Username</mat-label>
-      <input matInput formControlName="username" id="register-username" required />
+      <input
+        matInput
+        formControlName="username"
+        id="register-username"
+        required
+      />
       @if (registerForm.hasError('required', 'username')) {
         <mat-error> This is required </mat-error>
       }
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Email Address</mat-label>
-      <input type="email" matInput formControlName="email" id="register-email" required />
-      @if (registerForm.hasError('required', 'email') || registerForm.hasError('email', 'email')) {
+      <input
+        type="email"
+        matInput
+        formControlName="email"
+        id="register-email"
+        required
+      />
+      @if (
+        registerForm.hasError('required', 'email') ||
+        registerForm.hasError('email', 'email')
+      ) {
         <mat-error> A valid email address is required </mat-error>
       }
     </mat-form-field>
@@ -56,7 +80,10 @@
       @if (registerForm.hasError('required', 'confirmPassword')) {
         <mat-error> This is required </mat-error>
       }
-      @if (!registerForm.hasError('required', 'confirmPassword') && registerForm.hasError('passwordMatch')) {
+      @if (
+        !registerForm.hasError('required', 'confirmPassword') &&
+        registerForm.hasError('passwordMatch')
+      ) {
         <mat-error> Passwords must match </mat-error>
       }
     </mat-form-field>

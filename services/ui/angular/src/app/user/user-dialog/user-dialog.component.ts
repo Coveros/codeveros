@@ -1,5 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 import { User } from '../user.interface';
@@ -41,9 +46,17 @@ export class UserDialogComponent implements OnInit {
     });
 
     if (!this.isEdit) {
-      this.dialogForm.addControl('password', new UntypedFormControl('', Validators.required));
-      this.dialogForm.addControl('confirmPassword', new UntypedFormControl('', Validators.required));
-      this.dialogForm.setValidators(passwordMatchValidator('password', 'confirmPassword'));
+      this.dialogForm.addControl(
+        'password',
+        new UntypedFormControl('', Validators.required),
+      );
+      this.dialogForm.addControl(
+        'confirmPassword',
+        new UntypedFormControl('', Validators.required),
+      );
+      this.dialogForm.setValidators(
+        passwordMatchValidator('password', 'confirmPassword'),
+      );
     }
   }
 

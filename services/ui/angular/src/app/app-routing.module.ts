@@ -21,15 +21,20 @@ const routes: Routes = [
           },
           {
             path: 'training',
-            loadChildren: () => import('./training/training.module').then((m) => m.TrainingModule),
+            loadChildren: () =>
+              import('./training/training.module').then(
+                (m) => m.TrainingModule,
+              ),
           },
           {
             path: 'users',
-            loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
+            loadChildren: () =>
+              import('./user/user.module').then((m) => m.UserModule),
           },
           {
             path: 'swagger',
-            loadChildren: () => import('./swagger/swagger.module').then((m) => m.SwaggerModule),
+            loadChildren: () =>
+              import('./swagger/swagger.module').then((m) => m.SwaggerModule),
           },
         ],
       },

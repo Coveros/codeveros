@@ -4,7 +4,10 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { AuthComponent } from './auth.component';
 import { AuthModule } from '../auth.module';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 
 describe('AuthComponent', () => {
   let component: AuthComponent;
@@ -13,7 +16,11 @@ describe('AuthComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [AuthModule],
-      providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()],
+      providers: [
+        provideRouter([]),
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+      ],
     }).compileComponents();
   }));
 

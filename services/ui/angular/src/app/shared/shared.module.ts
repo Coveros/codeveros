@@ -40,7 +40,13 @@ const mdModules = [
   MatTooltipModule,
 ];
 
-const exportedModules = [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, ...mdModules];
+const exportedModules = [
+  CommonModule,
+  FormsModule,
+  ReactiveFormsModule,
+  RouterModule,
+  ...mdModules,
+];
 
 @NgModule({
   imports: [...exportedModules],

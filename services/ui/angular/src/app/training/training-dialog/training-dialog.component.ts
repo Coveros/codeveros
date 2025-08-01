@@ -1,5 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 import { Training } from '../training.interface';
@@ -30,7 +34,11 @@ export class TrainingDialogComponent implements OnInit {
   title: string;
 
   typeOptions: TypeOption[] = [
-    { value: 'presentation', viewValue: 'Presentation', id: 'type-option-presentation' },
+    {
+      value: 'presentation',
+      viewValue: 'Presentation',
+      id: 'type-option-presentation',
+    },
     { value: 'workshop', viewValue: 'Workshop', id: 'type-option-workshop' },
     { value: 'course', viewValue: 'Course', id: 'type-option-course' },
   ];

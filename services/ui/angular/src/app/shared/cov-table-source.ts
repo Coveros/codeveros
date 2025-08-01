@@ -2,7 +2,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 
 export class CovTableSource<T> extends MatTableDataSource<T> {
-  private readonly collator = new Intl.Collator(undefined, { sensitivity: 'accent' });
+  private readonly collator = new Intl.Collator(undefined, {
+    sensitivity: 'accent',
+  });
 
   sortData = function (data: T[], sort: MatSort): T[] {
     const active = sort.active;

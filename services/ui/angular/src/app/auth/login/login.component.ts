@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 
@@ -49,7 +53,9 @@ export class LoginComponent implements OnInit {
       () => {
         this.loggingIn = false;
         if (this.authService.isLoggedIn()) {
-          const redirect = this.authService.redirectUrl ? this.router.parseUrl(this.authService.redirectUrl) : '/';
+          const redirect = this.authService.redirectUrl
+            ? this.router.parseUrl(this.authService.redirectUrl)
+            : '/';
           this.router.navigateByUrl(redirect);
         } else {
           this.message = 'Failed login';

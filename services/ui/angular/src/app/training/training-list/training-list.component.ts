@@ -54,7 +54,9 @@ export class TrainingListComponent implements OnInit {
     dialogRef.afterClosed().subscribe((newTraining: Training) => {
       if (newTraining) {
         this.dataSource.data = [newTraining, ...this.dataSource.data];
-        this.matSnackBar.open(`Training Course: ${newTraining.name} added to catalog`);
+        this.matSnackBar.open(
+          `Training Course: ${newTraining.name} added to catalog`,
+        );
       }
     });
   }
@@ -68,7 +70,9 @@ export class TrainingListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((updated: Training) => {
       if (updated) {
-        const index = this.dataSource.data.findIndex((t) => t._id === updated._id);
+        const index = this.dataSource.data.findIndex(
+          (t) => t._id === updated._id,
+        );
         if (index > -1) {
           const currTraining = [...this.dataSource.data];
           currTraining[index] = updated;
@@ -90,10 +94,16 @@ export class TrainingListComponent implements OnInit {
       })
       .subscribe((confirmed) => {
         if (confirmed) {
-          this.trainingService.deleteTraining(training._id).subscribe((deletedTraining) => {
-            this.dataSource.data = this.dataSource.data.filter((t: Training) => t._id !== deletedTraining._id);
-            this.matSnackBar.open(`Training ${deletedTraining.name} removed from catalog`);
-          });
+          this.trainingService
+            .deleteTraining(training._id)
+            .subscribe((deletedTraining) => {
+              this.dataSource.data = this.dataSource.data.filter(
+                (t: Training) => t._id !== deletedTraining._id,
+              );
+              this.matSnackBar.open(
+                `Training ${deletedTraining.name} removed from catalog`,
+              );
+            });
         }
       });
   }
