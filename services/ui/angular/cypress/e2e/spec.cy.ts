@@ -1,6 +1,7 @@
-describe('My First Test', () => {
-  it('Visits the initial project page', () => {
-    cy.visit('/')
-    cy.contains('app is running')
-  })
-})
+describe('Login Page', () => {
+  it('Has expected tabs', () => {
+    cy.visit('/');
+    cy.get('[role="tab"]').contains('Sign In').should('exist');
+    cy.get('[role="tab"]').contains('Register').should('exist');
+  });
+});
