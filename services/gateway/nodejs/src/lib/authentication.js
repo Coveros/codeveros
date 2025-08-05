@@ -105,7 +105,7 @@ module.exports = opts => {
       // return token and user information to user
       res.status(200).send({ token, user: userData });
     } catch (err) {
-      console.error(`Error logging in for ${username}: `, err);
+      console.error('Error logging in for %s:', username, err);
       return sendLoginError();
     }
   };
