@@ -3,15 +3,28 @@ import {
   UntypedFormBuilder,
   UntypedFormGroup,
   Validators,
+  FormsModule,
+  ReactiveFormsModule,
 } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { MatFormField, MatLabel, MatError } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'codeveros-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  standalone: false,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    MatError,
+    MatButton,
+  ],
 })
 export class LoginComponent implements OnInit {
   loginForm: UntypedFormGroup;

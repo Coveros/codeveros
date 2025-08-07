@@ -6,8 +6,12 @@ import { UserRoutingModule } from './user-routing.module';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [UserListComponent, UserDialogComponent],
-  imports: [SharedModule, UserRoutingModule],
+  imports: [
+    SharedModule,
+    UserRoutingModule,
+    UserListComponent,
+    UserDialogComponent,
+  ],
   exports: [UserListComponent],
 })
 export class UserModule {}

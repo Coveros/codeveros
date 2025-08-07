@@ -7,8 +7,14 @@ import { SharedModule } from '../shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [LoginComponent, AuthComponent, RegisterComponent],
-  imports: [BrowserAnimationsModule, SharedModule, AuthRoutingModule],
+  imports: [
+    BrowserAnimationsModule,
+    SharedModule,
+    AuthRoutingModule,
+    LoginComponent,
+    AuthComponent,
+    RegisterComponent,
+  ],
   exports: [AuthComponent],
 })
 export class AuthModule {}

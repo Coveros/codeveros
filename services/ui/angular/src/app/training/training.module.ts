@@ -6,8 +6,12 @@ import { TrainingDialogComponent } from './training-dialog/training-dialog.compo
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [TrainingListComponent, TrainingDialogComponent],
-  imports: [SharedModule, TrainingRoutingModule],
+  imports: [
+    SharedModule,
+    TrainingRoutingModule,
+    TrainingListComponent,
+    TrainingDialogComponent,
+  ],
   exports: [TrainingListComponent],
 })
 export class TrainingModule {}

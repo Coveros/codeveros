@@ -1,11 +1,10 @@
-import { RouterModule, Routes } from '@angular/router';
-import { NgModule } from '@angular/core';
+import { Routes } from '@angular/router';
 import { PageNotFoundComponent } from './core/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './auth/auth.guard';
 import { WelcomeComponent } from './welcome/welcome.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
@@ -42,9 +41,3 @@ const routes: Routes = [
   },
   { path: '**', component: PageNotFoundComponent },
 ];
-
-@NgModule({
-  exports: [RouterModule],
-  imports: [RouterModule.forRoot(routes)],
-})
-export class AppRoutingModule {}

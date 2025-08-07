@@ -2,7 +2,7 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { PageNotFoundComponent } from './not-found.component';
 
 @NgModule({
-  declarations: [PageNotFoundComponent],
+  imports: [PageNotFoundComponent],
   exports: [PageNotFoundComponent],
 })
 export class CoreModule {

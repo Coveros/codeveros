@@ -1,10 +1,25 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogTitle,
+  MatDialogContent,
+  MatDialogActions,
+  MatDialogClose,
+} from '@angular/material/dialog';
 import { ConfirmDialogData } from './ConfirmDialogData';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   templateUrl: './confirm-dialog.component.html',
-  standalone: false,
+  imports: [
+    MatDialogTitle,
+    CdkScrollable,
+    MatDialogContent,
+    MatDialogActions,
+    MatButton,
+    MatDialogClose,
+  ],
 })
 export class ConfirmDialogComponent {
   title: string;

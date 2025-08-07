@@ -8,12 +8,41 @@ import {
   Breakpoints,
   BreakpointState,
 } from '@angular/cdk/layout';
-import { MatDrawerMode } from '@angular/material/sidenav';
+import {
+  MatDrawerMode,
+  MatSidenavContainer,
+  MatSidenav,
+  MatSidenavContent,
+} from '@angular/material/sidenav';
+import { MatToolbar } from '@angular/material/toolbar';
+import { MatIconButton } from '@angular/material/button';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatIcon } from '@angular/material/icon';
+import {
+  MatNavList,
+  MatListSubheaderCssMatStyler,
+  MatListItem,
+} from '@angular/material/list';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  standalone: false,
+  imports: [
+    MatToolbar,
+    MatIconButton,
+    MatTooltip,
+    MatIcon,
+    MatSidenavContainer,
+    MatSidenav,
+    MatNavList,
+    MatListSubheaderCssMatStyler,
+    MatListItem,
+    RouterLink,
+    RouterLinkActive,
+    MatSidenavContent,
+    RouterOutlet,
+  ],
 })
 export class HomeComponent implements OnInit, OnDestroy {
   sidenavOpen = true;

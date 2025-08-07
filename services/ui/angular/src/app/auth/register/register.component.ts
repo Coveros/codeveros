@@ -3,17 +3,30 @@ import {
   UntypedFormBuilder,
   UntypedFormGroup,
   Validators,
+  FormsModule,
+  ReactiveFormsModule,
 } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { passwordMatchValidator } from '../../shared/password-match-validator/password-match-validator';
 import { PasswordMatchErrorMatcher } from '../../shared/password-match-validator/password-match-error-matcher';
+import { MatFormField, MatLabel, MatError } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'codeveros-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
-  standalone: false,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    MatError,
+    MatButton,
+  ],
 })
 export class RegisterComponent implements OnInit {
   passwordErrorMatcher = new PasswordMatchErrorMatcher();

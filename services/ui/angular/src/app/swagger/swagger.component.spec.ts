@@ -14,8 +14,7 @@ describe('SwaggerComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [SwaggerComponent],
-      imports: [SharedModule],
+      imports: [SharedModule, SwaggerComponent],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),

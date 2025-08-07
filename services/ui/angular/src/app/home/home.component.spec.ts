@@ -29,8 +29,7 @@ describe('HomeComponent', () => {
     };
 
     TestBed.configureTestingModule({
-      declarations: [HomeComponent],
-      imports: [BrowserAnimationsModule, SharedModule],
+      imports: [BrowserAnimationsModule, SharedModule, HomeComponent],
       providers: [
         provideRouter([]),
         {
