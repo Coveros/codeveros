@@ -1,21 +1,20 @@
 import { TestBed, waitForAsync, ComponentFixture } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import { App } from './app';
 import { SharedModule } from './shared/shared.module';
 import { RouterTestingModule } from '@angular/router/testing';
 
-describe('AppComponent', () => {
-  let component: AppComponent;
-  let fixture: ComponentFixture<AppComponent>;
+describe('App', () => {
+  let component: App;
+  let fixture: ComponentFixture<App>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [AppComponent],
-      imports: [RouterTestingModule, SharedModule],
+      imports: [RouterTestingModule, SharedModule, App],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AppComponent);
+    fixture = TestBed.createComponent(App);
     component = fixture.componentInstance;
   });
 

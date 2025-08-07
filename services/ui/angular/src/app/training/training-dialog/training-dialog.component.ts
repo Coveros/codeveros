@@ -3,11 +3,25 @@ import {
   UntypedFormBuilder,
   UntypedFormGroup,
   Validators,
+  FormsModule,
+  ReactiveFormsModule,
 } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogTitle,
+  MatDialogContent,
+  MatDialogActions,
+  MatDialogClose,
+} from '@angular/material/dialog';
 
 import { Training } from '../training.interface';
 import { TrainingService } from '../training.service';
+import { MatFormField, MatLabel, MatError } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import { MatSelect, MatOption } from '@angular/material/select';
+import { MatButton } from '@angular/material/button';
 
 interface DurationOption {
   value: number;
@@ -24,7 +38,22 @@ interface TypeOption {
 @Component({
   templateUrl: './training-dialog.component.html',
   styleUrls: ['./training-dialog.component.scss'],
-  standalone: false,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MatDialogTitle,
+    MatDialogContent,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    MatError,
+    CdkTextareaAutosize,
+    MatSelect,
+    MatOption,
+    MatDialogActions,
+    MatButton,
+    MatDialogClose,
+  ],
 })
 export class TrainingDialogComponent implements OnInit {
   training: Training;

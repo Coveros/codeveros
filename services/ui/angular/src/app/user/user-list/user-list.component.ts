@@ -1,18 +1,49 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, MatSortHeader } from '@angular/material/sort';
 
 import { User } from '../user.interface';
 import { UserService } from '../user.service';
 import { UserDialogComponent } from '../user-dialog/user-dialog.component';
 import { ConfirmDialogService } from '../../shared/confirm-dialog/confirm-dialog.service';
 import { CovTableSource } from '../../shared/cov-table-source';
+import { MatIconButton } from '@angular/material/button';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatIcon } from '@angular/material/icon';
+import {
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table';
 
 @Component({
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss'],
-  standalone: false,
+  imports: [
+    MatIconButton,
+    MatTooltip,
+    MatIcon,
+    MatTable,
+    MatSort,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatSortHeader,
+    MatCellDef,
+    MatCell,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+  ],
 })
 export class UserListComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;

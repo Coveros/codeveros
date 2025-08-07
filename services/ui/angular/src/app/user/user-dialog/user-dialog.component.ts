@@ -4,18 +4,42 @@ import {
   UntypedFormControl,
   UntypedFormGroup,
   Validators,
+  FormsModule,
+  ReactiveFormsModule,
 } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogTitle,
+  MatDialogContent,
+  MatDialogActions,
+  MatDialogClose,
+} from '@angular/material/dialog';
 
 import { User } from '../user.interface';
 import { UserService } from '../user.service';
 import { passwordMatchValidator } from '../../shared/password-match-validator/password-match-validator';
 import { PasswordMatchErrorMatcher } from '../../shared/password-match-validator/password-match-error-matcher';
+import { MatFormField, MatLabel, MatError } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   templateUrl: './user-dialog.component.html',
   styleUrls: ['./user-dialog.component.scss'],
-  standalone: false,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MatDialogTitle,
+    MatDialogContent,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    MatError,
+    MatDialogActions,
+    MatButton,
+    MatDialogClose,
+  ],
 })
 export class UserDialogComponent implements OnInit {
   passwordErrorMatcher = new PasswordMatchErrorMatcher();

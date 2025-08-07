@@ -7,12 +7,43 @@ import { TrainingService } from '../training.service';
 import { TrainingDialogComponent } from '../training-dialog/training-dialog.component';
 import { ConfirmDialogService } from '../../shared/confirm-dialog/confirm-dialog.service';
 import { CovTableSource } from '../../shared/cov-table-source';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, MatSortHeader } from '@angular/material/sort';
+import { MatIconButton } from '@angular/material/button';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatIcon } from '@angular/material/icon';
+import {
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table';
 
 @Component({
   templateUrl: './training-list.component.html',
   styleUrls: ['./training-list.component.scss'],
-  standalone: false,
+  imports: [
+    MatIconButton,
+    MatTooltip,
+    MatIcon,
+    MatTable,
+    MatSort,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatSortHeader,
+    MatCellDef,
+    MatCell,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+  ],
 })
 export class TrainingListComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;

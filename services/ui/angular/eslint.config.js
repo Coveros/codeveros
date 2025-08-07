@@ -18,7 +18,7 @@ module.exports = tseslint.config(
         "error",
         {
           type: "attribute",
-          prefix: "app",
+          prefix: "codeveros",
           style: "camelCase",
         },
       ],
@@ -26,14 +26,12 @@ module.exports = tseslint.config(
         "error",
         {
           type: "element",
-          prefix: "app",
+          prefix: "codeveros",
           style: "kebab-case",
         },
       ],
       "@typescript-eslint/no-explicit-any": "off",
-      "@angular-eslint/prefer-inject": "off",
-      "@angular-eslint/prefer-standalone": "off",
-      "@angular-eslint/component-selector": "off"
+      "@angular-eslint/prefer-inject": "off"
 
     },
   },
