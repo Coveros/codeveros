@@ -17,7 +17,6 @@ import {
 
 import { Training } from '../training.interface';
 import { TrainingService } from '../training.service';
-import { CdkScrollable } from '@angular/cdk/scrolling';
 import { MatFormField, MatLabel, MatError } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
@@ -43,7 +42,6 @@ interface TypeOption {
     FormsModule,
     ReactiveFormsModule,
     MatDialogTitle,
-    CdkScrollable,
     MatDialogContent,
     MatFormField,
     MatLabel,

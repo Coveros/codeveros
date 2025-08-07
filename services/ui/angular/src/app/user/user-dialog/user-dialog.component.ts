@@ -20,7 +20,6 @@ import { User } from '../user.interface';
 import { UserService } from '../user.service';
 import { passwordMatchValidator } from '../../shared/password-match-validator/password-match-validator';
 import { PasswordMatchErrorMatcher } from '../../shared/password-match-validator/password-match-error-matcher';
-import { CdkScrollable } from '@angular/cdk/scrolling';
 import { MatFormField, MatLabel, MatError } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
@@ -32,7 +31,6 @@ import { MatButton } from '@angular/material/button';
     FormsModule,
     ReactiveFormsModule,
     MatDialogTitle,
-    CdkScrollable,
     MatDialogContent,
     MatFormField,
     MatLabel,
