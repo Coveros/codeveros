@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {
   UntypedFormBuilder,
   UntypedFormGroup,
@@ -22,6 +22,7 @@ import { MatInput } from '@angular/material/input';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { MatSelect, MatOption } from '@angular/material/select';
 import { MatButton } from '@angular/material/button';
+import { TrainingDialogData } from './training-dialog-data.interface';
 
 interface DurationOption {
   value: number;
@@ -56,7 +57,13 @@ interface TypeOption {
   ],
 })
 export class TrainingDialogComponent implements OnInit {
-  training: Training;
+  dialogRef = inject<MatDialogRef<TrainingDialogComponent>>(MatDialogRef);
+  private readonly data = inject<TrainingDialogData>(MAT_DIALOG_DATA, {
+    optional: true,
+  });
+  private readonly formBuilder = inject(UntypedFormBuilder);
+  private readonly trainingService = inject(TrainingService);
+
   dialogForm: UntypedFormGroup;
   isSaving = false;
   isEdit = false;
@@ -81,24 +88,15 @@ export class TrainingDialogComponent implements OnInit {
     { value: 5, viewValue: '5', id: 'duration-option-5' },
   ];
 
-  constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef: MatDialogRef<TrainingDialogComponent>,
-    private formBuilder: UntypedFormBuilder,
-    private trainingService: TrainingService,
-  ) {
-    this.training = data.training || {};
-  }
-
   ngOnInit(): void {
-    this.isEdit = !!(this.training && this.training._id);
+    this.isEdit = !!this.data?.training?._id;
     this.title = this.isEdit ? 'Edit Training' : 'Add Training';
 
     this.dialogForm = this.formBuilder.group({
-      name: [this.training.name, Validators.required],
-      description: [this.training.description, Validators.required],
-      type: [this.training.type, Validators.required],
-      duration: [this.training.duration, Validators.required],
+      name: [this.data?.training.name, Validators.required],
+      description: [this.data?.training.description, Validators.required],
+      type: [this.data?.training.type, Validators.required],
+      duration: [this.data?.training.duration, Validators.required],
     });
   }
 
@@ -112,7 +110,7 @@ export class TrainingDialogComponent implements OnInit {
     const value: Training = this.dialogForm.value;
 
     const request = this.isEdit
-      ? this.trainingService.updateTraining(this.training._id, value)
+      ? this.trainingService.updateTraining(this.data?.training._id, value)
       : this.trainingService.createTraining(value);
 
     request.subscribe((returnValue: Training) => {

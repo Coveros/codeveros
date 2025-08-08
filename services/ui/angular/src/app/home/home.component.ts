@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
@@ -45,19 +45,17 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
   ],
 })
 export class HomeComponent implements OnInit, OnDestroy {
+  private readonly breakpointObserver = inject(BreakpointObserver);
+  private readonly authService = inject(AuthService);
+  private readonly confirmDialogService = inject(ConfirmDialogService);
+
   sidenavOpen = true;
   sidenavMode: MatDrawerMode = 'side';
   isMobile = false;
   isXs = false;
   username = '';
 
-  private destroyed$ = new Subject<boolean>();
-
-  constructor(
-    private breakpointObserver: BreakpointObserver,
-    private authService: AuthService,
-    private confirmDialogService: ConfirmDialogService,
-  ) {}
+  private readonly destroyed$ = new Subject<boolean>();
 
   ngOnInit(): void {
     this.breakpointObserver

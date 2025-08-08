@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {
   UntypedFormBuilder,
   UntypedFormGroup,
@@ -29,16 +29,14 @@ import { MatButton } from '@angular/material/button';
   ],
 })
 export class RegisterComponent implements OnInit {
+  formBuilder = inject(UntypedFormBuilder);
+  authService = inject(AuthService);
+  router = inject(Router);
+
   passwordErrorMatcher = new PasswordMatchErrorMatcher();
   registerForm: UntypedFormGroup;
   submitting = false;
   message: string;
-
-  constructor(
-    public formBuilder: UntypedFormBuilder,
-    public authService: AuthService,
-    public router: Router,
-  ) {}
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group(

@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {
   UntypedFormBuilder,
   UntypedFormControl,
@@ -23,6 +23,7 @@ import { PasswordMatchErrorMatcher } from '../../shared/password-match-validator
 import { MatFormField, MatLabel, MatError } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
+import { UserDialogData } from './user-dialog-data.interface';
 
 @Component({
   templateUrl: './user-dialog.component.html',
@@ -42,31 +43,28 @@ import { MatButton } from '@angular/material/button';
   ],
 })
 export class UserDialogComponent implements OnInit {
+  dialogRef = inject<MatDialogRef<UserDialogComponent>>(MatDialogRef);
+  private readonly data = inject<UserDialogData>(MAT_DIALOG_DATA, {
+    optional: true,
+  });
+  private readonly formBuilder = inject(UntypedFormBuilder);
+  private readonly userService = inject(UserService);
+
   passwordErrorMatcher = new PasswordMatchErrorMatcher();
-  user: User;
   dialogForm: UntypedFormGroup;
   isSaving = false;
   isEdit = false;
   title: string;
 
-  constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef: MatDialogRef<UserDialogComponent>,
-    private formBuilder: UntypedFormBuilder,
-    private userService: UserService,
-  ) {
-    this.user = data.user || {};
-  }
-
   ngOnInit(): void {
-    this.isEdit = !!(this.user && this.user._id);
+    this.isEdit = !!this.data?.user?._id;
     this.title = this.isEdit ? 'Edit User' : 'Add User';
 
     this.dialogForm = this.formBuilder.group({
-      username: [this.user.username, Validators.required],
-      firstName: [this.user.firstName, Validators.required],
-      lastName: [this.user.lastName, Validators.required],
-      email: [this.user.email, [Validators.required, Validators.email]],
+      username: [this.data?.user.username, Validators.required],
+      firstName: [this.data?.user.firstName, Validators.required],
+      lastName: [this.data?.user.lastName, Validators.required],
+      email: [this.data?.user.email, [Validators.required, Validators.email]],
     });
 
     if (!this.isEdit) {
@@ -94,7 +92,7 @@ export class UserDialogComponent implements OnInit {
     const value: User = this.dialogForm.value;
 
     const request = this.isEdit
-      ? this.userService.updateUser(this.user._id, value)
+      ? this.userService.updateUser(this.data?.user._id, value)
       : this.userService.createUser(value);
 
     request.subscribe((returnValue: User) => {
