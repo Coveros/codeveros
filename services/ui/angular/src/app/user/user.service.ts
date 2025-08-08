@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from './user.interface';
 import { HttpClient } from '@angular/common/http';
@@ -8,9 +8,9 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class UserService {
-  private endpoint = `${environment.apiUrl}/user`;
+  private readonly http = inject(HttpClient);
 
-  constructor(private http: HttpClient) {}
+  private readonly endpoint = `${environment.apiUrl}/user`;
 
   getAll(): Observable<User[]> {
     return this.http.get<User[]>(this.endpoint);

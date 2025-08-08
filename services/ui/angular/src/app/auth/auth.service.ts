@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { of, Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -20,10 +20,12 @@ interface LoginResponse {
   providedIn: 'root',
 })
 export class AuthService {
-  redirectUrl: string;
+  private readonly router = inject(Router);
+  private readonly http = inject(HttpClient);
 
-  private endpoint = `${environment.apiUrl}/auth`;
+  private readonly endpoint = `${environment.apiUrl}/auth`;
   private loggedInUser: User;
+  redirectUrl: string;
 
   private get token(): string {
     return localStorage.getItem('access_token');
@@ -36,11 +38,6 @@ export class AuthService {
       localStorage.setItem('access_token', token);
     }
   }
-
-  constructor(
-    private router: Router,
-    private http: HttpClient,
-  ) {}
 
   async isLoggedIn(): Promise<boolean> {
     if (!this.token) {

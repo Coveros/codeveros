@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort, MatSortHeader } from '@angular/material/sort';
@@ -23,6 +23,7 @@ import {
   MatRowDef,
   MatRow,
 } from '@angular/material/table';
+import { UserDialogData } from '../user-dialog/user-dialog-data.interface';
 
 @Component({
   templateUrl: './user-list.component.html',
@@ -46,18 +47,16 @@ import {
   ],
 })
 export class UserListComponent implements OnInit {
+  private readonly confirmDialogService = inject(ConfirmDialogService);
+  private readonly matDialog = inject(MatDialog);
+  private readonly userService = inject(UserService);
+  private readonly matSnackBar = inject(MatSnackBar);
+
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   displayedColumns = ['username', 'firstName', 'lastName', 'email', 'actions'];
   loading = true;
   dataSource = new CovTableSource<User>();
-
-  constructor(
-    private confirmDialogService: ConfirmDialogService,
-    private matDialog: MatDialog,
-    private userService: UserService,
-    private matSnackBar: MatSnackBar,
-  ) {}
 
   ngOnInit(): void {
     this.dataSource.sort = this.sort;
@@ -72,7 +71,6 @@ export class UserListComponent implements OnInit {
     const dialogRef = this.matDialog.open(UserDialogComponent, {
       width: '750px',
       maxWidth: '95%',
-      data: {},
     });
 
     dialogRef.afterClosed().subscribe((newUser: User) => {
@@ -86,11 +84,14 @@ export class UserListComponent implements OnInit {
   }
 
   editUser(user: User) {
-    const dialogRef = this.matDialog.open(UserDialogComponent, {
-      width: '750px',
-      maxWidth: '95%',
-      data: { user },
-    });
+    const dialogRef = this.matDialog.open<UserDialogComponent, UserDialogData>(
+      UserDialogComponent,
+      {
+        width: '750px',
+        maxWidth: '95%',
+        data: { user },
+      },
+    );
 
     dialogRef.afterClosed().subscribe((updated: User) => {
       if (updated) {

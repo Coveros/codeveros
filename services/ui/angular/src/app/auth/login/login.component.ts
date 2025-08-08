@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {
   UntypedFormBuilder,
   UntypedFormGroup,
@@ -27,15 +27,13 @@ import { MatButton } from '@angular/material/button';
   ],
 })
 export class LoginComponent implements OnInit {
+  formBuilder = inject(UntypedFormBuilder);
+  authService = inject(AuthService);
+  router = inject(Router);
+
   loginForm: UntypedFormGroup;
   loggingIn = false;
   message: string;
-
-  constructor(
-    public formBuilder: UntypedFormBuilder,
-    public authService: AuthService,
-    public router: Router,
-  ) {}
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({

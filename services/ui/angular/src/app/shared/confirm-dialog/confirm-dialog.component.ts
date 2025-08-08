@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialogTitle,
@@ -20,6 +20,8 @@ import { MatButton } from '@angular/material/button';
   ],
 })
 export class ConfirmDialogComponent {
+  private readonly data = inject<ConfirmDialogData>(MAT_DIALOG_DATA);
+
   title: string;
   message: string;
   cancelText: string;
@@ -28,14 +30,13 @@ export class ConfirmDialogComponent {
   confirmId: string;
   hideTitle: boolean;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: ConfirmDialogData) {
-    data = data || {};
-    this.hideTitle = data.hideTitle || false;
-    this.title = data.title || 'Confirmation';
-    this.message = data.message || 'Are you sure?';
-    this.cancelText = data.cancelText || 'Cancel';
-    this.confirmText = data.confirmText || 'Confirm';
-    this.cancelId = data.cancelId || 'cancel-button';
-    this.confirmId = data.confirmId || 'confirm-button';
+  constructor() {
+    this.hideTitle = this.data.hideTitle || false;
+    this.title = this.data.title || 'Confirmation';
+    this.message = this.data.message || 'Are you sure?';
+    this.cancelText = this.data.cancelText || 'Cancel';
+    this.confirmText = this.data.confirmText || 'Confirm';
+    this.cancelId = this.data.cancelId || 'cancel-button';
+    this.confirmId = this.data.confirmId || 'confirm-button';
   }
 }

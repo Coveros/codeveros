@@ -1,4 +1,10 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+  ViewChild,
+  inject,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -23,6 +29,7 @@ import {
   MatRowDef,
   MatRow,
 } from '@angular/material/table';
+import { TrainingDialogData } from '../training-dialog/training-dialog-data.interface';
 
 @Component({
   templateUrl: './training-list.component.html',
@@ -46,6 +53,12 @@ import {
   ],
 })
 export class TrainingListComponent implements OnInit {
+  private readonly confirmDialogService = inject(ConfirmDialogService);
+  private readonly matDialog = inject(MatDialog);
+  private readonly trainingService = inject(TrainingService);
+  private readonly matSnackBar = inject(MatSnackBar);
+  cd = inject(ChangeDetectorRef);
+
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   displayedColumns = ['name', 'description', 'duration', 'type', 'actions'];
@@ -57,14 +70,6 @@ export class TrainingListComponent implements OnInit {
     workshop: 'Workshop',
     course: 'Course',
   };
-
-  constructor(
-    private confirmDialogService: ConfirmDialogService,
-    private matDialog: MatDialog,
-    private trainingService: TrainingService,
-    private matSnackBar: MatSnackBar,
-    public cd: ChangeDetectorRef,
-  ) {}
 
   ngOnInit(): void {
     this.dataSource.sort = this.sort;
@@ -79,7 +84,6 @@ export class TrainingListComponent implements OnInit {
     const dialogRef = this.matDialog.open(TrainingDialogComponent, {
       width: '750px',
       maxWidth: '95%',
-      data: {},
     });
 
     dialogRef.afterClosed().subscribe((newTraining: Training) => {
@@ -93,7 +97,10 @@ export class TrainingListComponent implements OnInit {
   }
 
   editTraining(training: Training) {
-    const dialogRef = this.matDialog.open(TrainingDialogComponent, {
+    const dialogRef = this.matDialog.open<
+      TrainingDialogComponent,
+      TrainingDialogData
+    >(TrainingDialogComponent, {
       width: '750px',
       maxWidth: '95%',
       data: { training },
