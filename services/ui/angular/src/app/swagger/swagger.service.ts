@@ -1,8 +1,9 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { SwaggerUIOptions } from 'swagger-ui';
 
-type SwaggerConfig = Record<string, any>;
+type SwaggerConfig = SwaggerUIOptions['spec'];
 
 @Injectable({
   providedIn: 'root',
