@@ -11,7 +11,7 @@
     "start": "ng serve --host 0.0.0.0",
     "start.proxy": "ng serve --host 0.0.0.0 --proxy-config proxy.json",
     "test": "ng test --code-coverage",
-    "test-ci": "npm run test",
+    "test-ci": "ng test --no-watch --no-progress --code-coverage",
     "checkstyle": "ng lint",
     "checkstyle:ci": "npm run checkstyle",
     "e2e": "ng e2e",
