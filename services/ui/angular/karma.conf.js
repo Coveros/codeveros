@@ -8,7 +8,9 @@ try {
   process.env.CHROME_BIN = puppeteer.executablePath();
   console.log('Using Puppeteer provided Headless Chrome');
 } catch (e) {
-  console.log('Puppeteer not installed, trying to use separately installed Chrome');
+  console.log(
+    'Puppeteer not installed, trying to use separately installed Chrome',
+  );
 }
 
 module.exports = function (config) {
@@ -18,25 +20,24 @@ module.exports = function (config) {
     browserDisconnectTolerance: 5,
     retryLimit: 5,
     basePath: 'src',
-    frameworks: ['jasmine', '@angular-devkit/build-angular'],
+    frameworks: ['jasmine'],
     plugins: [
       'karma-jasmine',
       'karma-chrome-launcher',
       'karma-junit-reporter',
       'karma-coverage',
-      '@angular-devkit/build-angular/plugins/karma'
     ],
     coverageReporter: {
       dir: path.join(__dirname, './reports/coverage'),
       reporters: [
         { type: 'html', subdir: 'lcov-report' },
         { type: 'lcovonly', subdir: '.' },
-        { type: 'text-summary' }
+        { type: 'text-summary' },
       ],
-      fixWebpackSourcePaths: true
+      fixWebpackSourcePaths: true,
     },
     junitReporter: {
-      outputFile: path.resolve(__dirname, './reports/junit.xml')
+      outputFile: path.resolve(__dirname, './reports/junit.xml'),
     },
     reporters: ['progress', 'junit'],
     port: 9876,
@@ -53,9 +54,9 @@ module.exports = function (config) {
           '--disable-web-security',
           '--disable-setuid-sandbox',
           '--remote-debugging-port=9222',
-        ]
-      }
+        ],
+      },
     },
-    singleRun: true
+    singleRun: true,
   });
 };

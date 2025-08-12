@@ -27,7 +27,7 @@ export class TrainingService {
     return this.http.delete<Training>(`${this.config.endpoint}/${id}`);
   }
 
-  updateTraining(id: string, body: Record<string, any>): Observable<Training> {
+  updateTraining(id: string, body: Partial<Training>): Observable<Training> {
     return this.http.put<Training>(`${this.config.endpoint}/${id}`, body);
   }
 }
