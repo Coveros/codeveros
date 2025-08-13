@@ -14,3 +14,9 @@ mat-toolbar a {
 a.active {
   background-color: rgba(95, 99, 104, 0.24) !important;
 }
+
+.center-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
