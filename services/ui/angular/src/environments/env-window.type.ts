@@ -2,4 +2,4 @@ interface EnvConfig {
   apiUrl: string;
 }
 
-export type EnvWindow = Window & typeof globalThis & { env: EnvConfig };
+export type EnvWindow = typeof window & { env?: EnvConfig };
