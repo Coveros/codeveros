@@ -69,7 +69,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.sidenavMode = this.isMobile ? 'over' : 'side';
       });
     const user = this.authService.getLoggedInUser();
-    this.username = user.username;
+    this.username = user?.username || '';
   }
 
   ngOnDestroy(): void {

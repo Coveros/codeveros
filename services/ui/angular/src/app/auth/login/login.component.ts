@@ -31,9 +31,9 @@ export class LoginComponent implements OnInit {
   authService = inject(AuthService);
   router = inject(Router);
 
-  loginForm: UntypedFormGroup;
+  loginForm!: UntypedFormGroup;
   loggingIn = false;
-  message: string;
+  message = '';
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -43,11 +43,11 @@ export class LoginComponent implements OnInit {
   }
 
   get password() {
-    return this.loginForm.controls.password;
+    return this.loginForm.controls['password'];
   }
 
   get username() {
-    return this.loginForm.controls.username;
+    return this.loginForm.controls['username'];
   }
 
   onLogin() {
@@ -60,22 +60,26 @@ export class LoginComponent implements OnInit {
 
     const { username, password } = this.loginForm.value;
 
-    this.authService.login(username, password).subscribe(
-      () => {
+    this.authService.login(username, password).subscribe({
+      next: () => {
         this.loggingIn = false;
-        if (this.authService.isLoggedIn()) {
-          const redirect = this.authService.redirectUrl
-            ? this.router.parseUrl(this.authService.redirectUrl)
-            : '/';
-          this.router.navigateByUrl(redirect);
-        } else {
-          this.message = 'Failed login';
-        }
+        void this.redirectAfterLogin();
       },
-      () => {
+      error: () => {
         this.loggingIn = false;
         this.message = 'Failed login';
       },
-    );
+    });
+  }
+
+  private async redirectAfterLogin() {
+    if (await this.authService.isLoggedIn()) {
+      const redirect = this.authService.redirectUrl
+        ? this.router.parseUrl(this.authService.redirectUrl)
+        : '/';
+      void this.router.navigateByUrl(redirect);
+    } else {
+      this.message = 'Failed login';
+    }
   }
 }

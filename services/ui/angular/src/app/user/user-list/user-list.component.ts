@@ -52,7 +52,7 @@ export class UserListComponent implements OnInit {
   private readonly userService = inject(UserService);
   private readonly matSnackBar = inject(MatSnackBar);
 
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
   displayedColumns = ['username', 'firstName', 'lastName', 'email', 'actions'];
   loading = true;
@@ -111,6 +111,11 @@ export class UserListComponent implements OnInit {
   }
 
   deleteUser(user: User) {
+    if (!user._id) {
+      return;
+    }
+    const userId = user._id;
+
     this.confirmDialogService
       .open({
         title: 'Remove User?',
@@ -121,7 +126,7 @@ export class UserListComponent implements OnInit {
       })
       .subscribe((confirmed) => {
         if (confirmed) {
-          this.userService.deleteUser(user._id).subscribe((deletedUser) => {
+          this.userService.deleteUser(userId).subscribe((deletedUser) => {
             this.dataSource.data = this.dataSource.data.filter(
               (t: User) => t._id !== deletedUser._id,
             );

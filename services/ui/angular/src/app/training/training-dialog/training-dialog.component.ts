@@ -64,10 +64,10 @@ export class TrainingDialogComponent implements OnInit {
   private readonly formBuilder = inject(UntypedFormBuilder);
   private readonly trainingService = inject(TrainingService);
 
-  dialogForm: UntypedFormGroup;
+  dialogForm!: UntypedFormGroup;
   isSaving = false;
   isEdit = false;
-  title: string;
+  title = '';
 
   typeOptions: TypeOption[] = [
     {
@@ -109,9 +109,10 @@ export class TrainingDialogComponent implements OnInit {
 
     const value: Training = this.dialogForm.value;
 
-    const request = this.isEdit
-      ? this.trainingService.updateTraining(this.data?.training._id, value)
-      : this.trainingService.createTraining(value);
+    const request =
+      this.isEdit && this.data?.training._id
+        ? this.trainingService.updateTraining(this.data.training._id, value)
+        : this.trainingService.createTraining(value);
 
     request.subscribe((returnValue: Training) => {
       this.isSaving = false;

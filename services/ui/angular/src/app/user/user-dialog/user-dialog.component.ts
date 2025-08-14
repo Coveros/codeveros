@@ -51,10 +51,10 @@ export class UserDialogComponent implements OnInit {
   private readonly userService = inject(UserService);
 
   passwordErrorMatcher = new PasswordMatchErrorMatcher();
-  dialogForm: UntypedFormGroup;
+  dialogForm!: UntypedFormGroup;
   isSaving = false;
   isEdit = false;
-  title: string;
+  title = '';
 
   ngOnInit(): void {
     this.isEdit = !!this.data?.user?._id;
@@ -91,9 +91,10 @@ export class UserDialogComponent implements OnInit {
 
     const value: User = this.dialogForm.value;
 
-    const request = this.isEdit
-      ? this.userService.updateUser(this.data?.user._id, value)
-      : this.userService.createUser(value);
+    const request =
+      this.isEdit && this.data?.user._id
+        ? this.userService.updateUser(this.data.user._id, value)
+        : this.userService.createUser(value);
 
     request.subscribe((returnValue: User) => {
       this.isSaving = false;

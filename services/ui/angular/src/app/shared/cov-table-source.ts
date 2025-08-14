@@ -6,7 +6,7 @@ export class CovTableSource<T> extends MatTableDataSource<T> {
     sensitivity: 'accent',
   });
 
-  sortData = function (data: T[], sort: MatSort): T[] {
+  override sortData = (data: T[], sort: MatSort): T[] => {
     const active = sort.active;
     const direction = sort.direction;
     if (!active || direction === '') {

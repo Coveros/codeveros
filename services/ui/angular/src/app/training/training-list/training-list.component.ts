@@ -8,7 +8,7 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { Training } from '../training.interface';
+import { Training, TrainingType } from '../training.interface';
 import { TrainingService } from '../training.service';
 import { TrainingDialogComponent } from '../training-dialog/training-dialog.component';
 import { ConfirmDialogService } from '../../shared/confirm-dialog/confirm-dialog.service';
@@ -30,6 +30,10 @@ import {
   MatRow,
 } from '@angular/material/table';
 import { TrainingDialogData } from '../training-dialog/training-dialog-data.interface';
+
+const isTrainingType = (value: unknown): value is TrainingType =>
+  typeof value === 'string' &&
+  Object.values(TrainingType).includes(value as TrainingType);
 
 @Component({
   templateUrl: './training-list.component.html',
@@ -59,13 +63,13 @@ export class TrainingListComponent implements OnInit {
   private readonly matSnackBar = inject(MatSnackBar);
   cd = inject(ChangeDetectorRef);
 
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
   displayedColumns = ['name', 'description', 'duration', 'type', 'actions'];
   loading = true;
   dataSource = new CovTableSource<Training>();
 
-  typeOptions = {
+  private readonly typeOptions = {
     presentation: 'Presentation',
     workshop: 'Workshop',
     course: 'Course',
@@ -78,6 +82,10 @@ export class TrainingListComponent implements OnInit {
       this.dataSource.data = training;
       this.loading = false;
     });
+  }
+
+  typeOption(value: unknown): string {
+    return isTrainingType(value) ? this.typeOptions[value] : 'Unknown';
   }
 
   openAddDialog(): void {
@@ -122,6 +130,11 @@ export class TrainingListComponent implements OnInit {
   }
 
   deleteTraining(training: Training) {
+    if (!training?._id) {
+      return;
+    }
+    const id = training._id;
+
     this.confirmDialogService
       .open({
         title: 'Remove Training?',
@@ -133,7 +146,7 @@ export class TrainingListComponent implements OnInit {
       .subscribe((confirmed) => {
         if (confirmed) {
           this.trainingService
-            .deleteTraining(training._id)
+            .deleteTraining(id)
             .subscribe((deletedTraining) => {
               this.dataSource.data = this.dataSource.data.filter(
                 (t: Training) => t._id !== deletedTraining._id,
