@@ -1,9 +1,12 @@
 {
   "name": "codeveros-gateway",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Basic node Gateway for simple, straight docker example",
   "main": "src/app.js",
   "private": true,
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "scripts": {
     "start": "node src/app.js",
     "test": "jest --logHeapUsage --no-cache",
@@ -18,19 +21,18 @@
   },
   "author": "",
   "dependencies": {
-    "body-parser": "^1.19.0",
+    "body-parser": "^2.2.0",
     "cors": "^2.8.5",
-    "deepmerge": "^4.2.2",
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "http-proxy": "^1.18.1",
-    "unirest": "^0.6.0"
+    "deepmerge": "^4.3.1",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "http-proxy": "^1.18.1"
   },
   "devDependencies": {
-    "jest": "^27.0.6",
-    "jest-junit": "^12.2.0",
-    "mkdirp": "^1.0.4",
-    "semistandard": "^16.0.1",
+    "jest": "^30.0.5",
+    "jest-junit": "^16.0.0",
+    "mkdirp": "^3.0.1",
+    "semistandard": "^17.0.0",
     "standard-json": "^1.1.0"
   },
   "semistandard": {

@@ -1,13 +1,15 @@
-@use '~@angular/material' as mat;
+@use '@angular/material' as mat;
 
-@include mat.core();
+@include mat.all-component-typographies();
+@include mat.elevation-classes();
+@include mat.app-background();
 
-$new-primary: (
+$gray-palette: (
   100: #ffffff,
   200: #fafafa,
   300: #c7c7c7,
-  400: #BDBDBD,
-  500: #E0E0E0,
+  400: #bdbdbd,
+  500: #e0e0e0,
   600: #757575,
   contrast: (
     100: rgba(black, 0.87),
@@ -15,47 +17,35 @@ $new-primary: (
     300: rgba(black, 0.87),
     400: rgba(black, 0.87),
     500: rgba(black, 0.87),
-    600: white
-  )
+    600: white,
+  ),
 );
 
-$new-secondary: (
+$blue-palette: (
   100: #5ddef4,
   200: #00acc1,
   300: #007c91,
   contrast: (
     100: rgba(black, 0.87),
     200: rgba(black, 0.87),
-    300: white
-  )
-);
-
-$app-blue: (
-  200: #8ed5f2,
-  400: #57b7e8,
-  600: #469dd5,
-  contrast: (
-    200: rgba(black, 0.87),
-    400: white,
-    600: white
-  )
-);
-
-$app-green: (
-  300: #00dbbb,
-  500: #00c29b,
-  700: #00a17a,
-  contrast: (
     300: white,
-    500: white,
-    700: white
-  )
+  ),
 );
 
-$app-accent: mat.define-palette($new-primary, 200, 100, 300);
-$app-primary: mat.define-palette($new-secondary, 200, 100, 300);
-$app-warn: mat.define-palette(mat.$red-palette);
+$app-accent: mat.m2-define-palette($gray-palette, 200, 100, 300);
+$app-primary: mat.m2-define-palette($blue-palette, 200, 100, 300);
+$app-warn: mat.m2-define-palette(mat.$m2-red-palette);
 
-$app-theme: mat.define-light-theme($app-primary, $app-accent, $app-warn);
+$app-theme: mat.m2-define-light-theme(
+  (
+    color: (
+      primary: $app-primary,
+      accent: $app-accent,
+      warn: $app-warn,
+    ),
+    typography: mat.m2-define-typography-config(),
+    density: 0,
+  )
+);
 
 @include mat.all-component-themes($app-theme);

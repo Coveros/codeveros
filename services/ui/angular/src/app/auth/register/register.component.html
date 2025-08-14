@@ -6,10 +6,11 @@
         matInput
         formControlName="firstName"
         id="register-firstname"
-        required>
-      <mat-error *ngIf="registerForm.hasError('required', 'firstName')">
-        This is required
-      </mat-error>
+        required
+      />
+      @if (registerForm.hasError('required', 'firstName')) {
+        <mat-error> This is required </mat-error>
+      }
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Last Name</mat-label>
@@ -17,10 +18,11 @@
         matInput
         formControlName="lastName"
         id="register-lastname"
-        required>
-      <mat-error *ngIf="registerForm.hasError('required', 'lastName')">
-        This is required
-      </mat-error>
+        required
+      />
+      @if (registerForm.hasError('required', 'lastName')) {
+        <mat-error> This is required </mat-error>
+      }
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Username</mat-label>
@@ -28,10 +30,11 @@
         matInput
         formControlName="username"
         id="register-username"
-        required>
-      <mat-error *ngIf="registerForm.hasError('required', 'username')">
-        This is required
-      </mat-error>
+        required
+      />
+      @if (registerForm.hasError('required', 'username')) {
+        <mat-error> This is required </mat-error>
+      }
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Email Address</mat-label>
@@ -40,10 +43,14 @@
         matInput
         formControlName="email"
         id="register-email"
-        required>
-      <mat-error *ngIf="registerForm.hasError('required', 'email') || registerForm.hasError('email', 'email')">
-        A valid email address is required
-      </mat-error>
+        required
+      />
+      @if (
+        registerForm.hasError('required', 'email') ||
+        registerForm.hasError('email', 'email')
+      ) {
+        <mat-error> A valid email address is required </mat-error>
+      }
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Password</mat-label>
@@ -53,10 +60,11 @@
         formControlName="password"
         autocomplete="new-password"
         id="register-password"
-        required>
-      <mat-error *ngIf="registerForm.hasError('required', 'password')">
-        This is required
-      </mat-error>
+        required
+      />
+      @if (registerForm.hasError('required', 'password')) {
+        <mat-error> This is required </mat-error>
+      }
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Confirm password</mat-label>
@@ -67,22 +75,29 @@
         autocomplete="new-password"
         [errorStateMatcher]="passwordErrorMatcher"
         id="register-confirm-password"
-        required>
-      <mat-error *ngIf="registerForm.hasError('required', 'confirmPassword')">
-        This is required
-      </mat-error>
-      <mat-error *ngIf="!registerForm.hasError('required', 'confirmPassword') && registerForm.hasError('passwordMatch')">
-        Passwords must match
-      </mat-error>
+        required
+      />
+      @if (registerForm.hasError('required', 'confirmPassword')) {
+        <mat-error> This is required </mat-error>
+      }
+      @if (
+        !registerForm.hasError('required', 'confirmPassword') &&
+        registerForm.hasError('passwordMatch')
+      ) {
+        <mat-error> Passwords must match </mat-error>
+      }
     </mat-form-field>
     <div fxLayout="row" fxLayoutAlign="center">
-      <p>{{message}}</p>
+      <p>{{ message }}</p>
     </div>
     <button
       mat-raised-button
       id="register-button"
       color="primary"
       type="submit"
-      [disabled]="submitting || registerForm.invalid">Register</button>
+      [disabled]="submitting || registerForm.invalid"
+    >
+      Register
+    </button>
   </div>
 </form>

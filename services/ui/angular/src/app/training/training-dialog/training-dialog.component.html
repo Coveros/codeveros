@@ -1,17 +1,18 @@
-<form [formGroup]="dialogForm" novalidate (ngSubmit)="onSubmit()" class="mat-typography">
+<form
+  [formGroup]="dialogForm"
+  novalidate
+  (ngSubmit)="onSubmit()"
+  class="mat-typography"
+>
   <h2 mat-dialog-title>{{ title }}</h2>
   <mat-dialog-content>
     <div class="form-container">
       <mat-form-field>
         <mat-label>Name</mat-label>
-        <input
-          matInput
-          formControlName="name"
-          id="training-name"
-          required>
-        <mat-error *ngIf="dialogForm.hasError('required', 'name')">
-          This is required
-        </mat-error>
+        <input matInput formControlName="name" id="training-name" required />
+        @if (dialogForm.hasError('required', 'name')) {
+          <mat-error> This is required </mat-error>
+        }
       </mat-form-field>
       <mat-form-field>
         <mat-label>Description</mat-label>
@@ -22,27 +23,48 @@
           cdkAutosizeMaxRows="10"
           formControlName="description"
           id="training-description"
-          required></textarea>
+          required
+        ></textarea>
       </mat-form-field>
-      <div fxLayout="row" fxLayoutGap="16px">
-        <mat-form-field fxFlex="50">
+      <div class="form-row">
+        <mat-form-field>
           <mat-label>Type</mat-label>
           <mat-select formControlName="type" required id="training-type">
-            <mat-option *ngFor="let option of typeOptions" [value]="option.value" [id]="option.id">{{option.viewValue}}</mat-option>
+            @for (option of typeOptions; track option) {
+              <mat-option [value]="option.value" [id]="option.id">{{
+                option.viewValue
+              }}</mat-option>
+            }
           </mat-select>
         </mat-form-field>
-        <mat-form-field fxFlex="50">
+        <mat-form-field>
           <mat-label>Duration (# of Days)</mat-label>
-          <mat-select formControlName="duration" required id="training-duration">
-            <mat-option *ngFor="let option of durationOptions" [value]="option.value" [id]="option.id">{{option.viewValue}}</mat-option>
+          <mat-select
+            formControlName="duration"
+            required
+            id="training-duration"
+          >
+            @for (option of durationOptions; track option) {
+              <mat-option [value]="option.value" [id]="option.id">{{
+                option.viewValue
+              }}</mat-option>
+            }
           </mat-select>
         </mat-form-field>
       </div>
     </div>
   </mat-dialog-content>
-  <mat-dialog-actions>
-    <span fxFlex></span>
-    <button mat-button mat-dialog-close id="training-cancel-button">Cancel</button>
-    <button mat-button type="submit" [disabled]="isSaving || dialogForm.invalid" id="training-save-button">Save</button>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close id="training-cancel-button">
+      Cancel
+    </button>
+    <button
+      mat-button
+      type="submit"
+      [disabled]="isSaving || dialogForm.invalid"
+      id="training-save-button"
+    >
+      Save
+    </button>
   </mat-dialog-actions>
 </form>

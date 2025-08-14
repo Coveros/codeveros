@@ -1,29 +1,44 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AuthService} from '../auth.service';
-import {Router} from '@angular/router';
+import { Component, OnInit, inject } from '@angular/core';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
+import { MatFormField, MatLabel, MatError } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'codeveros-login',
   templateUrl: './login.component.html',
-  styleUrls: [ './login.component.scss' ]
+  styleUrls: ['./login.component.scss'],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    MatError,
+    MatButton,
+  ],
 })
 export class LoginComponent implements OnInit {
+  formBuilder = inject(UntypedFormBuilder);
+  authService = inject(AuthService);
+  router = inject(Router);
 
-  loginForm: FormGroup;
+  loginForm: UntypedFormGroup;
   loggingIn = false;
   message: string;
 
-  constructor(
-    public formBuilder: FormBuilder,
-    public authService: AuthService,
-    public router: Router
-  ) { }
-
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      username: [ '', Validators.required ],
-      password: [ '', Validators.required ]
+      username: ['', Validators.required],
+      password: ['', Validators.required],
     });
   }
 
@@ -43,23 +58,24 @@ export class LoginComponent implements OnInit {
     this.loggingIn = true;
     this.message = 'Trying to sign in...';
 
-    const {username, password} = this.loginForm.value;
+    const { username, password } = this.loginForm.value;
 
     this.authService.login(username, password).subscribe(
       () => {
         this.loggingIn = false;
         if (this.authService.isLoggedIn()) {
-          const redirect = this.authService.redirectUrl ? this.router.parseUrl(this.authService.redirectUrl) : '/';
+          const redirect = this.authService.redirectUrl
+            ? this.router.parseUrl(this.authService.redirectUrl)
+            : '/';
           this.router.navigateByUrl(redirect);
         } else {
           this.message = 'Failed login';
         }
       },
-      err => {
+      () => {
         this.loggingIn = false;
         this.message = 'Failed login';
-
-      });
+      },
+    );
   }
-
 }

@@ -27,8 +27,8 @@ if (!userServiceUrl || !trainingServiceUrl || !authServiceUrl) {
 const authentication = Authentication({ authServiceUrl, userServiceUrl });
 
 const services = [
-  { path: ['/api/user', '/api/user/*'], target: userServiceUrl },
-  { path: ['/api/training', '/api/training/*'], target: trainingServiceUrl }
+  { path: ['/api/user', '/api/user/*splat'], target: userServiceUrl },
+  { path: ['/api/training', '/api/training/*splat'], target: trainingServiceUrl }
 ];
 
 console.log('User service endpoint: ', userServiceUrl);
@@ -88,7 +88,7 @@ services.forEach(service => {
 });
 
 // 404 response for all other requests
-app.all('*', (req, res) => {
+app.all('*splat', (req, res) => {
   res.status(404).send('Route not found');
 });
 

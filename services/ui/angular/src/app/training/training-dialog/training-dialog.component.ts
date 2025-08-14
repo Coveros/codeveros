@@ -1,9 +1,28 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Component, OnInit, inject } from '@angular/core';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogTitle,
+  MatDialogContent,
+  MatDialogActions,
+  MatDialogClose,
+} from '@angular/material/dialog';
 
-import {Training} from '../training.interface';
-import {TrainingService} from '../training.service';
+import { Training } from '../training.interface';
+import { TrainingService } from '../training.service';
+import { MatFormField, MatLabel, MatError } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import { MatSelect, MatOption } from '@angular/material/select';
+import { MatButton } from '@angular/material/button';
+import { TrainingDialogData } from './training-dialog-data.interface';
 
 interface DurationOption {
   value: number;
@@ -19,23 +38,49 @@ interface TypeOption {
 
 @Component({
   templateUrl: './training-dialog.component.html',
-  styleUrls: [ './training-dialog.component.scss' ]
+  styleUrls: ['./training-dialog.component.scss'],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MatDialogTitle,
+    MatDialogContent,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    MatError,
+    CdkTextareaAutosize,
+    MatSelect,
+    MatOption,
+    MatDialogActions,
+    MatButton,
+    MatDialogClose,
+  ],
 })
 export class TrainingDialogComponent implements OnInit {
-  training: Training;
-  dialogForm: FormGroup;
+  dialogRef = inject<MatDialogRef<TrainingDialogComponent>>(MatDialogRef);
+  private readonly data = inject<TrainingDialogData>(MAT_DIALOG_DATA, {
+    optional: true,
+  });
+  private readonly formBuilder = inject(UntypedFormBuilder);
+  private readonly trainingService = inject(TrainingService);
+
+  dialogForm: UntypedFormGroup;
   isSaving = false;
   isEdit = false;
   title: string;
 
   typeOptions: TypeOption[] = [
-    { value: 'presentation', viewValue: 'Presentation', id: 'type-option-presentation' },
+    {
+      value: 'presentation',
+      viewValue: 'Presentation',
+      id: 'type-option-presentation',
+    },
     { value: 'workshop', viewValue: 'Workshop', id: 'type-option-workshop' },
-    { value: 'course', viewValue: 'Course', id: 'type-option-course' }
+    { value: 'course', viewValue: 'Course', id: 'type-option-course' },
   ];
 
   durationOptions: DurationOption[] = [
-    { value: .5, viewValue: '0.5', id: 'duration-option-0.5' },
+    { value: 0.5, viewValue: '0.5', id: 'duration-option-0.5' },
     { value: 1, viewValue: '1', id: 'duration-option-1' },
     { value: 2, viewValue: '2', id: 'duration-option-2' },
     { value: 3, viewValue: '3', id: 'duration-option-3' },
@@ -43,24 +88,15 @@ export class TrainingDialogComponent implements OnInit {
     { value: 5, viewValue: '5', id: 'duration-option-5' },
   ];
 
-  constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef: MatDialogRef<TrainingDialogComponent>,
-    private formBuilder: FormBuilder,
-    private trainingService: TrainingService
-  ) {
-    this.training = data.training || {};
-  }
-
   ngOnInit(): void {
-    this.isEdit = !!(this.training && this.training._id);
+    this.isEdit = !!this.data?.training?._id;
     this.title = this.isEdit ? 'Edit Training' : 'Add Training';
 
     this.dialogForm = this.formBuilder.group({
-      name: [ this.training.name, Validators.required ],
-      description: [ this.training.description, Validators.required ],
-      type: [ this.training.type, Validators.required ],
-      duration: [ this.training.duration, Validators.required ],
+      name: [this.data?.training.name, Validators.required],
+      description: [this.data?.training.description, Validators.required],
+      type: [this.data?.training.type, Validators.required],
+      duration: [this.data?.training.duration, Validators.required],
     });
   }
 
@@ -73,11 +109,11 @@ export class TrainingDialogComponent implements OnInit {
 
     const value: Training = this.dialogForm.value;
 
-    const request = (this.isEdit) ?
-      this.trainingService.updateTraining(this.training._id, value) :
-      this.trainingService.createTraining(value);
+    const request = this.isEdit
+      ? this.trainingService.updateTraining(this.data?.training._id, value)
+      : this.trainingService.createTraining(value);
 
-    request.subscribe( (returnValue: Training) => {
+    request.subscribe((returnValue: Training) => {
       this.isSaving = false;
       this.dialogRef.close(returnValue);
     });

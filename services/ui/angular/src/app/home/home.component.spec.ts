@@ -1,11 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { AuthService } from '../auth/auth.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HomeComponent } from './home.component';
 import { SharedModule } from '../shared/shared.module';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -13,22 +17,29 @@ describe('HomeComponent', () => {
 
   let authServiceStub: Partial<AuthService>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     authServiceStub = {
-      getLoggedInUser: () => ({ _id: '123', username: 'testuser', firstName: 'bob', lastName: 'bob', email: 'bob@bob.com'})
+      getLoggedInUser: () => ({
+        _id: '123',
+        username: 'testuser',
+        firstName: 'bob',
+        lastName: 'bob',
+        email: 'bob@bob.com',
+      }),
     };
 
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        HttpClientTestingModule,
-        BrowserAnimationsModule,
-        SharedModule
+      imports: [BrowserAnimationsModule, SharedModule, HomeComponent],
+      providers: [
+        provideRouter([]),
+        {
+          provide: AuthService,
+          useValue: authServiceStub,
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
       ],
-      declarations: [ HomeComponent ],
-      providers: [ { provide: AuthService, useValue: authServiceStub } ]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

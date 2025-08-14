@@ -1,38 +1,57 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AuthService} from '../auth.service';
-import {Router} from '@angular/router';
-import {passwordMatchValidator} from '../../shared/password-match-validator/password-match-validator';
-import {PasswordMatchErrorMatcher} from '../../shared/password-match-validator/password-match-error-matcher';
+import { Component, OnInit, inject } from '@angular/core';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
+import { passwordMatchValidator } from '../../shared/password-match-validator/password-match-validator';
+import { PasswordMatchErrorMatcher } from '../../shared/password-match-validator/password-match-error-matcher';
+import { MatFormField, MatLabel, MatError } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'codeveros-register',
   templateUrl: './register.component.html',
-  styleUrls: [ './register.component.scss' ]
+  styleUrls: ['./register.component.scss'],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    MatError,
+    MatButton,
+  ],
 })
 export class RegisterComponent implements OnInit {
+  formBuilder = inject(UntypedFormBuilder);
+  authService = inject(AuthService);
+  router = inject(Router);
+
   passwordErrorMatcher = new PasswordMatchErrorMatcher();
-  registerForm: FormGroup;
+  registerForm: UntypedFormGroup;
   submitting = false;
   message: string;
 
-  constructor(
-    public formBuilder: FormBuilder,
-    public authService: AuthService,
-    public router: Router
-  ) { }
-
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({
-      username: [ '', Validators.required ],
-      password: [ '', Validators.required ],
-      confirmPassword: [ '', Validators.required ],
-      firstName: [ '', Validators.required ],
-      lastName: [ '', Validators.required ],
-      email: [ '', [ Validators.required, Validators.email ] ],
-    }, {
-      validator: passwordMatchValidator('password', 'confirmPassword')
-    });
+    this.registerForm = this.formBuilder.group(
+      {
+        username: ['', Validators.required],
+        password: ['', Validators.required],
+        confirmPassword: ['', Validators.required],
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+      },
+      {
+        validator: passwordMatchValidator('password', 'confirmPassword'),
+      },
+    );
   }
 
   onRegister() {
@@ -49,17 +68,18 @@ export class RegisterComponent implements OnInit {
       () => {
         this.submitting = false;
         if (this.authService.isLoggedIn()) {
-          const redirect = this.authService.redirectUrl ? this.router.parseUrl(this.authService.redirectUrl) : '/';
+          const redirect = this.authService.redirectUrl
+            ? this.router.parseUrl(this.authService.redirectUrl)
+            : '/';
           this.router.navigateByUrl(redirect);
         } else {
           this.message = 'Failed registration';
         }
       },
-      err => {
+      () => {
         this.submitting = false;
         this.message = 'Failed registration';
-
-      });
+      },
+    );
   }
-
 }

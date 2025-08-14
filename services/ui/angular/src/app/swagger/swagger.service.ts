@@ -1,17 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { SwaggerUIOptions } from 'swagger-ui';
 
-interface SwaggerConfig {
-  [key: string]: any;
-}
+type SwaggerConfig = SwaggerUIOptions['spec'];
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SwaggerService {
-
-  constructor(private http: HttpClient) {}
+  private readonly http = inject(HttpClient);
 
   getConfig(): Observable<SwaggerConfig> {
     return this.http.get<SwaggerConfig>('api/docs');

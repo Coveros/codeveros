@@ -6,10 +6,11 @@
         matInput
         formControlName="username"
         id="sign-in-username"
-        required>
-      <mat-error *ngIf="username.hasError('required')">
-        This is required
-      </mat-error>
+        required
+      />
+      @if (username.hasError('required')) {
+        <mat-error> This is required </mat-error>
+      }
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Password</mat-label>
@@ -18,19 +19,23 @@
         type="password"
         formControlName="password"
         id="sign-in-password"
-        required>
-      <mat-error *ngIf="password.hasError('required')">
-        This is required
-      </mat-error>
+        required
+      />
+      @if (password.hasError('required')) {
+        <mat-error> This is required </mat-error>
+      }
     </mat-form-field>
     <div fxLayout="row" fxLayoutAlign="center">
-      <p>{{message}}</p>
+      <p>{{ message }}</p>
     </div>
     <button
       mat-raised-button
       id="sign-in-button"
       color="primary"
       type="submit"
-      [disabled]="loggingIn || loginForm.invalid">Sign in</button>
+      [disabled]="loggingIn || loginForm.invalid"
+    >
+      Sign in
+    </button>
   </div>
 </form>

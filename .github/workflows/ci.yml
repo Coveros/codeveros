@@ -1,19 +1,23 @@
-# Runs on pull requests to master when there are changes to the service files in services/
+# Runs on pull requests to main when there are changes to the service files in services/
 # Lints and Unit tests the services that have changed
 
 name: Service CI
 
+permissions:
+  contents: read
+  packages: write
+
 on:
   pull_request:
-    branches: [master]
+    branches: [main]
     paths: ["services/**"]
   push:
-    branches: [master]
+    branches: [main]
     tags: ["v*"]
     paths: ["services/**"]
 
 env:
-  NODE_VERSION: 14.x
+  NODE_VERSION: 22.x
   REGISTRY: ghcr.io
 
 jobs:
@@ -23,9 +27,9 @@ jobs:
       matrix-include: ${{ steps.set-matrix.outputs.filtered }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Check for changes
-        uses: dorny/paths-filter@v2
+        uses: dorny/paths-filter@v3
         id: filter
         with:
           filters: .github/filters.yml
@@ -47,12 +51,14 @@ jobs:
         working-directory: ${{ matrix.context }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: ${{ matrix.context }}/package-lock.json
 
       - name: Install NPM Dependencies
         run: npm ci --quiet
@@ -65,7 +71,7 @@ jobs:
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
-        uses: docker/metadata-action@v3
+        uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/${{ matrix.image }}
           tags: |
@@ -73,14 +79,14 @@ jobs:
             type=ref,event=pr
 
       - name: Log in to the Container registry
-        uses: docker/login-action@v1
+        uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v6
         with:
           context: ${{ matrix.context }}
           push: ${{ github.event_name != 'pull_request' }}

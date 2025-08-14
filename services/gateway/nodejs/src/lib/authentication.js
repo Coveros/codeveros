@@ -1,19 +1,20 @@
-const unirest = require('unirest');
-
 module.exports = opts => {
   async function signToken (payload) {
     try {
-      const tokenRes = await unirest
-        .post(`${opts.authServiceUrl}/api/auth/signToken`).type('json').send({ payload });
-
-      if (!tokenRes) {
-        console.log('Did not receive a response when attempting to sign JWT token');
-      } else if (tokenRes.error) {
-        console.log(`Error received attempting to sign JWT token: ${tokenRes.error.status}-${tokenRes.error.message}`);
-      } else if (!tokenRes.ok || !tokenRes.body || !tokenRes.body.token) {
+      const tokenRes = await fetch(`${opts.authServiceUrl}/api/auth/signToken`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ payload })
+      });
+      if (!tokenRes.ok) {
+        console.log(`Error received attempting to sign JWT token: ${tokenRes.status}-${tokenRes.statusText}`);
+        return;
+      }
+      const data = await tokenRes.json();
+      if (!data?.token) {
         console.log('Failed to retrieve JWT from Auth Service');
       } else {
-        return tokenRes.body.token;
+        return data.token;
       }
     } catch (err) {
       console.error('Failed to obtain JWT', err);
@@ -34,25 +35,29 @@ module.exports = opts => {
 
     let createUserRes;
     try {
-      createUserRes = await unirest.post(`${opts.userServiceUrl}/api/user`).type('json').send(req.body);
+      createUserRes = await fetch(`${opts.userServiceUrl}/api/user`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(req.body)
+      });
     } catch (err) {
       console.error('Failed to create user record in User service: ', err);
       return sendError();
     }
 
-    if (!createUserRes) {
-      console.log('Did not receive a response when attempting to create user record');
-      return sendError();
-    } else if (createUserRes.error) {
+    if (!createUserRes.ok) {
       console.log('Error received attempting to create user record: ' +
-        `${createUserRes.error.status}-${createUserRes.error.message}`);
+        `${createUserRes.status}-${createUserRes.statusText}`);
       return sendError();
-    } else if (!createUserRes.ok || !createUserRes.body || !createUserRes.body._id) {
+    }
+
+    const user = await createUserRes.json();
+
+    if (!user?._id) {
       console.log('Failed attempting to create user record, did not receive the created user.');
       return sendError();
     }
 
-    const user = createUserRes.body;
     const token = await signToken({ _id: user._id });
 
     if (!token) {
@@ -74,19 +79,20 @@ module.exports = opts => {
     }
 
     try {
-      const loginRes = await unirest
-        .post(`${opts.userServiceUrl}/api/user/login`)
-        .type('json')
-        .send({ username, password });
+      const loginRes = await fetch(`${opts.userServiceUrl}/api/user/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
 
-      if (!loginRes || !loginRes.ok || !loginRes.body) {
+      if (!loginRes.ok) {
         console.log(`Failed on login: ${username}, received ${loginRes.status}`);
         return sendLoginError();
       }
 
-      const userData = loginRes.body;
+      const userData = await loginRes.json();
 
-      if (!userData || !userData._id) {
+      if (!userData?._id) {
         console.log(`User not returned with login for ${username}`);
         return sendLoginError();
       }
@@ -99,7 +105,7 @@ module.exports = opts => {
       // return token and user information to user
       res.status(200).send({ token, user: userData });
     } catch (err) {
-      console.error(`Error logging in for ${username}: `, err);
+      console.error('Error logging in for %s:', username, err);
       return sendLoginError();
     }
   };
@@ -121,13 +127,18 @@ module.exports = opts => {
     const splitAuth = authHeader.split(' ');
     if (Array.isArray(splitAuth) && splitAuth.length >= 2 && splitAuth[0] === 'Bearer') {
       try {
-        const tokenRes = await unirest
-          .post(`${opts.authServiceUrl}/api/auth/verifyToken`)
-          .type('json')
-          .send({ token: splitAuth[1] });
-        if (tokenRes.ok && tokenRes.body && tokenRes.body.valid) {
-          req.jwtPayload = tokenRes.body.payload;
-          return next();
+        const tokenRes = await fetch(`${opts.authServiceUrl}/api/auth/verifyToken`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token: splitAuth[1] })
+        });
+
+        if (tokenRes.ok) {
+          const jwtPayload = await tokenRes.json();
+          if (jwtPayload) {
+            req.jwtPayload = jwtPayload;
+            return next();
+          }
         }
         return sendTokenError();
       } catch (err) {
@@ -144,13 +155,21 @@ module.exports = opts => {
     }
 
     try {
-      const userRes = await unirest.get(`${opts.userServiceUrl}/api/user/${req.jwtPayload._id}`);
+      const userRes = await fetch(`${opts.userServiceUrl}/api/user/${req.jwtPayload._id}`);
 
-      if (!userRes || userRes.error || !userRes.ok || !userRes.body || !userRes.body._id) {
+      if (!userRes.ok) {
         console.log('Failed to retrieve user from JWT');
         return res.status(200).send();
       }
-      return res.status(200).send(userRes.body);
+
+      const user = await userRes.json();
+
+      if (!user?._id) {
+        console.log('Failed to retrieve user from JWT');
+        return res.status(200).send();
+      }
+
+      return res.status(200).send(user);
     } catch (err) {
       console.error('Error retrieving user from JWT: ', err);
     }

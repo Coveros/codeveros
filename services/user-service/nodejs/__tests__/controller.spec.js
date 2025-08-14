@@ -30,7 +30,7 @@ describe('Controller', () => {
       findById: jest.fn(),
       create: jest.fn(),
       findByIdAndUpdate: jest.fn(),
-      findByIdAndRemove: jest.fn()
+      findByIdAndDelete: jest.fn()
     };
   });
 
@@ -42,7 +42,7 @@ describe('Controller', () => {
       try {
         await controller.login(ctx);
       } catch (e) {}
-      expect(ctx.throw).toBeCalledWith(400, 'Missing username or password');
+      expect(ctx.throw).toHaveBeenCalledWith(400, 'Missing username or password');
     });
 
     test('should throw a 400 error when the password is missing', async () => {
@@ -52,7 +52,7 @@ describe('Controller', () => {
       try {
         await controller.login(ctx);
       } catch (e) {}
-      expect(ctx.throw).toBeCalledWith(400, 'Missing username or password');
+      expect(ctx.throw).toHaveBeenCalledWith(400, 'Missing username or password');
     });
 
     test('should throw a 401 if user not found', async () => {
@@ -63,7 +63,7 @@ describe('Controller', () => {
       try {
         await controller.login(ctx);
       } catch (e) {}
-      expect(ctx.throw).toBeCalledWith(401, 'Invalid username or password');
+      expect(ctx.throw).toHaveBeenCalledWith(401, 'Invalid username or password');
     });
 
     test('should throw a 401 if user does not have a password', async () => {
@@ -74,7 +74,7 @@ describe('Controller', () => {
       try {
         await controller.login(ctx);
       } catch (e) {}
-      expect(ctx.throw).toBeCalledWith(401, 'Invalid username or password');
+      expect(ctx.throw).toHaveBeenCalledWith(401, 'Invalid username or password');
     });
 
     test('should throw a 401 if password is invalid', async () => {
@@ -94,8 +94,8 @@ describe('Controller', () => {
       try {
         await controller.login(ctx);
       } catch (e) {}
-      expect(user.validatePassword).toBeCalledWith(submittedPassword);
-      expect(ctx.throw).toBeCalledWith(401, 'Invalid username or password');
+      expect(user.validatePassword).toHaveBeenCalledWith(submittedPassword);
+      expect(ctx.throw).toHaveBeenCalledWith(401, 'Invalid username or password');
     });
 
     test('should set body to user if login valid', async () => {
@@ -112,7 +112,7 @@ describe('Controller', () => {
       codeverosMs.utils.getModel.mockReturnValueOnce(userMock);
       ctx.request.body = { username, password };
       await controller.login(ctx);
-      expect(user.validatePassword).toBeCalledWith(password);
+      expect(user.validatePassword).toHaveBeenCalledWith(password);
       expect(ctx.body).toEqual(user);
     });
   });

@@ -1,41 +1,72 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {MediaChange, MediaObserver} from '@angular/flex-layout';
-import {Subject} from 'rxjs';
-import {takeUntil, filter, map} from 'rxjs/operators';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
-import {ConfirmDialogService} from '../shared/confirm-dialog/confirm-dialog.service';
+import { ConfirmDialogService } from '../shared/confirm-dialog/confirm-dialog.service';
+import {
+  BreakpointObserver,
+  Breakpoints,
+  BreakpointState,
+} from '@angular/cdk/layout';
+import {
+  MatDrawerMode,
+  MatSidenavContainer,
+  MatSidenav,
+  MatSidenavContent,
+} from '@angular/material/sidenav';
+import { MatToolbar } from '@angular/material/toolbar';
+import { MatIconButton } from '@angular/material/button';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatIcon } from '@angular/material/icon';
+import {
+  MatNavList,
+  MatListSubheaderCssMatStyler,
+  MatListItem,
+} from '@angular/material/list';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  imports: [
+    MatToolbar,
+    MatIconButton,
+    MatTooltip,
+    MatIcon,
+    MatSidenavContainer,
+    MatSidenav,
+    MatNavList,
+    MatListSubheaderCssMatStyler,
+    MatListItem,
+    RouterLink,
+    RouterLinkActive,
+    MatSidenavContent,
+    RouterOutlet,
+  ],
 })
 export class HomeComponent implements OnInit, OnDestroy {
+  private readonly breakpointObserver = inject(BreakpointObserver);
+  private readonly authService = inject(AuthService);
+  private readonly confirmDialogService = inject(ConfirmDialogService);
+
   sidenavOpen = true;
-  sidenavMode = 'side';
+  sidenavMode: MatDrawerMode = 'side';
   isMobile = false;
   isXs = false;
   username = '';
 
-  private destroyed$ = new Subject<boolean>();
-
-  constructor(
-    private mediaOberver: MediaObserver,
-    private authService: AuthService,
-    private confirmDialogService: ConfirmDialogService
-  ) {}
+  private readonly destroyed$ = new Subject<boolean>();
 
   ngOnInit(): void {
-    this.mediaOberver.asObservable()
-      .pipe(
-        takeUntil(this.destroyed$),
-        filter((changes: MediaChange[]) => changes.length > 0),
-        map((changes: MediaChange[]) => changes[0])
-      )
-      .subscribe((change: MediaChange) => {
-        this.isXs = (change.mqAlias === 'xs');
-        this.isMobile = this.isXs || (change.mqAlias === 'sm');
+    this.breakpointObserver
+      .observe([Breakpoints.XSmall, Breakpoints.Small])
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe((state: BreakpointState) => {
+        this.isXs = state.breakpoints[Breakpoints.XSmall] ?? false;
+        this.isMobile =
+          this.isXs || (state.breakpoints[Breakpoints.Small] ?? false);
         this.sidenavOpen = !this.isMobile;
-        this.sidenavMode = (this.isMobile) ? 'over' : 'side';
+        this.sidenavMode = this.isMobile ? 'over' : 'side';
       });
     const user = this.authService.getLoggedInUser();
     this.username = user.username;
@@ -51,15 +82,17 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   onSignOut() {
-    this.confirmDialogService.open({
-      title: 'Sign out?',
-      message: 'Are you sure you want to sign out?',
-      cancelId: 'cancel-sign-out',
-      confirmId: 'confirm-sign-out'
-    }).subscribe(confirmed => {
-      if (confirmed) {
-        this.authService.logout();
-      }
-    });
+    this.confirmDialogService
+      .open({
+        title: 'Sign out?',
+        message: 'Are you sure you want to sign out?',
+        cancelId: 'cancel-sign-out',
+        confirmId: 'confirm-sign-out',
+      })
+      .subscribe((confirmed) => {
+        if (confirmed) {
+          this.authService.logout();
+        }
+      });
   }
 }

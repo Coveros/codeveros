@@ -1,4 +1,3 @@
-const unirest = require('unirest');
 const merge = require('deepmerge');
 
 const baseSpec = {
@@ -32,17 +31,20 @@ const baseSpec = {
 
 module.exports = opts => async (req, res) => {
   const [userSpec, trainingSpec] = await Promise.all([
-    unirest.get(`${opts.userServiceUrl}/api/docs`),
-    unirest.get(`${opts.trainingServiceUrl}/api/docs`)
+    fetch(`${opts.userServiceUrl}/api/docs`),
+    fetch(`${opts.trainingServiceUrl}/api/docs`)
   ]);
 
+  const userSpecData = userSpec.ok && await userSpec.json();
+  const trainingSpecData = trainingSpec.ok && await trainingSpec.json();
+
   let specFailure = false;
-  if (!userSpec || !userSpec.ok || userSpec.error || !userSpec.body) {
+  if (!userSpecData) {
     console.log(`Failed to retrieve User Service API docs, received ${userSpec.status}`);
     specFailure = true;
   }
 
-  if (!trainingSpec || !trainingSpec.ok || trainingSpec.error || !trainingSpec.body) {
+  if (!trainingSpecData) {
     console.log(`Failed to retrieve Training Service API docs, received ${trainingSpec.status}`);
     specFailure = true;
   }
@@ -51,6 +53,6 @@ module.exports = opts => async (req, res) => {
     return res.status(500).send('Failed to retrieve API docs');
   }
 
-  const swaggerSpec = merge.all([trainingSpec.body, userSpec.body, baseSpec]);
+  const swaggerSpec = merge.all([trainingSpecData, userSpecData, baseSpec]);
   res.status(200).send(swaggerSpec);
 };
