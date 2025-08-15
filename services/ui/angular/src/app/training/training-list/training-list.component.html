@@ -29,7 +29,7 @@
       <ng-container matColumnDef="type">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
         <td mat-cell *matCellDef="let element">
-          {{ typeOptions[element.type] }}
+          {{ typeOption(element.type) }}
         </td>
       </ng-container>
 

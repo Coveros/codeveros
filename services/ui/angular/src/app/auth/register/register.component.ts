@@ -34,9 +34,9 @@ export class RegisterComponent implements OnInit {
   router = inject(Router);
 
   passwordErrorMatcher = new PasswordMatchErrorMatcher();
-  registerForm: UntypedFormGroup;
+  registerForm!: UntypedFormGroup;
   submitting = false;
-  message: string;
+  message = '';
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group(
@@ -49,7 +49,7 @@ export class RegisterComponent implements OnInit {
         email: ['', [Validators.required, Validators.email]],
       },
       {
-        validator: passwordMatchValidator('password', 'confirmPassword'),
+        validators: passwordMatchValidator('password', 'confirmPassword'),
       },
     );
   }
@@ -64,22 +64,26 @@ export class RegisterComponent implements OnInit {
 
     const value = this.registerForm.value;
 
-    this.authService.register(value).subscribe(
-      () => {
+    this.authService.register(value).subscribe({
+      next: () => {
         this.submitting = false;
-        if (this.authService.isLoggedIn()) {
-          const redirect = this.authService.redirectUrl
-            ? this.router.parseUrl(this.authService.redirectUrl)
-            : '/';
-          this.router.navigateByUrl(redirect);
-        } else {
-          this.message = 'Failed registration';
-        }
+        void this.redirectAfterRegister();
       },
-      () => {
+      error: () => {
         this.submitting = false;
         this.message = 'Failed registration';
       },
-    );
+    });
+  }
+
+  private async redirectAfterRegister() {
+    if (await this.authService.isLoggedIn()) {
+      const redirect = this.authService.redirectUrl
+        ? this.router.parseUrl(this.authService.redirectUrl)
+        : '/';
+      void this.router.navigateByUrl(redirect);
+    } else {
+      this.message = 'Failed registration';
+    }
   }
 }

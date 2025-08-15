@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { of, Observable } from 'rxjs';
+import { of, Observable, firstValueFrom } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -24,10 +24,10 @@ export class AuthService {
   private readonly http = inject(HttpClient);
 
   private readonly endpoint = `${environment.apiUrl}/auth`;
-  private loggedInUser: User;
-  redirectUrl: string;
+  private loggedInUser: User | null = null;
+  redirectUrl?: string;
 
-  private get token(): string {
+  private get token(): string | null {
     return localStorage.getItem('access_token');
   }
 
@@ -43,15 +43,15 @@ export class AuthService {
     if (!this.token) {
       return false;
     }
-    if (this.loggedInUser && this.loggedInUser._id) {
+    if (this.loggedInUser?._id) {
       return true;
     }
 
-    const user = await this.http
+    const user$ = this.http
       .get<User>(`${this.endpoint}/loggedin`)
-      .pipe(catchError(() => of(null)))
-      .toPromise();
-    if (user && user._id) {
+      .pipe(catchError(() => of(null)));
+    const user = await firstValueFrom(user$);
+    if (user?._id) {
       this.loggedInUser = user;
       return true;
     }
@@ -61,7 +61,7 @@ export class AuthService {
     return false;
   }
 
-  getLoggedInUser(): User {
+  getLoggedInUser(): User | null {
     return this.loggedInUser;
   }
 
