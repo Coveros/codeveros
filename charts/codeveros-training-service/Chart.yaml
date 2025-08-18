@@ -2,13 +2,13 @@ apiVersion: v2
 name: codeveros-training-service
 description: Codeveros Training Service Helm chart
 type: application
-version: 0.6.0
-appVersion: "1.3.0"
+version: 1.0.0
+appVersion: "2.0.0"
 home: https://coveros.com
 maintainers:
   - name: justin-coveros
     email: justin.hollingsworth@coveros.com
 dependencies:
   - name: mongodb
-    version: 10.3.3
+    version: 16.5.44
     repository: https://charts.bitnami.com/bitnami
