@@ -1,6 +1,13 @@
-import { useState, useEffect, type ReactNode, useMemo } from 'react';
+import {
+  useState,
+  useEffect,
+  type ReactNode,
+  useMemo,
+  useCallback,
+} from 'react';
 import { Navigate, useLocation } from 'react-router';
 import { AuthContext, type User } from './authContext';
+import { useCheckLoggedIn, useLogin, useLogout } from '../api/authApi';
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -8,68 +15,47 @@ interface AuthProviderProps {
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
 
+  // Check if user is logged in on mount
+  const { data: loggedInUser, isLoading, error } = useCheckLoggedIn();
+
+  const loginMutation = useLogin();
+  const logoutMutation = useLogout();
+
   useEffect(() => {
-    // Check if user is already logged in
-    const checkAuth = async () => {
-      const token = localStorage.getItem('access_token');
-      if (token) {
-        // In a real app, you would verify the token with the backend
-        // For now, we'll just check if it exists
-        try {
-          // TODO: Replace with actual API call
-          // const response = await fetch('/api/auth/loggedin', {
-          //   headers: { Authorization: `Bearer ${token}` }
-          // });
-          // const userData = await response.json();
-          // setUser(userData);
-
-          // Mock implementation
-          setUser({ _id: '1', username: 'demo' });
-        } catch (error) {
-          localStorage.removeItem('access_token');
-        }
-      }
-      setIsLoading(false);
-    };
-
-    checkAuth();
-  }, []);
-
-  const login = async (
-    username: string,
-    password: string,
-  ): Promise<boolean> => {
-    try {
-      // TODO: Replace with actual API call
-      // const response = await fetch('/api/auth/login', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ username, password }),
-      // });
-      // const { token, user } = await response.json();
-
-      // Mock implementation
-      const token = 'mock-token';
-      const userData = { _id: '1', username };
-
-      localStorage.setItem('access_token', token);
-      setUser(userData);
-      return true;
-    } catch (error) {
-      console.error('Login failed:', error);
-      return false;
+    const token = localStorage.getItem('access_token');
+    if (token && loggedInUser) {
+      setUser(loggedInUser);
+    } else if (error) {
+      localStorage.removeItem('access_token');
+      setUser(null);
     }
-  };
+  }, [loggedInUser, error]);
 
-  const logout = () => {
+  const login = useCallback(
+    async (username: string, password: string): Promise<boolean> => {
+      try {
+        const response = await loginMutation.mutateAsync({
+          username,
+          password,
+        });
+        localStorage.setItem('access_token', response.token);
+        setUser(response.user);
+        return true;
+      } catch (error) {
+        console.error('Login failed:', error);
+        return false;
+      }
+    },
+    [loginMutation],
+  );
+
+  const logout = useCallback(() => {
     localStorage.removeItem('access_token');
     setUser(null);
-    // TODO: Call logout endpoint
-    // fetch('/api/auth/logout', { method: 'POST' });
-  };
+    logoutMutation.mutate();
+  }, [logoutMutation]);
 
   const isLoginPage = location.pathname === '/login';
   const isAuthenticated = !!user;
@@ -90,7 +76,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     return <div>Loading...</div>;
   }
 
-  // Redirect to login if not authenticated and not on login page
+  // Redirect if not authenticated and not on login page
   if (!isAuthenticated && !isLoginPage) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }

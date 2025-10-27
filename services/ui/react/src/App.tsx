@@ -4,6 +4,9 @@ import { Home } from './Home/Home';
 import { Welcome } from './Welcome/Welcome';
 import { Login } from './Login/Login';
 import { NotFound } from './NotFound/NotFound';
+import { Users } from './Users/Users';
+import { Training } from './Training/Training';
+import { Swagger } from './Swagger/Swagger';
 
 export const App = () => {
   return (
@@ -12,12 +15,9 @@ export const App = () => {
         <Route path="/login" element={<Login />} />
         <Route element={<Home />}>
           <Route index element={<Welcome />} />
-          <Route path="training" element={<div>Training (Coming Soon)</div>} />
-          <Route path="users" element={<div>Users (Coming Soon)</div>} />
-          <Route
-            path="swagger"
-            element={<div>API Reference (Coming Soon)</div>}
-          />
+          <Route path="training" element={<Training />} />
+          <Route path="users" element={<Users />} />
+          <Route path="swagger" element={<Swagger />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
