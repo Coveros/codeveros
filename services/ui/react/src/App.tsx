@@ -1,17 +1,26 @@
-import { ProvisionForm } from './ProvisionForm/ProvisionForm';
-import { AppBar, Box, Toolbar, Stack, Typography } from '@mui/material';
+import { Routes, Route } from 'react-router';
+import { AuthProvider } from './AuthProvider/AuthProvider.tsx';
+import { Home } from './Home/Home';
+import { Welcome } from './Welcome/Welcome';
+import { Login } from './Login/Login';
+import { NotFound } from './NotFound/NotFound';
 
 export const App = () => {
   return (
-    <Stack sx={{ height: '100vh', width: '100vw' }} direction="column">
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6">Codeveros</Typography>
-        </Toolbar>
-      </AppBar>
-      <Box sx={{ overflow: 'auto', flex: 1, pt: 1 }}>
-        <ProvisionForm />
-      </Box>
-    </Stack>
+    <AuthProvider>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route element={<Home />}>
+          <Route index element={<Welcome />} />
+          <Route path="training" element={<div>Training (Coming Soon)</div>} />
+          <Route path="users" element={<div>Users (Coming Soon)</div>} />
+          <Route
+            path="swagger"
+            element={<div>API Reference (Coming Soon)</div>}
+          />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </AuthProvider>
   );
 };
