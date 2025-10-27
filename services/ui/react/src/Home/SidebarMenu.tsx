@@ -21,16 +21,12 @@ export const SidebarMenu = ({ open, onClose, isMobile }: SidebarMenuProps) => {
       open={open}
       onClose={onClose}
       sx={{
-        width: 250,
-        flexShrink: 0,
         '& .MuiDrawer-paper': {
-          width: 250,
-          boxSizing: 'border-box',
           position: isMobile ? 'fixed' : 'relative',
         },
       }}
     >
-      <List>
+      <List sx={{ width: 250 }}>
         <ListSubheader>Menu</ListSubheader>
         <ListItem disablePadding>
           <ListItemButton

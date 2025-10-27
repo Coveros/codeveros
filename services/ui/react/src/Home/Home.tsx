@@ -9,6 +9,7 @@ import {
   useTheme,
   Icon,
   Tooltip,
+  Stack,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import FaceIcon from '@mui/icons-material/Face';
@@ -44,16 +45,8 @@ export const Home = () => {
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-      <AppBar
-        position="static"
-        color="default"
-        sx={{
-          boxShadow: '0 2px 5px 0 rgba(0, 0, 0, 0.3)',
-          mb: '5px',
-          zIndex: (theme) => theme.zIndex.drawer + 1,
-        }}
-      >
+    <Stack sx={{ height: '100vh', width: '100vw' }} direction="column">
+      <AppBar position="static" color="default" sx={{ mb: '5px' }}>
         <Toolbar>
           <Tooltip title="Menu">
             <IconButton
@@ -68,9 +61,9 @@ export const Home = () => {
           </Tooltip>
           <Box
             component="img"
-            src="/coveros-192x192.png"
+            src="/coveros-logo.png"
             alt="Coveros Logo"
-            sx={{ height: '75%', mr: 2 }}
+            sx={{ height: 48, mr: 2 }}
             id="logo"
           />
           <Box sx={{ flexGrow: 1 }} />
@@ -91,8 +84,7 @@ export const Home = () => {
           </Tooltip>
         </Toolbar>
       </AppBar>
-
-      <Box sx={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
+      <Stack sx={{ flex: 1, overflow: 'hidden' }} direction="row">
         <SidebarMenu
           open={sidenavOpen}
           onClose={() => setSidenavOpen(false)}
@@ -102,13 +94,13 @@ export const Home = () => {
         <Box
           component="main"
           sx={{
-            flexGrow: 1,
+            flex: 1,
             overflow: 'auto',
           }}
         >
           <Outlet />
         </Box>
-      </Box>
+      </Stack>
 
       <ConfirmDialog
         open={signOutDialogOpen}
@@ -119,6 +111,6 @@ export const Home = () => {
         cancelId="cancel-sign-out"
         confirmId="confirm-sign-out"
       />
-    </Box>
+    </Stack>
   );
 };
