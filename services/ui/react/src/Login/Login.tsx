@@ -10,6 +10,7 @@ import {
   Box,
 } from '@mui/material';
 import { useAuth } from '../AuthProvider/authContext';
+import CoverosLogo from 'assets/coveros-logo.png';
 
 export const Login = () => {
   const [username, setUsername] = useState('');
@@ -56,9 +57,12 @@ export const Login = () => {
         <Paper sx={{ p: 4 }}>
           <form onSubmit={handleSubmit}>
             <Stack spacing={3}>
-              <Typography variant="h4" align="center">
-                Codeveros Login
-              </Typography>
+              <img
+                src={CoverosLogo}
+                alt="coveros logo"
+                height={100}
+                width={187}
+              />
               <TextField
                 label="Username"
                 value={username}

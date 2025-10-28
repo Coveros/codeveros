@@ -1,4 +1,4 @@
-import type { EnvironmentConfig } from '../types/environment.interface.ts';
+import type { EnvironmentConfig } from './types/environment.config.ts';
 
 const mergedConfig: EnvironmentConfig = {
   ...import.meta.env,

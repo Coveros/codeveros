@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { environment } from '../config/environment.ts';
+import { environment } from '../environment.ts';
 
-// Create axios instance with default config
+const ACCESS_TOKEN = 'access_token';
+
 export const axiosInstance = axios.create({
   baseURL: environment.apiUrl,
   headers: {
@@ -9,32 +10,23 @@ export const axiosInstance = axios.create({
   },
 });
 
-// Add request interceptor to include auth token
-axiosInstance.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem('access_token');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  },
-);
+axiosInstance.interceptors.request.use((config) => {
+  const token = localStorage.getItem(ACCESS_TOKEN);
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
 
-// Add response interceptor to handle errors
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
       // Token expired or invalid
-      localStorage.removeItem('access_token');
-      // Optionally redirect to login page
-      if (globalThis.location.pathname !== '/login') {
-        globalThis.location.href = '/login';
-      }
+      localStorage.removeItem(ACCESS_TOKEN);
     }
-    return Promise.reject(error);
+    return error instanceof Error
+      ? Promise.reject(error)
+      : Promise.reject(new Error('error'));
   },
 );
