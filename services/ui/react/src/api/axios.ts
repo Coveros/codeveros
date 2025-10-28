@@ -1,11 +1,9 @@
 import axios from 'axios';
-
-// Get API URL from environment or default to /api
-const apiUrl = '/api';
+import { environment } from '../config/environment.ts';
 
 // Create axios instance with default config
 export const axiosInstance = axios.create({
-  baseURL: apiUrl,
+  baseURL: environment.apiUrl,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -32,9 +30,9 @@ axiosInstance.interceptors.response.use(
     if (error.response?.status === 401) {
       // Token expired or invalid
       localStorage.removeItem('access_token');
-      // Optionally redirect to login
-      if (window.location.pathname !== '/login') {
-        window.location.href = '/login';
+      // Optionally redirect to login page
+      if (globalThis.location.pathname !== '/login') {
+        globalThis.location.href = '/login';
       }
     }
     return Promise.reject(error);
