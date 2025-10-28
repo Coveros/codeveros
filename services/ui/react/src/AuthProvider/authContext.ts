@@ -1,4 +1,5 @@
 import { createContext, useContext } from 'react';
+import type { Registration } from '../types/auth';
 
 interface User {
   _id: string;
@@ -8,9 +9,12 @@ interface User {
 interface AuthContextType {
   user: User | null;
   login: (username: string, password: string) => Promise<boolean>;
+  register: (registration: Registration) => Promise<boolean>;
   logout: () => void;
   isAuthenticated: boolean;
   isLoading: boolean;
+  isLoggingIn: boolean;
+  isRegistering: boolean;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(
