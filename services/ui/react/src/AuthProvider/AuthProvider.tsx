@@ -108,9 +108,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     ],
   );
 
-  // Show loading state while checking auth
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <></>;
   }
 
   // Redirect if not authenticated and not on login page
