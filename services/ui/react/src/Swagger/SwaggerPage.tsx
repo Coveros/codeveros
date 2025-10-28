@@ -2,16 +2,18 @@ import { Box, CircularProgress, Typography } from '@mui/material';
 import { useGetSwaggerConfig } from '../api/swaggerApi';
 import SwaggerUI from 'swagger-ui-react';
 import 'swagger-ui-react/swagger-ui.css';
-import { useMemo } from 'react';
+import { useCallback } from 'react';
 import { CenteredBox } from '../Layout/CenteredBox.tsx';
+import type { ComponentProps } from 'react';
+
+type SwaggerUIProps = ComponentProps<typeof SwaggerUI>;
+type RequestInterceptor = SwaggerUIProps['requestInterceptor'];
 
 export const SwaggerPage = () => {
   const { data: swaggerConfig, isLoading, error } = useGetSwaggerConfig();
 
-  // Request interceptor to add Bearer token from localStorage
-  const requestInterceptor = useMemo(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    () => (req: any) => {
+  const requestInterceptor = useCallback<NonNullable<RequestInterceptor>>(
+    (req) => {
       const token = localStorage.getItem('access_token');
       if (token && req.headers) {
         req.headers.Authorization = `Bearer ${token}`;
