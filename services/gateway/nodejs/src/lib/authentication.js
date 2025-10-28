@@ -135,8 +135,8 @@ module.exports = opts => {
 
         if (tokenRes.ok) {
           const jwtPayload = await tokenRes.json();
-          if (jwtPayload) {
-            req.jwtPayload = jwtPayload;
+          if (jwtPayload?.valid) {
+            req.jwtPayload = jwtPayload.payload;
             return next();
           }
         }
@@ -150,7 +150,7 @@ module.exports = opts => {
   };
 
   Authentication.loggedin = async (req, res) => {
-    if (!req.jwtPayload) {
+    if (!req.jwtPayload?._id) {
       return res.status(200).send();
     }
 
