@@ -6,7 +6,7 @@ import { Login } from './Login/Login';
 import { NotFound } from './NotFound/NotFound';
 import { Users } from './Users/Users';
 import { Training } from './Training/Training';
-import { Swagger } from './Swagger/Swagger';
+import { SwaggerPage } from './Swagger/SwaggerPage.tsx';
 
 export const App = () => {
   return (
@@ -17,7 +17,7 @@ export const App = () => {
           <Route index element={<Welcome />} />
           <Route path="training" element={<Training />} />
           <Route path="users" element={<Users />} />
-          <Route path="swagger" element={<Swagger />} />
+          <Route path="swagger" element={<SwaggerPage />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

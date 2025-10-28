@@ -22,7 +22,8 @@
     "axios": "^1.13.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "react-router": "^7.9.4"
+    "react-router": "^7.9.4",
+    "swagger-ui-react": "^5.30.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",
@@ -31,6 +32,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
+    "@types/swagger-ui-react": "^5.18.0",
     "@vitejs/plugin-react": "^5.0.0",
     "@vitest/ui": "^3.2.4",
     "eslint": "^9.33.0",
@@ -44,5 +46,8 @@
     "vite": "^7.1.2",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.4"
+  },
+  "scarfSettings": {
+    "enabled": false
   }
 }
