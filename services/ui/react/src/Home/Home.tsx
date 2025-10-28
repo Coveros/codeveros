@@ -17,6 +17,7 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { useAuth } from '../AuthProvider/authContext';
 import { ConfirmDialog } from '../ConfirmDialog/ConfirmDialog';
 import { SidebarMenu } from './SidebarMenu';
+import CoverosLogo from 'assets/coveros-logo.png';
 
 export const Home = () => {
   const theme = useTheme();
@@ -61,7 +62,7 @@ export const Home = () => {
           </Tooltip>
           <Box
             component="img"
-            src="/coveros-logo.png"
+            src={CoverosLogo}
             alt="Coveros Logo"
             sx={{ height: 48, mr: 2 }}
             id="logo"
