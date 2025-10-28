@@ -3,7 +3,7 @@ import { type ChangeEvent, type FormEvent, useState } from 'react';
 import { useAuth } from '../AuthProvider/authContext.ts';
 import { useNavigate } from 'react-router';
 
-export const Signin = () => {
+export const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');

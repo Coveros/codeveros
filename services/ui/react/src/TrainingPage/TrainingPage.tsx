@@ -15,15 +15,15 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
-import { useGetAllUsers, useDeleteUser } from '../api/userApi';
+import { useGetTrainings, useDeleteTraining } from '../api/trainingApi';
 
-export const Users = () => {
-  const { data: users, isLoading, error } = useGetAllUsers();
-  const deleteUserMutation = useDeleteUser();
+export const TrainingPage = () => {
+  const { data: trainings, isLoading, error } = useGetTrainings();
+  const deleteTrainingMutation = useDeleteTraining();
 
   const handleDelete = async (id: string) => {
-    if (window.confirm('Are you sure you want to delete this user?')) {
-      await deleteUserMutation.mutateAsync(id);
+    if (window.confirm('Are you sure you want to delete this training?')) {
+      await deleteTrainingMutation.mutateAsync(id);
     }
   };
 
@@ -38,7 +38,7 @@ export const Users = () => {
   if (error) {
     return (
       <Box p={4}>
-        <Typography color="error">Error loading users</Typography>
+        <Typography color="error">Error loading trainings</Typography>
       </Box>
     );
   }
@@ -51,16 +51,16 @@ export const Users = () => {
         alignItems="center"
         mb={2}
       >
-        <Typography variant="h4">Users</Typography>
+        <Typography variant="h4">Training Catalog</Typography>
         <Button
           variant="contained"
           startIcon={<AddIcon />}
           onClick={() => {
-            // TODO: Open create user dialog
-            console.log('Add user');
+            // TODO: Open create training dialog
+            console.log('Add training');
           }}
         >
-          Add User
+          Add Course
         </Button>
       </Box>
 
@@ -68,32 +68,32 @@ export const Users = () => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Username</TableCell>
-              <TableCell>First Name</TableCell>
-              <TableCell>Last Name</TableCell>
-              <TableCell>Email</TableCell>
+              <TableCell>Name</TableCell>
+              <TableCell>Description</TableCell>
+              <TableCell>Type</TableCell>
+              <TableCell>Duration (Days)</TableCell>
               <TableCell align="right">Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {users?.map((user) => (
-              <TableRow key={user._id}>
-                <TableCell>{user.username}</TableCell>
-                <TableCell>{user.firstName}</TableCell>
-                <TableCell>{user.lastName}</TableCell>
-                <TableCell>{user.email}</TableCell>
+            {trainings?.map((training) => (
+              <TableRow key={training._id}>
+                <TableCell>{training.name}</TableCell>
+                <TableCell>{training.description}</TableCell>
+                <TableCell>{training.type}</TableCell>
+                <TableCell>{training.duration}</TableCell>
                 <TableCell align="right">
                   <IconButton
                     onClick={() => {
-                      // TODO: Open edit user dialog
-                      console.log('Edit user', user._id);
+                      // TODO: Open edit training dialog
+                      console.log('Edit training', training._id);
                     }}
                   >
                     <EditIcon />
                   </IconButton>
                   <IconButton
-                    onClick={() => user._id && handleDelete(user._id)}
-                    disabled={deleteUserMutation.isPending}
+                    onClick={() => training._id && handleDelete(training._id)}
+                    disabled={deleteTrainingMutation.isPending}
                   >
                     <DeleteIcon />
                   </IconButton>

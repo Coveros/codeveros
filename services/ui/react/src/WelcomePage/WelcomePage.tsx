@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
 
-export const Welcome = () => {
+export const WelcomePage = () => {
   return (
     <Box>
       <Box

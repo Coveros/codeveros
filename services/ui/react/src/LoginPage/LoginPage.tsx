@@ -1,11 +1,11 @@
 import { Stack, Paper, Box, Tabs, Tab } from '@mui/material';
 import CoverosLogo from 'assets/coveros-logo.png';
-import { Signin } from './Signin.tsx';
+import { Login } from './Login.tsx';
 import { useState } from 'react';
 import { CenteredBox } from '../Layout/CenteredBox.tsx';
 import { Register } from './Register.tsx';
 
-export const Login = () => {
+export const LoginPage = () => {
   const [tabIndex, setTabIndex] = useState(0);
 
   const handleTabChange = (_: unknown, newValue: number) => {
@@ -29,7 +29,7 @@ export const Login = () => {
             <Tab label="Register" />
           </Tabs>
           <Box>
-            {tabIndex === 0 && <Signin />}
+            {tabIndex === 0 && <Login />}
             {tabIndex === 1 && <Register />}
           </Box>
         </Stack>
