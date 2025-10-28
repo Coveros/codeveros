@@ -10,7 +10,7 @@ import {
   IconButton,
   CircularProgress,
   Typography,
-  Button,
+  Stack,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -44,27 +44,21 @@ export const UsersPage = () => {
   }
 
   return (
-    <Box p={4}>
-      <Box
-        display="flex"
+    <Paper sx={{ m: 2 }} elevation={4}>
+      <Stack
+        direction="row"
         justifyContent="space-between"
         alignItems="center"
+        sx={{ pt: 2, px: 3 }}
         mb={2}
       >
-        <Typography variant="h4">Users</Typography>
-        <Button
-          variant="contained"
-          startIcon={<AddIcon />}
-          onClick={() => {
-            // TODO: Open create user dialog
-            console.log('Add user');
-          }}
-        >
-          Add User
-        </Button>
-      </Box>
+        <Typography variant="h6">User List</Typography>
+        <IconButton onClick={() => null}>
+          <AddIcon />
+        </IconButton>
+      </Stack>
 
-      <TableContainer component={Paper}>
+      <TableContainer>
         <Table>
           <TableHead>
             <TableRow>
@@ -72,12 +66,12 @@ export const UsersPage = () => {
               <TableCell>First Name</TableCell>
               <TableCell>Last Name</TableCell>
               <TableCell>Email</TableCell>
-              <TableCell align="right">Actions</TableCell>
+              <TableCell align="right"></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {users?.map((user) => (
-              <TableRow key={user._id}>
+              <TableRow key={user._id} hover>
                 <TableCell>{user.username}</TableCell>
                 <TableCell>{user.firstName}</TableCell>
                 <TableCell>{user.lastName}</TableCell>
@@ -103,6 +97,6 @@ export const UsersPage = () => {
           </TableBody>
         </Table>
       </TableContainer>
-    </Box>
+    </Paper>
   );
 };

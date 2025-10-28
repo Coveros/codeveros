@@ -1,6 +1,7 @@
 import {
   Box,
   Paper,
+  Stack,
   Table,
   TableBody,
   TableCell,
@@ -10,12 +11,16 @@ import {
   IconButton,
   CircularProgress,
   Typography,
-  Button,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
 import { useGetTrainings, useDeleteTraining } from '../api/trainingApi';
+
+const trainingTypes = {
+  presentation: 'Presentation',
+  workshop: 'Workshop',
+};
 
 export const TrainingPage = () => {
   const { data: trainings, isLoading, error } = useGetTrainings();
@@ -44,44 +49,38 @@ export const TrainingPage = () => {
   }
 
   return (
-    <Box p={4}>
-      <Box
-        display="flex"
+    <Paper sx={{ m: 2 }} elevation={4}>
+      <Stack
+        direction="row"
         justifyContent="space-between"
         alignItems="center"
+        sx={{ pt: 2, px: 3 }}
         mb={2}
       >
-        <Typography variant="h4">Training Catalog</Typography>
-        <Button
-          variant="contained"
-          startIcon={<AddIcon />}
-          onClick={() => {
-            // TODO: Open create training dialog
-            console.log('Add training');
-          }}
-        >
-          Add Course
-        </Button>
-      </Box>
+        <Typography variant="h6">Training Catalog</Typography>
+        <IconButton onClick={() => null}>
+          <AddIcon />
+        </IconButton>
+      </Stack>
 
-      <TableContainer component={Paper}>
+      <TableContainer>
         <Table>
           <TableHead>
             <TableRow>
               <TableCell>Name</TableCell>
               <TableCell>Description</TableCell>
+              <TableCell># of Days</TableCell>
               <TableCell>Type</TableCell>
-              <TableCell>Duration (Days)</TableCell>
-              <TableCell align="right">Actions</TableCell>
+              <TableCell align="right"></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {trainings?.map((training) => (
-              <TableRow key={training._id}>
+              <TableRow key={training._id} hover>
                 <TableCell>{training.name}</TableCell>
                 <TableCell>{training.description}</TableCell>
-                <TableCell>{training.type}</TableCell>
                 <TableCell>{training.duration}</TableCell>
+                <TableCell>{trainingTypes[training.type]}</TableCell>
                 <TableCell align="right">
                   <IconButton
                     onClick={() => {
@@ -103,6 +102,6 @@ export const TrainingPage = () => {
           </TableBody>
         </Table>
       </TableContainer>
-    </Box>
+    </Paper>
   );
 };
