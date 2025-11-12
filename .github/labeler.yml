@@ -40,6 +40,15 @@ ui:
   - changed-files:
     - any-glob-to-any-file: 'services/ui/**/*'
 
+react:
+  - changed-files:
+      - any-glob-to-any-file: 'services/ui/react/*'
+
+angular:
+  - changed-files:
+      - any-glob-to-any-file: 'services/ui/angular/*'
+
+
 user-service:
   - changed-files:
     - any-glob-to-any-file: 'services/user-service/**/*'
