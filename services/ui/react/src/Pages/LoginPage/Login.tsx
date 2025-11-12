@@ -1,6 +1,6 @@
 import { Button, Stack, TextField, Typography } from '@mui/material';
 import { type ChangeEvent, type FormEvent, useState } from 'react';
-import { useAuth } from '../AuthProvider/authContext.ts';
+import { useAuth } from 'Providers/AuthProvider/authContext';
 import { useNavigate } from 'react-router';
 
 export const Login = () => {
@@ -33,7 +33,9 @@ export const Login = () => {
         setError('Invalid username or password');
       }
     } catch (err) {
-      setError('Login failed. Please try again.');
+      if (err instanceof Error) {
+        setError('Login failed. Please try again.');
+      }
     }
   };
 

@@ -1,9 +1,9 @@
 import { Box, CircularProgress, Typography } from '@mui/material';
-import { useGetSwaggerConfig } from '../api/swaggerApi';
+import { useGetSwaggerConfig } from 'api/swaggerApi';
 import SwaggerUI from 'swagger-ui-react';
 import 'swagger-ui-react/swagger-ui.css';
 import { useCallback } from 'react';
-import { CenteredBox } from '../Layout/CenteredBox.tsx';
+import { CenteredBox } from 'Components/CenteredBox';
 import type { ComponentProps } from 'react';
 
 type SwaggerUIProps = ComponentProps<typeof SwaggerUI>;

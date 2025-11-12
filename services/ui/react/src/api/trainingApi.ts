@@ -17,13 +17,10 @@ const createTraining = async (newTraining: Training): Promise<Training> => {
   return data;
 };
 
-const updateTraining = async ({
-  id,
-  training,
-}: {
-  id: string;
-  training: Partial<Training>;
-}): Promise<Training> => {
+const updateTraining = async (
+  id: string,
+  training: Partial<Training>,
+): Promise<Training> => {
   const { data } = await axiosInstance.put<Training>(
     `/training/${id}`,
     training,
@@ -62,11 +59,11 @@ export const useCreateTraining = () => {
   });
 };
 
-export const useUpdateTraining = () => {
+export const useUpdateTraining = (id: string) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: updateTraining,
+    mutationFn: (data: Partial<Training>) => updateTraining(id, data),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['trainings'] });
       queryClient.invalidateQueries({ queryKey: ['trainings', data._id] });

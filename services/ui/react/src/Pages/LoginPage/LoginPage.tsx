@@ -1,9 +1,9 @@
 import { Stack, Paper, Box, Tabs, Tab } from '@mui/material';
 import CoverosLogo from 'assets/coveros-logo.png';
-import { Login } from './Login.tsx';
+import { Login } from './Login';
 import { useState } from 'react';
-import { CenteredBox } from '../Layout/CenteredBox.tsx';
-import { Register } from './Register.tsx';
+import { CenteredBox } from 'Components/CenteredBox';
+import { Register } from './Register';
 
 export const LoginPage = () => {
   const [tabIndex, setTabIndex] = useState(0);

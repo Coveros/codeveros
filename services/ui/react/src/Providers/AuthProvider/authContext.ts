@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import type { Registration } from '../types/auth';
+import type { Registration } from 'types/auth';
 
 interface User {
   _id: string;

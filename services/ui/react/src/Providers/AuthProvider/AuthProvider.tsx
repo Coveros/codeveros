@@ -12,8 +12,8 @@ import {
   useLogin,
   useLogout,
   useRegister,
-} from '../api/authApi';
-import type { Registration } from '../types/auth';
+} from 'api/authApi';
+import type { Registration } from 'types/auth';
 
 interface AuthProviderProps {
   children: ReactNode;

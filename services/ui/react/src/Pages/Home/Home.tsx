@@ -14,8 +14,8 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import FaceIcon from '@mui/icons-material/Face';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import { useAuth } from '../AuthProvider/authContext';
-import { ConfirmDialog } from '../ConfirmDialog/ConfirmDialog';
+import { useAuth } from 'Providers/AuthProvider/authContext';
+import { ConfirmDialog } from 'Components/ConfirmDialog';
 import { SidebarMenu } from './SidebarMenu';
 import CoverosLogo from 'assets/coveros-logo.png';
 
@@ -109,8 +109,6 @@ export const Home = () => {
         message="Are you sure you want to sign out?"
         onConfirm={handleConfirmSignOut}
         onCancel={handleCancelSignOut}
-        cancelId="cancel-sign-out"
-        confirmId="confirm-sign-out"
       />
     </Stack>
   );

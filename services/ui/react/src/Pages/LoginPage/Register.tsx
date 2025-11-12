@@ -1,7 +1,7 @@
 import { useState, type FormEvent, type ChangeEvent, useMemo } from 'react';
 import { useNavigate } from 'react-router';
 import { TextField, Button, Typography, Stack } from '@mui/material';
-import { useAuth } from '../AuthProvider/authContext';
+import { useAuth } from 'Providers/AuthProvider/authContext';
 
 export const Register = () => {
   const [formData, setFormData] = useState({

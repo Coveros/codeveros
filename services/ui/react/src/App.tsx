@@ -1,12 +1,12 @@
 import { Routes, Route } from 'react-router';
-import { AuthProvider } from './AuthProvider/AuthProvider.tsx';
-import { Home } from './Home/Home';
-import { WelcomePage } from './WelcomePage/WelcomePage';
-import { LoginPage } from './LoginPage/LoginPage.tsx';
-import { NotFound } from './NotFound/NotFound';
-import { UsersPage } from './UsersPage/UsersPage';
-import { TrainingPage } from './TrainingPage/TrainingPage.tsx';
-import { SwaggerPage } from './Swagger/SwaggerPage.tsx';
+import { AuthProvider } from './Providers/AuthProvider/AuthProvider';
+import { Home } from './Pages/Home/Home';
+import { WelcomePage } from './Pages/WelcomePage/WelcomePage';
+import { LoginPage } from './Pages/LoginPage/LoginPage';
+import { NotFound } from './Components/NotFound';
+import { UsersPage } from './Pages/UsersPage/UsersPage';
+import { TrainingPage } from './Pages/TrainingPage/TrainingPage';
+import { SwaggerPage } from './Pages/Swagger/SwaggerPage';
 
 export const App = () => {
   return (
