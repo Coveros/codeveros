@@ -22,9 +22,13 @@ export default defineConfig({
       'src/**/__tests__/**/*.(ts|tsx)',
       'src/**/*.(test|spec).(ts|tsx)',
     ],
+    outputFile: {
+      junit: './reports/junit.xml',
+    },
     coverage: {
       include: ['src/**/*.(ts|tsx)'],
       exclude: ['src/**/*.d.ts', 'src/main.tsx', 'src/vite-env.d.ts'],
+      reportsDirectory: './reports/coverage',
     },
   },
 });

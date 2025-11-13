@@ -12,7 +12,7 @@
     "preview": "vite preview",
     "test": "vitest",
     "checkstyle:ci": "npm run lint",
-    "test-ci": "vitest"
+    "test-ci": "vitest run --silent --coverage --reporter junit"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -36,6 +36,7 @@
     "@types/react-dom": "^19.1.7",
     "@types/swagger-ui-react": "^5.18.0",
     "@vitejs/plugin-react": "^5.0.0",
+    "@vitest/coverage-v8": "^3.2.4",
     "@vitest/ui": "^3.2.4",
     "eslint": "^9.33.0",
     "eslint-plugin-react-hooks": "^5.2.0",

@@ -2,7 +2,7 @@ import { Button, type ButtonProps, CircularProgress } from '@mui/material';
 
 interface ConfirmButtonProps {
   text?: string;
-  onClick: ButtonProps['onClick'];
+  onClick?: ButtonProps['onClick'];
   disabled?: boolean;
   processing?: boolean;
 }
