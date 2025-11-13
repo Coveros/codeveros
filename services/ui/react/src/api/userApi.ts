@@ -2,38 +2,32 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { axiosInstance } from './axios';
 import type { User } from '../types/user';
 
-const fetchAllUsers = async (): Promise<User[]> => {
+const fetchAllUsers = async () => {
   const { data } = await axiosInstance.get<User[]>('/user');
   return data;
 };
 
-const fetchUser = async (id: string): Promise<User> => {
+const fetchUser = async (id: string) => {
   const { data } = await axiosInstance.get<User>(`/user/${id}`);
   return data;
 };
 
-const createUser = async (newUser: User): Promise<User> => {
+const createUser = async (newUser: User) => {
   const { data } = await axiosInstance.post<User>('/user', newUser);
   return data;
 };
 
-const updateUser = async ({
-  id,
-  user,
-}: {
-  id: string;
-  user: Partial<User>;
-}): Promise<User> => {
+const updateUser = async (id: string, user: Partial<User>) => {
   const { data } = await axiosInstance.put<User>(`/user/${id}`, user);
   return data;
 };
 
-const deleteUser = async (id: string): Promise<User> => {
+const deleteUser = async (id: string) => {
   const { data } = await axiosInstance.delete<User>(`/user/${id}`);
   return data;
 };
 
-export const useGetAllUsers = () => {
+export const useGetUsers = () => {
   return useQuery({
     queryKey: ['users'],
     queryFn: fetchAllUsers,
@@ -60,11 +54,11 @@ export const useCreateUser = () => {
   });
 };
 
-export const useUpdateUser = () => {
+export const useUpdateUser = (id: string) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: updateUser,
+    mutationFn: (data: Partial<User>) => updateUser(id, data),
     onSuccess: (data) => {
       // Invalidate and refetch users list and specific user
       queryClient.invalidateQueries({ queryKey: ['users'] });

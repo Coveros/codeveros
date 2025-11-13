@@ -2,17 +2,17 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { axiosInstance } from './axios';
 import type { Training } from '../types/training';
 
-const fetchAllTrainings = async (): Promise<Training[]> => {
+const fetchAllTrainings = async () => {
   const { data } = await axiosInstance.get<Training[]>('/training');
   return data;
 };
 
-const fetchTraining = async (id: string): Promise<Training> => {
+const fetchTraining = async (id: string) => {
   const { data } = await axiosInstance.get<Training>(`/training/${id}`);
   return data;
 };
 
-const createTraining = async (newTraining: Training): Promise<Training> => {
+const createTraining = async (newTraining: Training) => {
   const { data } = await axiosInstance.post<Training>('/training', newTraining);
   return data;
 };
@@ -28,7 +28,7 @@ const updateTraining = async (
   return data;
 };
 
-const deleteTraining = async (id: string): Promise<Training> => {
+const deleteTraining = async (id: string) => {
   const { data } = await axiosInstance.delete<Training>(`/training/${id}`);
   return data;
 };

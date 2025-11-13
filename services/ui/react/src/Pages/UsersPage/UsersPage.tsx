@@ -1,6 +1,7 @@
 import {
   Box,
   Paper,
+  Stack,
   Table,
   TableBody,
   TableCell,
@@ -10,21 +11,32 @@ import {
   IconButton,
   CircularProgress,
   Typography,
-  Stack,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
-import { useGetAllUsers, useDeleteUser } from 'api/userApi';
+import { UserCreateDialog } from './UserCreateDialog.tsx';
+import { useState } from 'react';
+import { UserEditDialog } from './UserEditDialog.tsx';
+import { UserDeleteDialog } from './UserDeleteDialog.tsx';
+import { useGetUsers } from 'api/userApi.ts';
+
+type DialogMode = 'create' | 'edit' | 'delete';
 
 export const UsersPage = () => {
-  const { data: users, isLoading, error } = useGetAllUsers();
-  const deleteUserMutation = useDeleteUser();
+  const [dialogMode, setDialogMode] = useState<DialogMode>();
+  const [selectedId, setSelectedId] = useState<string>();
 
-  const handleDelete = async (id: string) => {
-    if (window.confirm('Are you sure you want to delete this user?')) {
-      await deleteUserMutation.mutateAsync(id);
-    }
+  const { data: users, isLoading, error } = useGetUsers();
+
+  const handleDialogOpen = (mode: DialogMode, id?: string) => {
+    setDialogMode(mode);
+    setSelectedId(id);
+  };
+
+  const handleDialogClose = () => {
+    setDialogMode(undefined);
+    setSelectedId(undefined);
   };
 
   if (isLoading) {
@@ -53,7 +65,7 @@ export const UsersPage = () => {
         mb={2}
       >
         <Typography variant="h6">User List</Typography>
-        <IconButton onClick={() => null}>
+        <IconButton onClick={() => handleDialogOpen('create')}>
           <AddIcon />
         </IconButton>
       </Stack>
@@ -69,25 +81,30 @@ export const UsersPage = () => {
               <TableCell align="right"></TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody
+            sx={{
+              '.table-actions button': {
+                visibility: 'hidden',
+              },
+              'tr:hover .table-actions button': {
+                visibility: 'visible',
+              },
+            }}
+          >
             {users?.map((user) => (
               <TableRow key={user._id} hover>
                 <TableCell>{user.username}</TableCell>
                 <TableCell>{user.firstName}</TableCell>
                 <TableCell>{user.lastName}</TableCell>
                 <TableCell>{user.email}</TableCell>
-                <TableCell align="right">
+                <TableCell align="right" className="table-actions">
                   <IconButton
-                    onClick={() => {
-                      // TODO: Open edit user dialog
-                      console.log('Edit user', user._id);
-                    }}
+                    onClick={() => handleDialogOpen('edit', user._id)}
                   >
                     <EditIcon />
                   </IconButton>
                   <IconButton
-                    onClick={() => user._id && handleDelete(user._id)}
-                    disabled={deleteUserMutation.isPending}
+                    onClick={() => handleDialogOpen('delete', user._id)}
                   >
                     <DeleteIcon />
                   </IconButton>
@@ -97,6 +114,23 @@ export const UsersPage = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      {dialogMode === 'create' && (
+        <UserCreateDialog onClose={handleDialogClose} open={true} />
+      )}
+      {dialogMode === 'edit' && selectedId && (
+        <UserEditDialog
+          onClose={handleDialogClose}
+          open={true}
+          userId={selectedId}
+        />
+      )}
+      {dialogMode === 'delete' && selectedId && (
+        <UserDeleteDialog
+          open={true}
+          userId={selectedId}
+          onClose={handleDialogClose}
+        />
+      )}
     </Paper>
   );
 };

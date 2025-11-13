@@ -7,12 +7,12 @@ import type {
   Registration,
 } from '../types/auth';
 
-const checkLoggedIn = async (): Promise<AuthUser> => {
+const checkLoggedIn = async () => {
   const { data } = await axiosInstance.get<AuthUser>('/auth/loggedin');
   return data;
 };
 
-const login = async (credentials: LoginRequest): Promise<LoginResponse> => {
+const login = async (credentials: LoginRequest) => {
   const { data } = await axiosInstance.post<LoginResponse>(
     '/auth/login',
     credentials,
@@ -20,7 +20,7 @@ const login = async (credentials: LoginRequest): Promise<LoginResponse> => {
   return data;
 };
 
-const register = async (registration: Registration): Promise<LoginResponse> => {
+const register = async (registration: Registration) => {
   const { data } = await axiosInstance.post<LoginResponse>(
     '/auth/register',
     registration,
@@ -28,7 +28,7 @@ const register = async (registration: Registration): Promise<LoginResponse> => {
   return data;
 };
 
-const logout = async (): Promise<void> => {
+const logout = async () => {
   await axiosInstance.post<void>('/auth/logout', {});
 };
 

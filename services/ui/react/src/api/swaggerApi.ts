@@ -3,7 +3,7 @@ import { axiosInstance } from './axios';
 
 export type SwaggerConfig = Record<string, unknown>;
 
-const fetchSwaggerConfig = async (): Promise<SwaggerConfig> => {
+const fetchSwaggerConfig = async () => {
   const { data } = await axiosInstance.get<SwaggerConfig>('/docs');
   return data;
 };

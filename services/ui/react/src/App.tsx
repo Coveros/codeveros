@@ -4,7 +4,7 @@ import { Home } from './Pages/Home/Home';
 import { WelcomePage } from './Pages/WelcomePage/WelcomePage';
 import { LoginPage } from './Pages/LoginPage/LoginPage';
 import { NotFound } from './Components/NotFound';
-import { UsersPage } from './Pages/UsersPage/UsersPage';
+import { UsersPage } from './Pages/UsersPage/UsersPage.tsx';
 import { TrainingPage } from './Pages/TrainingPage/TrainingPage';
 import { SwaggerPage } from './Pages/Swagger/SwaggerPage';
 
