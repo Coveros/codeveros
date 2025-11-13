@@ -35,14 +35,26 @@ export const UserDialog = ({
   initialValue,
 }: UserDialogProps) => {
   const [user, setUser] = useState<User>(initialValue);
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [touched, setTouched] = useState<Record<string, boolean>>({});
 
+  const isCreate = initialValue._id === undefined;
+  const isConfirmPasswordEmpty = touched.confirmPassword && !confirmPassword;
+  const isPasswordMismatch =
+    touched.confirmPassword && user.password !== confirmPassword;
+  const isConfirmPasswordError = isConfirmPasswordEmpty || isPasswordMismatch;
+  const isPasswordError = touched.password && !user.password;
   const isUsernameError = touched.username && !user.username;
   const isFirstNameError = touched.firstName && !user.firstName;
   const isLastNameError = touched.lastName && !user.lastName;
   const isEmailError = touched.email && !user.email;
+
   const isFormInvalid =
-    !user.username || !user.firstName || !user.lastName || !user.email;
+    !user.username ||
+    !user.firstName ||
+    !user.lastName ||
+    !user.email ||
+    (isCreate && (!user.password || user.password !== confirmPassword));
 
   const handleSave = () => {
     setTouched({
@@ -50,6 +62,8 @@ export const UserDialog = ({
       firstName: true,
       lastName: true,
       email: true,
+      password: true,
+      confirmPassword: true,
     });
     if (!isFormInvalid) {
       onSave(user);
@@ -127,6 +141,7 @@ export const UserDialog = ({
             <TextField
               label="Email Address"
               name="email"
+              type="email"
               value={user.email}
               onChange={handleInputChange}
               onBlur={handleBlur}
@@ -156,6 +171,55 @@ export const UserDialog = ({
               <FormHelperText>This is required</FormHelperText>
             )}
           </FormControl>
+          {isCreate && (
+            <>
+              <FormControl
+                fullWidth
+                margin="normal"
+                error={isPasswordError}
+                required
+              >
+                <TextField
+                  label="Password"
+                  name="password"
+                  type="password"
+                  value={user.password}
+                  onChange={handleInputChange}
+                  onBlur={handleBlur}
+                  error={isPasswordError}
+                  required
+                  id="user-password"
+                />
+                {isPasswordError && (
+                  <FormHelperText>This is required</FormHelperText>
+                )}
+              </FormControl>
+              <FormControl
+                fullWidth
+                margin="normal"
+                error={isConfirmPasswordError}
+                required
+              >
+                <TextField
+                  label="Confirm Password"
+                  name="confirmPassword"
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  onBlur={handleBlur}
+                  error={isConfirmPasswordError}
+                  required
+                  id="user-confirm-password"
+                />
+                {isConfirmPasswordEmpty && (
+                  <FormHelperText>This is required</FormHelperText>
+                )}
+                {!isConfirmPasswordEmpty && isPasswordMismatch && (
+                  <FormHelperText>Passwords must match</FormHelperText>
+                )}
+              </FormControl>
+            </>
+          )}
         </Box>
       </DialogContent>
       <DialogActions>
