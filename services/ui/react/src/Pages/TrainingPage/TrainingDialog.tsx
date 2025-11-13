@@ -123,6 +123,7 @@ export const TrainingDialog = ({
               value={training.name}
               onChange={handleInputChange}
               onBlur={handleBlur}
+              error={isNameError}
               required
               id="training-name"
             />
@@ -140,6 +141,7 @@ export const TrainingDialog = ({
               value={training.description}
               onChange={handleInputChange}
               onBlur={handleBlur}
+              error={isDescriptionError}
               required
               multiline
               minRows={1}
@@ -158,6 +160,7 @@ export const TrainingDialog = ({
                 name="type"
                 value={training.type}
                 label="Type"
+                error={isTypeError}
                 onChange={handleInputChange}
                 onBlur={handleBlur}
                 id="training-type"
@@ -179,6 +182,7 @@ export const TrainingDialog = ({
                 name="duration"
                 value={training.duration}
                 label="Duration (# of Days)"
+                error={isDurationError}
                 onChange={handleInputChange}
                 onBlur={handleBlur}
                 id="training-duration"

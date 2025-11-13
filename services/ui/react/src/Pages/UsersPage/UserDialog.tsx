@@ -95,6 +95,7 @@ export const UserDialog = ({
               value={user.firstName}
               onChange={handleInputChange}
               onBlur={handleBlur}
+              error={isFirstNameError}
               required
               id="user-firstname"
             />
@@ -114,6 +115,7 @@ export const UserDialog = ({
               value={user.lastName}
               onChange={handleInputChange}
               onBlur={handleBlur}
+              error={isLastNameError}
               required
               id="user-lastname"
             />
@@ -128,6 +130,7 @@ export const UserDialog = ({
               value={user.email}
               onChange={handleInputChange}
               onBlur={handleBlur}
+              error={isEmailError}
               required
               id="user-email"
             />
@@ -145,6 +148,7 @@ export const UserDialog = ({
               value={user.username}
               onChange={handleInputChange}
               onBlur={handleBlur}
+              error={isUsernameError}
               required
               id="user-username"
             />
