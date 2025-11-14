@@ -19,6 +19,8 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
+export const ACCESS_TOKEN = 'access_token';
+
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
   const location = useLocation();
@@ -33,12 +35,15 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const isLoggingIn = loginMutation.isPending;
   const isRegistering = registerMutation.isPending;
 
+  const isLoginPage = location.pathname === '/login';
+  const isAuthenticated = !!user?._id || !!loggedInUser?._id;
+
   useEffect(() => {
-    const token = localStorage.getItem('access_token');
+    const token = localStorage.getItem(ACCESS_TOKEN);
     if (token && loggedInUser) {
       setUser(loggedInUser);
     } else if (error) {
-      localStorage.removeItem('access_token');
+      localStorage.removeItem(ACCESS_TOKEN);
       setUser(null);
     }
   }, [loggedInUser, error]);
@@ -50,7 +55,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           username,
           password,
         });
-        localStorage.setItem('access_token', response.token);
+        localStorage.setItem(ACCESS_TOKEN, response.token);
         setUser(response.user);
         return true;
       } catch (error) {
@@ -65,7 +70,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     async (registration: Registration): Promise<boolean> => {
       try {
         const response = await registerMutation.mutateAsync(registration);
-        localStorage.setItem('access_token', response.token);
+        localStorage.setItem(ACCESS_TOKEN, response.token);
         setUser(response.user);
         return true;
       } catch (error) {
@@ -77,13 +82,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   );
 
   const logout = useCallback(() => {
-    localStorage.removeItem('access_token');
+    localStorage.removeItem(ACCESS_TOKEN);
     setUser(null);
     logoutMutation.mutate();
   }, [logoutMutation]);
-
-  const isLoginPage = location.pathname === '/login';
-  const isAuthenticated = !!user;
 
   const contextValue = useMemo(
     () => ({
@@ -91,21 +93,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       login,
       register,
       logout,
-      isAuthenticated,
-      isLoading,
       isLoggingIn,
       isRegistering,
     }),
-    [
-      user,
-      login,
-      register,
-      logout,
-      isAuthenticated,
-      isLoading,
-      isLoggingIn,
-      isRegistering,
-    ],
+    [user, login, register, logout, isLoggingIn, isRegistering],
   );
 
   if (isLoading) {

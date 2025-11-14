@@ -11,8 +11,6 @@ interface AuthContextType {
   login: (username: string, password: string) => Promise<boolean>;
   register: (registration: Registration) => Promise<boolean>;
   logout: () => void;
-  isAuthenticated: boolean;
-  isLoading: boolean;
   isLoggingIn: boolean;
   isRegistering: boolean;
 }
