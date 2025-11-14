@@ -2,4 +2,5 @@ auth-service: services/auth-service/nodejs/**
 gateway: services/gateway/nodejs/**
 training-service: services/training-service/nodejs/**
 user-service: services/user-service/nodejs/**
-ui: services/ui/angular/**
+ui-angular: services/ui/angular/**
+ui-react: services/ui/react/**

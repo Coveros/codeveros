@@ -14,6 +14,10 @@ user-service:
   context: services/user-service/nodejs
   image: coveros/codeveros-user-service
 
-ui:
+ui-angular:
   context: services/ui/angular
   image: coveros/codeveros-ui
+
+ui-react:
+  context: services/ui/react
+  image: coveros/codeveros-ui-react
