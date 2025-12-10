@@ -25,7 +25,7 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router": "^7.9.4",
-    "swagger-ui-react": "^5.30.0"
+    "swagger-ui-react": "^5.30.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",
@@ -46,7 +46,7 @@
     "prettier": "^3.6.2",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.39.1",
-    "vite": "^7.1.2",
+    "vite": "^7.2.7",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.4"
   },
