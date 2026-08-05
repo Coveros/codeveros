@@ -50,6 +50,8 @@ jobs:
     defaults:
       run:
         working-directory: ${{ matrix.context }}
+    env:
+      FIANU_CLIENT_ID: ${{ secrets.FIANU_CLIENT_ID }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
