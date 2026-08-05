@@ -95,6 +95,13 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
+      - name: Fianu Login
+        uses: fianulabs/actions/login@c9fbb13ef431654e71ed51fa89e16103cf2e2e82 # main
+        with:
+          fianu_host: "https://app.fianu.io"
+          fianu_client_id: ${{ secrets.FIANU_CLIENT_ID }}
+          fianu_organization: ${{ var.FIANU_ORGANIZATION_ID }}
+
       - name: Install Cosign
         uses: sigstore/cosign-installer@v4.1.2
 
