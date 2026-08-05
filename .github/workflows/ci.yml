@@ -128,7 +128,6 @@ jobs:
           -a commit=${{ github.sha }} \
           --fulcio-url="https://app.fianu.io/ledger/fulcio" \
           --rekor-url="https://app.fianu.io/ledger/rekor" \
-#          --use-signing-config=false \
           --yes \
           "${{ env.REGISTRY }}/${{ matrix.image }}@${{ steps.build.outputs.digest }}"
 
