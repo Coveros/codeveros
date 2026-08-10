@@ -113,7 +113,6 @@ jobs:
         run: |
           cosign sign \
           -a commit=${{ github.sha }} \
-#          -a run_id="$GITHUB_RUN_ID" \
           --fulcio-url="https://app.fianu.io/ledger/fulcio" \
           --rekor-url="https://app.fianu.io/ledger/rekor" \
           --yes \
