@@ -98,7 +98,7 @@ jobs:
       - name: Install Cosign
         uses: sigstore/cosign-installer@v4.1.0
         with:
-          cosign-release: 'v2.0.0'
+          cosign-release: 'v3.1.3'
 
       - name: Check install
         run: cosign version
@@ -115,6 +115,8 @@ jobs:
           -a commit=${{ github.sha }} \
           --fulcio-url="https://app.fianu.io/ledger/fulcio" \
           --rekor-url="https://app.fianu.io/ledger/rekor" \
+          --new-bundle-format=false \
+          --use-signing-config=false \
           --yes \
           "${{ env.REGISTRY }}/${{ matrix.image }}@${{ steps.build.outputs.digest }}"
 
