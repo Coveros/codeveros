@@ -98,7 +98,7 @@ jobs:
       - name: Install Cosign
         uses: sigstore/cosign-installer@v4.1.0
         with:
-          cosign-release: 'v2.0.1'
+          cosign-release: 'v2.0.0'
 
       - name: Check install
         run: cosign version
@@ -111,8 +111,10 @@ jobs:
 
       - name: Sign Image
         run: |
+          EXECUTION_NONCE=$(uuidgen)
           cosign sign \
           -a commit=${{ github.sha }} \
+          -a nonce="${EXECUTION_NONCE}" \
           --fulcio-url="https://app.fianu.io/ledger/fulcio" \
           --rekor-url="https://app.fianu.io/ledger/rekor" \
           --yes \
