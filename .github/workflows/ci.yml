@@ -119,12 +119,13 @@ jobs:
             --tsa-config="ANY" \
             --output-file custom.signingconfig.json
 
+      - name: Output the Config
+        run: cat custom.signingconfig.json
+
       - name: Sign Image
         run: |
-          EXECUTION_NONCE=$(uuidgen)
           cosign sign \
           -a commit=${{ github.sha }} \
-          -a nonce="${EXECUTION_NONCE}" \
           --signing-config=custom.signingconfig.json \
           --yes \
           "${{ env.REGISTRY }}/${{ matrix.image }}@${{ steps.build.outputs.digest }}"
