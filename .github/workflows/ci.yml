@@ -119,7 +119,7 @@ jobs:
           # --new-bundle-format requires an explicit trusted root; the file://
           # TUF from `fianu root init` can't serve it. Fetch the prod
           # trusted_root.json target directly from the Fianu TUF mirror.
-          curl -sSf "$FIANU_HOST/ledger/root/targets/trusted_root.json" -o trusted_root.json
+          curl -sSf "https://app.fianu.io/ledger/root/targets/trusted_root.json" -o trusted_root.json
 
 #      - name: Initialize Cosign
 #        run: |
@@ -136,6 +136,9 @@ jobs:
             --tsa="url=https://app.fianu.io/ledger/timestamp,api-version=1,start-time=2020-01-01T00:00:00Z,operator=fianu" \
             --tsa-config="ANY" \
             --output-file signing_config.json
+
+      - name: Output Trusted Root
+        run: cat trusted_root.json
 
       - name: Output the Config
         run: cat signing_config.json
