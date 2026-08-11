@@ -103,11 +103,24 @@ jobs:
       - name: Check install
         run: cosign version
 
-      - name: Initialize Cosign
-        run: |
-          cosign initialize \
-          --mirror "https://app.fianu.io/ledger/root" \
-          --root "https://app.fianu.io/ledger/root/root.json"
+      - name: Setup Fianu
+        uses: fianulabs/actions@main
+        with:
+          version: 1.9.67
+
+      - name: Initialize TUF
+        env:
+          FIANU_HOST: app.fianu.io
+          FIANU_CLIENT_ID: ${{ secrets.FIANU_CLIENT_ID }}
+          FIANU_CLIENT_SECRET: ${{ secrets.FIANU_CLIENT_SECRET }}
+        run: |-
+          fianu root init
+
+#      - name: Initialize Cosign
+#        run: |
+#          cosign initialize \
+#          --mirror "https://app.fianu.io/ledger/root" \
+#          --root "https://app.fianu.io/ledger/root/root.json"
 
       - name: Signing Config
         run: |
