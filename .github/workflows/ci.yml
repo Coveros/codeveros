@@ -108,24 +108,20 @@ jobs:
         with:
           version: 1.9.67
 
-      - name: Initialize TUF
-        env:
-          FIANU_HOST: app.fianu.io
-          FIANU_CLIENT_ID: ${{ secrets.FIANU_CLIENT_ID }}
-          FIANU_CLIENT_SECRET: ${{ secrets.FIANU_CLIENT_SECRET }}
-        run: |-
-          fianu root init
-          
-          # --new-bundle-format requires an explicit trusted root; the file://
-          # TUF from `fianu root init` can't serve it. Fetch the prod
-          # trusted_root.json target directly from the Fianu TUF mirror.
-          curl -sSf "https://app.fianu.io/ledger/root/targets/trusted_root.json" -o trusted_root.json
+#      - name: Initialize TUF
+#        env:
+#          FIANU_HOST: app.fianu.io
+#          FIANU_CLIENT_ID: ${{ secrets.FIANU_CLIENT_ID }}
+#          FIANU_CLIENT_SECRET: ${{ secrets.FIANU_CLIENT_SECRET }}
+#        run: |-
+#          fianu root init
+#          curl -sSf "https://app.fianu.io/ledger/root/targets/trusted_root.json" -o trusted_root.json
 
-#      - name: Initialize Cosign
-#        run: |
-#          cosign initialize \
-#          --mirror "https://app.fianu.io/ledger/root" \
-#          --root "https://app.fianu.io/ledger/root/root.json"
+      - name: Initialize Cosign
+        run: |
+          cosign initialize \
+          --mirror "https://app.fianu.io/ledger/root" \
+          --root "https://app.fianu.io/ledger/root/root.json"
 
       - name: Signing Config
         run: |
@@ -137,8 +133,8 @@ jobs:
             --tsa-config="ANY" \
             --output-file signing_config.json
 
-      - name: Output Trusted Root
-        run: cat trusted_root.json
+#      - name: Output Trusted Root
+#        run: cat trusted_root.json
 
       - name: Output the Config
         run: cat signing_config.json
@@ -148,7 +144,6 @@ jobs:
           cosign sign \
           -a commit=${{ github.sha }} \
           --signing-config=signing_config.json \
-          --trusted-root=trusted_root.json \
           --yes \
           "${{ env.REGISTRY }}/${{ matrix.image }}@${{ steps.build.outputs.digest }}"
 
@@ -157,5 +152,4 @@ jobs:
           cosign verify \
           --certificate-oidc-issuer="https://token.actions.githubusercontent.com" \
           --certificate-identity-regexp="^https://github\.com/Coveros/.*$" \
-          --trusted-root=trusted_root.json \
           "${{ env.REGISTRY }}/${{ matrix.image }}@${{ steps.build.outputs.digest }}"
