@@ -131,20 +131,20 @@ jobs:
         run: |
           cosign signing-config create \
             --fulcio="url=https://app.fianu.io/ledger/fulcio,api-version=1,start-time=2020-01-01T00:00:00Z,operator=fianu" \
-            --rekor="url=https://app.fianu.io/ledger/rekor-tiles,api-version=2,start-time=2020-01-01T00:00:00Z,operator=fianu" \
+            --rekor="url=https://rekor-tiles.prod.fianu.io,api-version=2,start-time=2020-01-01T00:00:00Z,operator=fianu" \
             --rekor-config="ANY" \
             --tsa="url=https://app.fianu.io/ledger/timestamp,api-version=1,start-time=2020-01-01T00:00:00Z,operator=fianu" \
             --tsa-config="ANY" \
-            --output-file custom.signingconfig.json
+            --output-file signing_config.json
 
       - name: Output the Config
-        run: cat custom.signingconfig.json
+        run: cat signing_config.json
 
       - name: Sign Image
         run: |
           cosign sign \
           -a commit=${{ github.sha }} \
-          --signing-config=custom.signingconfig.json \
+          --signing-config=signing_config.json \
           --yes \
           "${{ env.REGISTRY }}/${{ matrix.image }}@${{ steps.build.outputs.digest }}"
 
