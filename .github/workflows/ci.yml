@@ -145,6 +145,7 @@ jobs:
           cosign sign \
           -a commit=${{ github.sha }} \
           --signing-config=signing_config.json \
+          --trusted-root=trusted_root.json \
           --yes \
           "${{ env.REGISTRY }}/${{ matrix.image }}@${{ steps.build.outputs.digest }}"
 
@@ -153,4 +154,5 @@ jobs:
           cosign verify \
           --certificate-oidc-issuer="https://token.actions.githubusercontent.com" \
           --certificate-identity-regexp="^https://github\.com/Coveros-/.$" \
+          --trusted-root=trusted_root.json \
           "${{ env.REGISTRY }}/${{ matrix.image }}@${{ steps.build.outputs.digest }}"
