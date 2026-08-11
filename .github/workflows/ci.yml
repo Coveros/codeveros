@@ -115,6 +115,11 @@ jobs:
           FIANU_CLIENT_SECRET: ${{ secrets.FIANU_CLIENT_SECRET }}
         run: |-
           fianu root init
+          
+          # --new-bundle-format requires an explicit trusted root; the file://
+          # TUF from `fianu root init` can't serve it. Fetch the prod
+          # trusted_root.json target directly from the Fianu TUF mirror.
+          curl -sSf "$FIANU_HOST/ledger/root/targets/trusted_root.json" -o trusted_root.json
 
 #      - name: Initialize Cosign
 #        run: |
