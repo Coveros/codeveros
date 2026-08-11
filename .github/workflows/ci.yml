@@ -108,6 +108,11 @@ jobs:
         with:
           version: 1.9.67
 
+      - name: Setup Fianu again
+        uses: fianulabs/actions@main
+        with:
+          version: 1.9.67
+
 #      - name: Initialize TUF
 #        env:
 #          FIANU_HOST: app.fianu.io
